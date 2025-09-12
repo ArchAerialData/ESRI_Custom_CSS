@@ -1,0 +1,342 @@
+
+
+<!DOCTYPE html>
+<!--[if lt IE 7]>  <html class="ie lt-ie9 lt-ie8 lt-ie7 ie6" dir="ltr"> <![endif]-->
+<!--[if IE 7]>     <html class="ie lt-ie9 lt-ie8 ie7" dir="ltr"> <![endif]-->
+<!--[if IE 8]>     <html class="ie lt-ie9 ie8" dir="ltr"> <![endif]-->
+<!--[if IE 9]>     <html class="ie ie9" dir="ltr"> <![endif]-->
+<!--[if !IE]><!--> <html dir="ltr" lang="en"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <title>Use URL parameters in scenes&mdash;ArcGIS Online Help | Documentation</title>
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+
+    <!-- Secondary nav -->
+  
+    
+  
+  <script>
+    var appOverviewURL = "/content/esri-sites/en-us/arcgis/products/arcgis-online/overview";
+  </script>
+
+    <script>
+      var docConfig = {
+        locale: 'en'
+        ,localedir: 'en'
+        ,langSelector: ''
+        
+        ,relativeUrl: false
+        
+
+        ,searchformUrl: '/search/'
+        ,tertiaryNavIndex: '7'
+
+        
+      };
+    </script>
+	 
+
+
+
+    <!--[if lt IE 9]>
+      <script src="/cdn/js/libs/html5shiv.js" type="text/javascript"></script>
+      <script src="/cdn/js/libs/selectivizr-min.js" type="text/javascript"></script>
+      <script src="/cdn/js/libs/json2.js" type="text/javascript"></script>
+      <script src="/cdn/js/libs/html5shiv-printshiv.js" type="text/javascript" >
+
+    <![endif]-->
+
+     <!--[if lt IE 11]>
+    <script>
+      $$(document).ready(function(){
+        $$(".hideOnIE").hide();
+      });
+    </script>
+    <![endif]-->
+	<meta name="viewport" content="width=device-width, user-scalable=no">
+	<link href="/assets/img/favicon.ico" rel="shortcut icon" >
+	<link href="/assets/css/screen.css" media="screen" rel="stylesheet" type="text/css" />
+	<link href="/cdn/calcite/css/documentation.css" media="screen" rel="stylesheet" type="text/css" />
+	<link href="/assets/css/print.css" media="print" type="text/css" rel="stylesheet" />
+
+	<!--
+	<link href="/assets/css/screen_l10n.css" media="screen" rel="stylesheet" type="text/css" />
+	<link href="/assets/css/documentation/base_l10n.css" media="screen" rel="stylesheet" type="text/css" />
+	<link href="/assets/css/print_l10n.css" media="print" type="text/css" rel="stylesheet" />
+	-->
+	<script src="/cdn/js/libs/latest/jquery.latest.min.js" type="text/javascript"></script>
+    <script src="/cdn/js/libs/latest/jquery-migrate-latest.min.js" type="text/javascript"></script>
+	<script src="/cdn/js/libs/jquery.cookie.js" type="text/javascript"></script>
+	<link href="/cdn/css/colorbox.css" media="screen" rel="stylesheet" type="text/css" />
+	<link href="/cdn/css/colorbox_l10n.css" media="screen" rel="stylesheet" type="text/css" />
+	<script src="/cdn/js/libs/jquery.colorbox-min.js" type="text/javascript"></script>
+	<script src="/assets/js/video-init.js" type="text/javascript"></script>
+	<script src="/assets/js/sitecfg.js" type="text/javascript"></script>
+	
+		<script src="/assets/js/signIn.js" type="text/javascript"></script>
+	
+	
+		
+			<script src="/assets/js/configjs/arcgis-online.js" type="text/javascript"></script>
+		
+	
+
+	<!--- Language Picker -->
+	<script src="/assets/js/locale/l10NStrings.js" type="text/javascript"></script>
+	
+		<script src="/assets/js/locale/langSelector.js" type="text/javascript"></script>
+	
+
+	<script src="/assets/js/calcite-web.js" type="text/javascript"></script>
+
+
+    <link href="/assets/css/esri-secondary.css" media="screen" rel="stylesheet" type="text/css" />
+
+  <!--- search MD -->
+    <META name="description" content="You can create and modify scenes using URL parameters."><META name="last-modified" content="2025-6-26"><META name="product" content="arcgis-online"><META name="version" content=""><META name="search-collection" content="help"><META name="search-category" content="help-general"><META name="subject" content="ARCGIS ONLINE"><META name="sub_category" content="Reference"><META name="content_type" content="Help Topic"><META name="subject_label" content="ARCGIS ONLINE"><META name="sub_category_label" content="Reference"><META name="content_type_label" content="Help Topic"><META name="content-language" content="en">
+    <!--- search MD -->
+
+    <!--
+    
+  -->
+
+  
+  <script src="/assets/js/switchers/dropdown-switcher.js" type="text/javascript"></script>
+  
+
+  
+
+  <!-- Add in Global Nav -->
+    <link rel="stylesheet" href="//webapps-cdn.esri.com/CDN/components/global-nav/css/gn.css" />
+    <!--<script src="//webapps-cdn.esri.com/CDN/components/global-nav/test_data.js"></script>-->
+   <script src="//webapps-cdn.esri.com/CDN/components/global-nav/js/gn.js"></script>
+     
+
+</head>
+
+<!--
+      pub: GUID-1FF29A3B-90C2-445E-BF61-4666C4ACB73A=80
+      tpc: GUID-8F76DA94-A7FB-4150-8D9A-9CC9E0EF042E=1
+      help-ids: []
+      -->
+
+
+<!-- variable declaration, if any -->
+<!-- can change following macro to set variable once we are on Jinja 2.8 -->
+
+
+<body class="esri-global en doc apps arcgis-online esrilocalnav">
+   <!-- Secondary nav -->
+      <script>
+         insertCss(_esriAEMHost+"/etc.clientlibs/esri-sites/components/content/local-navigation/clientlibs.css")
+         insertElem("div", "local-navigation", '<nav id="second-nav" navtype="existingNavigation" domain="'+_esriAEMHost+'" path="'+appOverviewURL+'"></nav>' )
+      </script>
+  
+  <div class="wrapper" id="wrapper">
+     
+
+      <div id="skip-to-content">
+        <!--googleoff: all-->
+
+      
+      <div class="arcgis-online search">
+        <div class="esri-search-box">
+          <div class="search-component">
+            <form id="helpSearchForm">
+              <input class="esri-search-textfield leader" name="q" placeholder="Search ArcGIS Online Help" autocapitalize="off" autocomplete="off" autocorrect="off" spellcheck="false" aria-label="Search ArcGIS Online Help">
+	<input type="hidden" name="collection" value="help" />
+	<input type="hidden" name="product" value="arcgis-online" />
+	<input type="hidden" name="version" value="" />
+	<input type="hidden" name="language" value="en" />
+	<button class="esri-search-button-submit" type="submit" aria-label="Search"></button>
+            </form>
+          </div>
+        </div>
+      </div>
+      
+      <!--googleon: all-->
+
+
+
+        <!-- content goes here -->
+        <div class="grid-container ">
+          
+
+            
+              
+  <!--BREADCRUMB-BEG--><div id="bigmac" class="sticky-breadcrumbs trailer-2" data-spy="affix" data-offset-top="180"> </div><!--BREADCRUMB-END-->
+  <!--googleoff: all-->
+    <div class="column-5 tablet-column-12 trailer-2 ">
+      <aside class="js-accordion accordion reference-index" aria-live="polite" role="tablist">
+        <div></div>
+      </aside>
+
+      <div class="js-sticky scroll-show tablet-hide leader-1 back-to-top" data-top="0" style="top: 0px;">
+        <a href="#" class="btn btn-fill btn-clear">Back to Top</a>
+      </div>
+    </div>
+  <!--googleon: all-->
+
+            
+
+            
+	
+		<div class="column-13  pre-1 content-section">
+	
+		<header class="trailer-1"><h1>Use URL parameters in scenes</h1></header>
+
+		 
+	<!--googleoff: all-->
+	
+		
+				<aside id="main-toc-small" class="js-accordion accordion tablet-show trailer-1">
+			      <div class="accordion-section">
+			        <h4 class="accordion-title">In this topic</h4>
+			        <div class="accordion-content list-plain">
+			          <ol class="list-plain pre-0 trailer-0"><li><a href="#ESRI_SECTION1_855AB7083CBF49C3A677D06D4A256823">Define a viewpoint</a></li><li><a href="#ESRI_SECTION1_1477B7120C8142469957970337AA9289">Open a slide</a></li><li><a href="#ESRI_SECTION1_42013CB4EA80480A914E46EB51A7FC33">Open a service by URL</a></li><li><a href="#ESRI_SECTION1_0DA9A9C5471D44BAA8D314F8A289B596">Embed minimal <ph varid="AGSceneViewer">Scene Viewer</ph> UI</a></li><li><a href="#ESRI_SECTION1_B584E50C30D6466B91AB4C001A8EE4B4">Use multiple parameters</a></li></ol>
+			        </div>
+			      </div>
+			     </aside>
+		
+    
+   <!--googleon: all-->
+
+
+		<main>
+			
+	
+    	
+    
+
+
+			
+    <p ishcondition="agol_plat=web" id="GUID-6A293F42-737D-4685-A2A0-A85332D61DF5">You can use URL parameters to navigate in scenes and perform operations  that are similar to those in the user interface (UI). Some of the more common operations you may use are navigating to a specific camera view or slide, opening a URL service in a scene, or minimizing  the <span class="ph">Scene Viewer</span> UI to embed in third-party apps.  </p>    
+    
+    
+    <section class="section1 padded-anchor" id="ESRI_SECTION1_855AB7083CBF49C3A677D06D4A256823" purpose="section1"><h2>Define a viewpoint</h2><p id="GUID-C57EF127-38FB-4E65-9292-D8CECD0DF43D">        
+        To define a viewpoint in the URL, use the  <span class="usertext">&amp;viewpoint=cam:&lt;coordinates&gt;</span> parameter.</p><section class="codeblock padded-anchor" purpose="codeblock">        <div class="codeblockdesc" purpose="codeblockdesc"><p id="GUID-6354098C-A25D-439D-ABC1-0B75C90EDDF5">In this example, the <span class="usertext">&amp;viewpoint=cam:</span> parameter opens the scene item <span class="usertext">b04e44630e4d4f788b4fec3f2d8c9ace</span> at the coordinates of the Inner Alster Lake in Hamburg, Germany.</p></div><div class="codeblockbody"><pre><code class="other no-highlight">https://www.arcgis.com/home/webscene/viewer.html?webscene=b04e44630e4d4f788b4fec3f2d8c9ace&amp;viewpoint=cam:9.98717314,53.54101423,847.391;23.206,65.41</code></pre></div>      </section><p ishcondition="agol_plat=web" id="GUID-A37EC9E2-724C-45AF-8231-DC4D9C156975">        <a target="_blank" class="xref xref" href="https://links.esri.com/scene/url-define-viewpoint">View this example in <span class="ph">Scene Viewer</span></a></p><div class="panel trailer-1 note" id="GUID-57FC7372-B6D6-4A22-9059-74114047C6D1"><h5 class="icon-ui-comment trailer-0">Note:</h5><p id="GUID-D2138B7E-3FCF-42F8-9E47-B5DC842AA82E"> If you don't have the coordinates of the viewpoint in the scene, you can obtain them by clicking the <span class="uicontrol">Share</span> button <img purpose="img" placement="inline" alt="Share" title="Share" src="GUID-2EC67453-B401-443B-ADBE-9446802A9908-web.png" loading="lazy">, unchecking the  <span class="uicontrol">Short link</span> box, and copying the link. </p></div></section>    
+    <section class="section1 padded-anchor" id="ESRI_SECTION1_1477B7120C8142469957970337AA9289" purpose="section1"><h2>Open a slide</h2><p id="GUID-6F7E40EC-6EDA-4440-A7F6-C273253D339F">To open  a scene to a specific slide, add the <span class="usertext">#&lt;slide-number&gt;</span> parameter.</p><p id="GUID-B5458D35-7B4C-4681-BEB7-6FF0FD330EFA"><section class="codeblock padded-anchor" purpose="codeblock"><div class="codeblockdesc" purpose="codeblockdesc"><p id="GUID-5EFB8560-C310-4849-A3F6-A96BF3BA8781">In this example, the <span class="usertext">#3</span> parameter opens the scene item <span class="usertext">6c7a0d4f03d2444fb1f4fa9e85a96044</span> to the <span class="usertext">Hafenviertel</span> slide in Linz, Austria, the third slide in the scene. </p></div><div class="codeblockbody"><pre><code class="other no-highlight">https://www.maps.arcgis.com/home/webscene/viewer.html?webscene=6c7a0d4f03d2444fb1f4fa9e85a96044#3</code></pre></div></section></p><p ishcondition="agol_plat=web" id="GUID-09666584-B551-44B2-89C7-2C00DEC25069">        <a target="_blank" class="xref xref" href="https://www.maps.arcgis.com/home/webscene/viewer.html?webscene=6c7a0d4f03d2444fb1f4fa9e85a96044#3">View this example in <span class="ph">Scene Viewer</span></a></p></section>    
+    <section class="section1 padded-anchor" id="ESRI_SECTION1_42013CB4EA80480A914E46EB51A7FC33" purpose="section1"><h2>Open a service by URL</h2><p id="GUID-6C4D4B4D-2B80-4103-B2D8-779C65E28F36">If you have a URL of a service that you want to open directly in a scene, use the <span class="usertext">?url=&lt;service&gt;</span> parameter.</p><p id="GUID-79594D9C-B476-4DAA-845A-5AFA9F7979EF"><section class="codeblock padded-anchor" purpose="codeblock"><div class="codeblockdesc" purpose="codeblockdesc"><p id="GUID-35984ADE-3539-4F79-A43C-4F69E657A2ED">In this example, the <span class="usertext">?url=&lt;service&gt;</span> parameter opens a scene that loads the Portland, Oregon, building service:</p></div><div class="codeblockbody"><pre><code class="other no-highlight">https://www.maps.arcgis.com/home/webscene/viewer.html?url=https://tiles.arcgis.com/tiles/P3ePLMYs2RVChkJx/arcgis/rest/services/Buildings_Portland/SceneServer</code></pre></div></section></p><p ishcondition="agol_plat=web" id="GUID-1EDC615B-F13E-4423-BA11-8D3C14AF68CF">        <a target="_blank" class="xref xref" href="https://links.esri.com/scene/url-service">View this example in <span class="ph">Scene Viewer</span></a></p></section><section class="section1 padded-anchor" id="ESRI_SECTION1_0DA9A9C5471D44BAA8D314F8A289B596" purpose="section1"><h2>Embed minimal <span class="ph">Scene Viewer</span> UI</h2><p id="GUID-A57C329B-2791-422B-844D-3082C2CD14B5">When you want to embed a scene in a third-party app, you may want a minimal <span class="ph">Scene Viewer</span> UI  to not complicate the web page. To do this, add the <span class="usertext">&amp;ui=min</span> parameter.</p><p id="GUID-E701E2B9-9E1C-4261-927D-3265298FB111"><section class="codeblock padded-anchor" purpose="codeblock"><div class="codeblockdesc" purpose="codeblockdesc"><p id="GUID-5982A034-1DE5-42CA-A18D-A00C39A0A646">In this example, the <span class="usertext">&amp;ui=min</span> parameter opens the Vancouver, Canada, scene in <span class="ph">Scene Viewer</span> with minimal UI:</p></div><div class="codeblockbody"><pre><code class="other no-highlight">https://www.maps.arcgis.com/home/webscene/viewer.html?webscene=c7da180e4ca4414caa923d2e2724eb5c&amp;ui=min</code></pre></div></section></p><p ishcondition="agol_plat=web" id="GUID-40A8B9AA-5DFE-4823-93B2-2750D8DE878F">        <a target="_blank" class="xref xref" href="https://links.esri.com/scene/url-minimal-ui">View this example in <span class="ph">Scene Viewer</span></a></p></section>    
+    
+    
+    
+    
+  <section class="section1 padded-anchor" id="ESRI_SECTION1_B584E50C30D6466B91AB4C001A8EE4B4" purpose="section1"><h2>Use multiple parameters</h2><p id="GUID-84186736-B62B-4B39-B9F9-472676AF08C0">To include more than one parameter, use an ampersand (<span class="usertext">&amp;</span>) to
+separate the parameters.</p><section class="codeblock padded-anchor" purpose="codeblock">        <div class="codeblockdesc" purpose="codeblockdesc"><p id="GUID-EEDB45AE-4536-438F-97D5-267E4E95E726">In this example, the <span class="usertext">&amp;</span> character separates the <span class="usertext">url=</span> and the <span class="usertext">viewpoint=cam:</span> parameters: </p></div><div class="codeblockbody"><pre><code class="other no-highlight">https://www.arcgis.com/home/webscene/viewer.html?url=https://tiles.arcgis.com/tiles/P3ePLMYs2RVChkJx/arcgis/rest/services/Buildings_Portland/SceneServer&amp;viewpoint=cam:-122.67434468,45.51190967,318.448;3.757,74.342</code></pre></div>      </section></section>
+			
+				<hr>
+				<!--googleoff: all-->
+				
+	
+        
+		    <p class="feedback right">
+		        <a id="afb" class="icon-ui-contact" href="/feedback/" data-langlabel="feedback-on-this-topic" >Feedback on this topic?</a>
+		    </p>
+        
+	
+
+				<!--googleon: all-->
+			
+		</main>
+	</div>
+	
+	<!--googleoff: all-->
+	
+		
+			<div id="main-toc-large" class="column-5">
+			    <div class="panel font-size--2 tablet-hide trailer-1">
+			      <h5 class="trailer-half">In this topic</h5>
+			      <ol class="list-plain pre-0 trailer-0"><li><a href="#ESRI_SECTION1_855AB7083CBF49C3A677D06D4A256823">Define a viewpoint</a></li><li><a href="#ESRI_SECTION1_1477B7120C8142469957970337AA9289">Open a slide</a></li><li><a href="#ESRI_SECTION1_42013CB4EA80480A914E46EB51A7FC33">Open a service by URL</a></li><li><a href="#ESRI_SECTION1_0DA9A9C5471D44BAA8D314F8A289B596">Embed minimal <ph varid="AGSceneViewer">Scene Viewer</ph> UI</a></li><li><a href="#ESRI_SECTION1_B584E50C30D6466B91AB4C001A8EE4B4">Use multiple parameters</a></li></ol>
+			    </div>
+			    
+			    
+	  		</div>
+		
+    
+   <!--googleon: all-->
+
+
+
+
+          
+
+        </div>
+        <!-- ENDPAGECONTENT -->
+
+      </div>
+
+    </div>  <!-- End of wrapper -->
+
+  <div id="globalfooter"></div>
+  <!--googleoff: all-->
+
+  
+	<script src="/assets/js/init.js" type="text/javascript"></script>
+	<!--<script src="/assets/js/drop-down.js" type="text/javascript"></script>-->
+	<script src="/assets/js/search/searchform.js" type="text/javascript"></script>
+	<script src="/cdn/js/link-modifier.js" type="text/javascript"></script>
+	<script src="/cdn/js/sitewide.js" type="text/javascript"></script>
+	<script src="/cdn/js/libs/highlight.pack.js" type="text/javascript"></script>
+	<script>hljs.initHighlightingOnLoad();</script>
+
+
+  
+    
+
+  <script src="/cdn/js/affix.js" type="text/javascript"></script>
+  <script type="text/javascript">
+    $(function () {
+          var appendFlg = true;
+
+          $("#bigmac")
+          .on("affixed.bs.affix", function (evt) {
+            if (appendFlg) {
+              $("<a class='crumb' href='#'>Use URL parameters in scenes</a>").insertAfter ($("#bigmac nav a").last());
+              appendFlg = false;
+            }
+          })
+          .on ("affix-top.bs.affix", function(evt) {
+            if (!appendFlg) {
+              $("#bigmac nav a").last().remove();
+            }
+            appendFlg = true;
+          })
+    })
+  </script>
+  
+        <script type="text/javascript">
+          window.doctoc = {
+            pubID: "1373",
+            tpcID: "201",
+            
+              prefix: "Reference",
+              prefixUrl: "/en/arcgis-online/reference/",
+          
+            hideToc: false
+          }
+        </script>
+
+        <script type="text/javascript" src="/en/arcgis-online/reference/1373.js" ></script>
+        <script type="text/javascript" src="/cdn/calcite/js/protoc.js" ></script>
+        
+        
+
+  <noscript>
+        <p>
+            <a href="flisting.htm">flist</a>
+        </p>
+    </noscript>
+    
+	<script src="//mtags.arcgis.com/tags-min.js"></script>
+
+
+  
+
+
+
+    <script>
+      document.write("<script src='" + _esriAEMHost+"/etc.clientlibs/esri-sites/clientlibs/localNav.js'><\/script>");
+    </script>
+
+  </body>
+</html>
