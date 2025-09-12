@@ -1,0 +1,113 @@
+/* --- Palette --- */
+:root{
+  --tr-blue: #1d4378;
+  --tr-blue-light: #557299;
+  --tr-blue-deep: #142e54;
+  --tr-offwhite: #f9f9fb;
+  --tr-red: #cb2f3a;
+}
+
+/* --- Header: navy with off-white + red accents --- */
+instant-apps-header{
+  background:
+    linear-gradient(115deg,#0a121c 0%, #101d2e 32%, #0e1622 60%, #0a121c 100%),
+    linear-gradient(115deg, rgba(29,67,120,.55) 0%, rgba(29,67,120,.28) 45%, rgba(29,67,120,.50) 95%),
+    radial-gradient(900px 160px at 10% 0%, rgba(249,249,251,.18), rgba(249,249,251,0) 60%),
+    radial-gradient(900px 160px at 90% 0%, rgba(203,47,58,.18), rgba(203,47,58,0) 62%);
+  background-size: 380% 380%;
+  animation: trHeaderShift 12s ease-in-out infinite;
+
+  /* let our gradient show & set header typography/brand */
+  --calcite-color-foreground-1: transparent !important;
+  --calcite-color-text-1: var(--tr-offwhite) !important;
+  --calcite-color-text-2: #cbd5e1 !important;
+  --calcite-color-brand: var(--tr-blue) !important;
+  --calcite-color-brand-hover: var(--tr-blue-light) !important;
+}
+instant-apps-header::part(container),
+instant-apps-header::part(wrapper){ background: transparent !important; }
+
+@keyframes trHeaderShift{
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+
+/* --- Kill Calcite’s cyan globally (safety) --- */
+.calcite-mode-dark{
+  --calcite-color-brand: var(--tr-blue) !important;
+  --calcite-color-brand-hover: var(--tr-blue-light) !important;
+  --calcite-color-brand-press: var(--tr-blue-deep) !important;
+}
+
+/* ===== LEFT ACCORDION =====
+   DOM: <calcite-accordion-item class="esri-portfolio-accordion-item"> */
+
+/* Neutralize internal header backgrounds so our ::part styles win */
+calcite-accordion-item.esri-portfolio-accordion-item{
+  --calcite-accordion-item-header-background-color: transparent !important;
+  --calcite-accordion-item-header-background-color-hover: transparent !important;
+  --calcite-accordion-item-header-background-color-press: transparent !important;
+  --calcite-internal-accordion-item-header-background-color: transparent !important;
+  --calcite-internal-accordion-item-header-background-color-hover: transparent !important;
+  --calcite-internal-accordion-item-header-background-color-press: transparent !important;
+
+  /* default text tokens (unselected rows) */
+  --calcite-accordion-item-text-color: var(--tr-offwhite) !important;
+  --calcite-accordion-item-heading-text-color: var(--tr-offwhite) !important;
+  --calcite-accordion-item-expand-icon-color: var(--tr-offwhite) !important;
+}
+
+/* Force light text/icon tokens specifically on the active row */
+calcite-accordion-item.esri-portfolio-accordion-item[expanded],
+calcite-accordion-item.esri-portfolio-accordion-item[active]{
+  --calcite-accordion-item-text-color: var(--tr-offwhite) !important;
+  --calcite-accordion-item-heading-text-color: var(--tr-offwhite) !important;
+  --calcite-accordion-item-expand-icon-color: var(--tr-offwhite) !important;
+}
+
+/* Base (unselected) row */
+calcite-accordion-item.esri-portfolio-accordion-item::part(header){
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.05) 0%, rgba(255,255,255,.03) 50%, rgba(0,0,0,.10) 100%) !important;
+  color: var(--tr-offwhite) !important;
+  border-radius: 8px;
+  box-shadow: 0 0 0 1px rgba(255,255,255,.06) inset;
+  transition: background .2s ease, color .2s ease, box-shadow .2s ease;
+}
+/* Ensure all header children/icons stay light */
+calcite-accordion-item.esri-portfolio-accordion-item::part(header) *{
+  color: var(--tr-offwhite) !important;
+  fill: var(--tr-offwhite) !important;
+}
+
+/* Hover ONLY for non-selected rows */
+calcite-accordion-item.esri-portfolio-accordion-item:not([expanded]):hover::part(header),
+calcite-accordion-item.esri-portfolio-accordion-item:not([active]):hover::part(header){
+  background: linear-gradient(90deg, rgba(29,67,120,.30) 0%, rgba(29,67,120,.14) 100%) !important;
+  box-shadow: 0 0 0 1px rgba(29,67,120,.35) inset;
+}
+
+/* Selected / expanded row — always Targa blue, never flips on hover */
+calcite-accordion-item.esri-portfolio-accordion-item[expanded]::part(header),
+calcite-accordion-item.esri-portfolio-accordion-item[active]::part(header),
+calcite-accordion-item.esri-portfolio-accordion-item[expanded]:hover::part(header),
+calcite-accordion-item.esri-portfolio-accordion-item[active]:hover::part(header){
+  background:
+    linear-gradient(135deg, var(--tr-blue) 0%, var(--tr-blue-light) 100%),
+    linear-gradient(180deg, rgba(255,255,255,.08) 0%, rgba(255,255,255,0) 55%, rgba(0,0,0,.12) 100%) !important;
+  color: var(--tr-offwhite) !important;
+  box-shadow: 0 0 0 1px rgba(255,255,255,.10) inset, 0 2px 10px rgba(29,67,120,.25);
+}
+
+/* Chevron/icon color */
+calcite-accordion-item.esri-portfolio-accordion-item::part(icon),
+calcite-accordion-item.esri-portfolio-accordion-item::part(expand-icon){
+  color: var(--tr-offwhite) !important;
+}
+
+/* Keyboard focus ring */
+calcite-accordion-item.esri-portfolio-accordion-item:focus-visible::part(header){
+  outline: 2px solid var(--tr-red) !important;
+  outline-offset: 2px;
+}

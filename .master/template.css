@@ -1,0 +1,167 @@
+/* ======================================================================
+ArcGIS Instant Apps – Portfolio (Tabbed)  |  Modular CSS Template
+Author: Doug's template (clean, labeled selectors)
+Notes:
+- These selectors are based on current Instant Apps builds (Portfolio, Tabbed).
+- Instant Apps supports custom CSS but warns updates can affect custom code.
+  Test after each product release. (See docs link in project notes.)
+- Some UI (e.g., Scene Viewer header) is inside embedded apps/iframes and
+  cannot be styled from Portfolio. Use URL parameters like ui=min where possible.
+
+====================================================================== */
+
+/* ============================ 1) BRAND TOKENS ============================ */
+:root{
+  /* Colors */
+  --brand-red:   #cf1a21;
+  --brand-red-2: #8f0f14;
+  --brand-gray-1:#181b1f;   /* darkest */
+  --brand-gray-2:#2a3036;   /* mid-dark */
+  --brand-gray-3:#565d66;   /* mid */
+
+  --text-on-dark:#ffffff;
+  --text-on-light:#0b0f0e;
+
+  /* Motion */
+  --app-header-gradient-speed: 14s;
+  --tab-gradient-speed: 22s;
+
+  /* Optional centered overlay logo (set to 'none' to disable) */
+  --overlay-logo-url: none; /* e.g., url("https://.../TellepsenLogo.png?raw=1") */
+  --overlay-logo-width: clamp(260px, 36vw, 560px);
+  --overlay-logo-height: min(64px, calc(var(--instant-apps-header-height, 56px) - 6px));
+}
+
+/* ============================ 2) HEADER MODULE ===========================
+Selector map (Portfolio header):
+- instant-apps-header                     : whole header web component
+- instant-apps-header::part(container)    : internal flex container
+- instant-apps-header::part(wrapper)      : internal wrapper (padding, bg)
+- instant-apps-header::part(title)        : app title text
+- instant-apps-header::part(logo)         : native logo (leave alone if used)
+- instant-apps-header::after              : OPTIONAL centered overlay logo (ours)
+
+Gradient + typography */
+instant-apps-header{
+  background:
+    /* Red -> Gray; compressed red band */
+    linear-gradient(110deg,
+      var(--brand-red-2) 0%,
+      var(--brand-red)   18%,
+      var(--brand-gray-2) 36%,
+      var(--brand-gray-1) 100%),
+    /* Contrast veil for readability */
+    linear-gradient(180deg, rgba(0,0,0,.45) 0%, rgba(0,0,0,.20) 40%, rgba(0,0,0,.50) 100%);
+  background-size: 400% 400%, 100% 100%;
+  animation: appHeaderShift var(--app-header-gradient-speed) ease-in-out infinite;
+
+  --calcite-color-text-1: var(--text-on-dark);
+  --calcite-color-text-2: #e9ecef;
+  --calcite-color-brand: var(--brand-red);
+  --calcite-color-brand-hover: #b3151b;
+
+  position: relative; z-index: 0;
+  box-shadow: inset 0 -1px 0 rgba(255,255,255,.10);
+}
+instant-apps-header::part(container),
+instant-apps-header::part(wrapper){
+  background: transparent !important;
+  padding-inline: 16px !important;
+}
+
+/* OPTIONAL centered overlay logo. Disable by setting --overlay-logo-url: none; */
+instant-apps-header::after{
+  content: "";
+  position: absolute;
+  inset: 50% auto auto 50%;
+  width: var(--overlay-logo-width);
+  height: var(--overlay-logo-height);
+  transform: translate(-50%, -50%);
+  background: var(--overlay-logo-url) no-repeat center center / contain;
+  pointer-events: none;
+  z-index: 2;
+  filter: drop-shadow(0 1px 0 rgba(0,0,0,.25));
+}
+@media (prefers-reduced-motion: reduce){
+  instant-apps-header{ animation: none; }
+}
+@keyframes appHeaderShift{
+  0%{background-position:0% 50%, 0 0}
+  50%{background-position:100% 50%, 0 0}
+  100%{background-position:0% 50%, 0 0}
+}
+
+/* ============================ 3) TABS MODULE =============================
+Selector map (Tabbed layout):
+- #tabbedLayout .esri-portfolio-tabbed__tab-list           : tab strip container (background/spacing)
+- .esri-portfolio-tabbed-item                               : a tab (base/inactive)
+- .esri-portfolio-tabbed-item:hover                         : hover state
+- .esri-portfolio-tabbed-item--selected                     : active tab
+- .esri-portfolio-tabbed-item:focus-visible                 : keyboard focus
+
+A) Tab strip container ("blank space" behind tabs) */
+#tabbedLayout .esri-portfolio-tabbed__tab-list{
+  background: #3a3f45;                 /* strip background */
+  box-shadow: inset 0 -1px 0 rgba(0,0,0,.35);
+  gap: 6px;                             /* space between tabs */
+  padding: 8px 12px;
+}
+
+/* B) Inactive tab (NOT hovered, NOT selected) */
+#tabbedLayout .esri-portfolio-tabbed__tab-list .esri-portfolio-tabbed-item{
+  background: rgba(255,255,255,.06);
+  color: var(--text-on-dark);
+  color: #fff;
+  border-radius: 6px;
+  transition: background .2s ease, color .2s ease, box-shadow .2s ease;
+}
+
+/* C) Hover state */
+#tabbedLayout .esri-portfolio-tabbed__tab-list .esri-portfolio-tabbed-item:hover{
+  background: rgba(255,255,255,.12);
+  box-shadow: 0 1px 6px rgba(0,0,0,.25);
+}
+
+/* D) Active tab (selected) */
+#tabbedLayout .esri-portfolio-tabbed__tab-list .esri-portfolio-tabbed-item--selected,
+#tabbedLayout .esri-portfolio-tabbed__tab-list .esri-portfolio-tabbed-item--selected:hover{
+  background:
+    linear-gradient(135deg,
+      var(--brand-red-2) 0%,
+      var(--brand-red)   42%,
+      var(--brand-gray-3) 70%,
+      var(--brand-gray-2) 100%),
+    linear-gradient(180deg, rgba(255,255,255,.05) 0%, rgba(0,0,0,.14) 100%) !important;
+  background-size: 220% 220%, 100% 100%;
+  animation: tabRedShift var(--tab-gradient-speed) ease-in-out infinite;
+  color: #ffffff !important;
+  text-shadow: 0 1px 0 rgba(0,0,0,.4);
+  box-shadow: 0 0 0 1px rgba(0,0,0,.25) inset, 0 2px 10px rgba(227,28,36,.22);
+}
+
+/* E) Focus ring (keyboard navigation) */
+#tabbedLayout .esri-portfolio-tabbed__tab-list .esri-portfolio-tabbed-item:focus-visible{
+  outline: 2px solid var(--brand-red); outline-offset: 2px;
+}
+
+@keyframes tabRedShift{
+  0%{background-position:0% 50%, 0 0}
+  50%{background-position:100% 50%, 0 0}
+  100%{background-position:0% 50%, 0 0}
+}
+
+/* ====================== 4) COVER PAGE (OPTIONAL / OFF) ===================
+Instant Apps "Cover page" uses: instant-apps-landing-page
+Uncomment and use if needed.
+--------------------------------------------------------------------
+instant-apps-landing-page{
+  --instant-apps-landing-page-text-color: #ffffff !important;
+  --instant-apps-landing-page-entry-button-color: #cf1a21 !important;
+}
+instant-apps-landing-page::part(container){ backdrop-filter: saturate(1.05) contrast(1.05); }
+-------------------------------------------------------------------- */
+
+/* ============================ 5) UTILITIES =============================== */
+/* Safe text helpers for quick overrides */
+.text-on-dark{ color: var(--text-on-dark) !important; }
+.text-on-light{ color: var(--text-on-light) !important; }
