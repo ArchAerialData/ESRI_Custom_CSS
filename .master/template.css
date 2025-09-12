@@ -1,16 +1,23 @@
 /* ======================================================================
-ArcGIS Instant Apps – Portfolio (Tabbed)  |  Modular CSS Template
-Author: Doug's template (clean, labeled selectors)
-Notes:
-- These selectors are based on current Instant Apps builds (Portfolio, Tabbed).
-- Instant Apps supports custom CSS but warns updates can affect custom code.
-  Test after each product release. (See docs link in project notes.)
-- Some UI (e.g., Scene Viewer header) is inside embedded apps/iframes and
-  cannot be styled from Portfolio. Use URL parameters like ui=min where possible.
+ArcGIS Instant Apps — Portfolio (Tabbed)  |  Modular CSS Template
+Author: Clean, labeled selectors with guidance for new devs
 
+Notes & constraints:
+- Built for copy/paste into the single Custom CSS field in Portfolio (Tabbed).
+- Targets the Portfolio shell only. You cannot style inside embedded apps
+  (e.g., Scene Viewer, Map Viewer) due to iframe isolation — use URL params
+  like ui=min on those embeds instead.
+- Instant Apps supports custom CSS but warns that updates can affect selectors.
+  Re-test after each ArcGIS Online release and keep client overrides at bottom.
+
+Tip: Keep rules narrowly scoped (prefix with #tabbedLayout for tabs) and use
+Calcite variables at component boundaries to influence internal colors.
 ====================================================================== */
 
-/* ============================ 1) BRAND TOKENS ============================ */
+/* ============================ 1) BRAND TOKENS ============================
+Purpose: per-client colors, motion preferences, and optional overlay logo.
+How to use: edit these values only; try not to hard-code colors elsewhere.
+*/
 :root{
   /* Colors */
   --brand-red:   #cf1a21;
@@ -26,8 +33,9 @@ Notes:
   --app-header-gradient-speed: 14s;
   --tab-gradient-speed: 22s;
 
-  /* Optional centered overlay logo (set to 'none' to disable) */
-  --overlay-logo-url: none; /* e.g., url("https://.../TellepsenLogo.png?raw=1") */
+  /* Optional centered overlay logo (set to 'none' to disable).
+     Host the image externally (no uploads in Instant Apps). */
+  --overlay-logo-url: none; /* e.g., url("https://.../ClientLogo.png") */
   --overlay-logo-width: clamp(260px, 36vw, 560px);
   --overlay-logo-height: min(64px, calc(var(--instant-apps-header-height, 56px) - 6px));
 }
@@ -37,11 +45,14 @@ Selector map (Portfolio header):
 - instant-apps-header                     : whole header web component
 - instant-apps-header::part(container)    : internal flex container
 - instant-apps-header::part(wrapper)      : internal wrapper (padding, bg)
-- instant-apps-header::part(title)        : app title text
+- instant-apps-header::part(title)        : app title text (when exposed)
 - instant-apps-header::part(logo)         : native logo (leave alone if used)
 - instant-apps-header::after              : OPTIONAL centered overlay logo (ours)
 
-Gradient + typography */
+What to know:
+- Use Calcite variables here to affect internal text/brand colors.
+- Keep wrappers transparent and pad via ::part to avoid covering content.
+*/
 instant-apps-header{
   background:
     /* Red -> Gray; compressed red band */
@@ -69,7 +80,7 @@ instant-apps-header::part(wrapper){
   padding-inline: 16px !important;
 }
 
-/* OPTIONAL centered overlay logo. Disable by setting --overlay-logo-url: none; */
+/* OPTIONAL centered overlay logo. Disable by setting --overlay-logo-url: none. */
 instant-apps-header::after{
   content: "";
   position: absolute;
@@ -78,7 +89,7 @@ instant-apps-header::after{
   height: var(--overlay-logo-height);
   transform: translate(-50%, -50%);
   background: var(--overlay-logo-url) no-repeat center center / contain;
-  pointer-events: none;
+  pointer-events: none; /* keep header UI clickable */
   z-index: 2;
   filter: drop-shadow(0 1px 0 rgba(0,0,0,.25));
 }
@@ -99,6 +110,8 @@ Selector map (Tabbed layout):
 - .esri-portfolio-tabbed-item--selected                     : active tab
 - .esri-portfolio-tabbed-item:focus-visible                 : keyboard focus
 
+Scoping tip: keep the #tabbedLayout prefix to avoid collisions elsewhere.
+
 A) Tab strip container ("blank space" behind tabs) */
 #tabbedLayout .esri-portfolio-tabbed__tab-list{
   background: #3a3f45;                 /* strip background */
@@ -111,7 +124,6 @@ A) Tab strip container ("blank space" behind tabs) */
 #tabbedLayout .esri-portfolio-tabbed__tab-list .esri-portfolio-tabbed-item{
   background: rgba(255,255,255,.06);
   color: var(--text-on-dark);
-  color: #fff;
   border-radius: 6px;
   transition: background .2s ease, color .2s ease, box-shadow .2s ease;
 }
@@ -144,24 +156,71 @@ A) Tab strip container ("blank space" behind tabs) */
   outline: 2px solid var(--brand-red); outline-offset: 2px;
 }
 
+/* Optional: Strictly idle (not selected and not hovered)
+#tabbedLayout .esri-portfolio-tabbed__tab-list
+  .esri-portfolio-tabbed-item:not(.esri-portfolio-tabbed-item--selected):not(:hover){
+  // add strictly idle styles if needed
+}
+*/
+
 @keyframes tabRedShift{
   0%{background-position:0% 50%, 0 0}
   50%{background-position:100% 50%, 0 0}
   100%{background-position:0% 50%, 0 0}
 }
+@media (prefers-reduced-motion: reduce){
+  #tabbedLayout .esri-portfolio-tabbed__tab-list .esri-portfolio-tabbed-item--selected,
+  #tabbedLayout .esri-portfolio-tabbed__tab-list .esri-portfolio-tabbed-item--selected:hover{
+    animation: none;
+  }
+}
 
-/* ====================== 4) COVER PAGE (OPTIONAL / OFF) ===================
-Instant Apps "Cover page" uses: instant-apps-landing-page
-Uncomment and use if needed.
---------------------------------------------------------------------
+/* ====================== 4) COVER PAGE (OPTIONAL / ON DEMAND) =============
+Instant Apps "Cover page" is the landing overlay: instant-apps-landing-page
+What to know:
+- Set text and a SAFE fallback button color via CSS variables (works widely).
+- For richer button looks, apply gradient to the HOST calcite-button and make
+  the internal ::part(button) transparent. This avoids shadow DOM limitations.
+*/
+
+/* A) Safe text and fallback button token */
 instant-apps-landing-page{
   --instant-apps-landing-page-text-color: #ffffff !important;
-  --instant-apps-landing-page-entry-button-color: #cf1a21 !important;
+  --instant-apps-landing-page-entry-button-color: #cf1a21 !important; /* fallback */
 }
+/* Optional: subtle contrast lift for photo overlays */
 instant-apps-landing-page::part(container){ backdrop-filter: saturate(1.05) contrast(1.05); }
--------------------------------------------------------------------- */
+
+/* B) Host gradient pattern for the Enter button */
+instant-apps-landing-page calcite-button{
+  background:
+    linear-gradient(135deg, var(--brand-red) 0%, #b3151b 50%, var(--brand-red-2) 100%) !important;
+  background-size: 220% 220% !important;
+  animation: enterShift 10s ease-in-out infinite;
+  border: 1px solid rgba(11,15,14,.65) !important;
+  box-shadow: 0 0 0 1px rgba(0,0,0,.25) inset,
+              0 6px 18px rgba(227,28,36,.25),
+              0 1px 0 rgba(255,255,255,.35) inset !important;
+  color: #0b0f0e !important;
+  border-radius: 8px !important;
+  overflow: hidden; /* clip gradient inside rounded corners */
+}
+/* Make internal part transparent so host gradient shows */
+instant-apps-landing-page calcite-button::part(button){
+  background: transparent !important;
+  color: #0b0f0e !important;
+}
+/* Hover / focus / reduced motion */
+instant-apps-landing-page calcite-button:hover{ background-position: 100% 50% !important; }
+instant-apps-landing-page calcite-button:focus-visible{ outline: 2px solid #3aa154; outline-offset: 2px; }
+@media (prefers-reduced-motion: reduce){ instant-apps-landing-page calcite-button{ animation: none; } }
+@keyframes enterShift{ 0%{background-position:0% 50%} 50%{background-position:100% 50%} 100%{background-position:0% 50%} }
 
 /* ============================ 5) UTILITIES =============================== */
 /* Safe text helpers for quick overrides */
 .text-on-dark{ color: var(--text-on-dark) !important; }
 .text-on-light{ color: var(--text-on-light) !important; }
+
+/* ============================ 6) CLIENT OVERRIDES ========================
+Keep project-specific exceptions here so template updates are easier later.
+*/

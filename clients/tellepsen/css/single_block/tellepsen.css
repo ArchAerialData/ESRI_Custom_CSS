@@ -9,16 +9,16 @@
 /* ================= Brand tokens ================= */
 :root{
   /* Reds (tempered) */
-  --brand-red:   #911d21;
-  --brand-red-2: #8f0f14;
+  --brand-red:   #840e11;
+  --brand-red-2: #690a0e;
 
   /* Grays (no pinks) */
   --brand-gray-1: #181b1f; /* darkest */
   --brand-gray-2: #2a3036; /* mid-dark */
   --brand-gray-3: #565d66; /* mid */
 
-  --app-header-gradient-speed: 14s;
-  --tab-gradient-speed: 22s;
+  --app-header-gradient-speed: 16s;
+  --tab-gradient-speed: 14s;
 
   /* ----- Centered overlay logo controls ----- */
   --overlay-logo-url: url("https://www.dropbox.com/scl/fi/ry652y06ptq79qkev35pg/TellepsenLogo.png?rlkey=vbjdzlnb65jokug7p8wmrh3jp&st=vmlc9z48&raw=1");

@@ -1,0 +1,222 @@
+/* ================= Tellepsen Portfolio – Clean CSS =================
+   - Keeps: red→gray animated header + animated selected tab
+   - Keeps: CENTERED header overlay logo (uses Dropbox URL below)
+   - Uses NATIVE ESRI left logo (no CSS logos on the left)
+   - Removes: prior left-logo (::before), any rules hiding the native logo,
+              and redundant/overridden blocks from earlier iterations
+====================================================================== */
+
+/* ================= Brand tokens ================= */
+:root{
+  /* Reds (tempered) */
+  --brand-red:   #840e11;
+  --brand-red-2: #690a0e;
+
+  /* Grays (no pinks) */
+  --brand-gray-1: #181b1f; /* darkest */
+  --brand-gray-2: #2a3036; /* mid-dark */
+  --brand-gray-3: #565d66; /* mid */
+
+  /* Navy accent pulled from provided branding */
+  --brand-navy-1: #0b2c3a; /* deep navy */
+  --brand-navy-2: #113949; /* slightly lighter */
+
+  --app-header-gradient-speed: 16s;
+  --tab-gradient-speed: 14s;
+
+  /* ----- Centered overlay logo controls ----- */
+  --overlay-logo-url: url("https://www.dropbox.com/scl/fi/ry652y06ptq79qkev35pg/TellepsenLogo.png?rlkey=vbjdzlnb65jokug7p8wmrh3jp&st=vmlc9z48&raw=1");
+  /* Make the centered overlay logo larger for visibility */
+  --overlay-logo-width: clamp(320px, 34vw, 720px);
+  --overlay-logo-height: clamp(48px, calc(var(--instant-apps-header-height, 56px) * 1.25), 84px);
+}
+
+/* ================= Header (Instant Apps) ================= */
+instant-apps-header{
+  /* Red → Gray with a compressed red band + contrast overlay */
+  background:
+    linear-gradient(
+      110deg,
+      var(--brand-red-2) 0%,
+      var(--brand-red)   18%,
+      var(--brand-gray-2) 36%,
+      var(--brand-gray-1) 100%
+    ),
+    linear-gradient(180deg, rgba(0,0,0,.45) 0%, rgba(0,0,0,.20) 40%, rgba(0,0,0,.50) 100%);
+  background-size: 400% 400%, 100% 100%;
+  animation: appHeaderShift var(--app-header-gradient-speed) ease-in-out infinite;
+
+  /* Calcite tokens inside header */
+  --calcite-color-foreground-1: transparent;
+  --calcite-color-text-1: #ffffff;
+  --calcite-color-text-2: #e9ecef;
+  --calcite-color-brand: var(--brand-red);
+  --calcite-color-brand-hover: #b3151b;
+
+  position: relative;
+  z-index: 0;
+  box-shadow: inset 0 -1px 0 rgba(255,255,255,.10);
+}
+
+/* Keep internal wrappers transparent and with sane padding */
+instant-apps-header::part(container),
+instant-apps-header::part(wrapper){
+  background: transparent !important;
+  padding-left: 16px !important;
+  padding-right: 16px !important;
+}
+
+/* ===== Centered overlay PNG logo (kept) ===== */
+instant-apps-header::after{
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: var(--overlay-logo-width);
+  height: var(--overlay-logo-height);
+  transform: translate(-50%, -50%);
+  background: var(--overlay-logo-url) no-repeat center center / contain;
+  pointer-events: none;
+  z-index: 2;
+  filter: drop-shadow(0 1px 0 rgba(0,0,0,.25));
+}
+
+/* Motion preference */
+@media (prefers-reduced-motion: reduce){
+  instant-apps-header{ animation: none; }
+}
+
+/* Header animation */
+@keyframes appHeaderShift{
+  0%{background-position:0% 50%, 0 0}
+  50%{background-position:100% 50%, 0 0}
+  100%{background-position:0% 50%, 0 0}
+}
+
+/* ================= Tabs ================= */
+#tabbedLayout .esri-portfolio-tabbed__tab-list .esri-portfolio-tabbed-item{
+  background: rgba(255,255,255,.06);
+  color: #ffffff;
+  transition: background .2s ease, color .2s ease, box-shadow .2s ease;
+  border-radius: 6px;
+}
+#tabbedLayout .esri-portfolio-tabbed__tab-list .esri-portfolio-tabbed-item:hover{
+  background: rgba(255,255,255,.12);
+  box-shadow: 0 1px 6px rgba(0,0,0,.25);
+}
+
+/* Selected tab: animated red → gray */
+#tabbedLayout .esri-portfolio-tabbed__tab-list .esri-portfolio-tabbed-item--selected,
+#tabbedLayout .esri-portfolio-tabbed__tab-list .esri-portfolio-tabbed-item--selected:hover{
+  background:
+    linear-gradient(
+      135deg,
+      var(--brand-red-2) 0%,
+      var(--brand-red)   42%,
+      var(--brand-gray-3) 70%,
+      var(--brand-gray-2) 100%
+    ),
+    linear-gradient(180deg, rgba(255,255,255,.05) 0%, rgba(0,0,0,.14) 100%) !important;
+  background-size: 220% 220%, 100% 100%;
+  animation: tabRedShift var(--tab-gradient-speed) ease-in-out infinite;
+  will-change: background-position;
+  color: #ffffff !important;
+  text-shadow: 0 1px 0 rgba(0,0,0,.4);
+  box-shadow: 0 0 0 1px rgba(0,0,0,.25) inset, 0 2px 10px rgba(227,28,36,.22);
+}
+
+@keyframes tabRedShift{
+  0%{background-position:0% 50%, 0 0}
+  50%{background-position:100% 50%, 0 0}
+  100%{background-position:0% 50%, 0 0}
+}
+
+/* ================= Cover Page =================
+Make the Enter button match Tellepsen red and remain readable. Apply the
+gradient to the host calcite-button and keep the internal ::part(button)
+transparent so the gradient shows across browsers. */
+instant-apps-landing-page{
+  --instant-apps-landing-page-text-color: #ffffff !important;
+  /* Safe fallback: if host gradient fails, button uses brand red */
+  --instant-apps-landing-page-entry-button-color: var(--brand-red) !important;
+}
+instant-apps-landing-page::part(container){ backdrop-filter: saturate(1.05) contrast(1.05); }
+instant-apps-landing-page calcite-button{
+  background:
+    linear-gradient(135deg,
+      var(--brand-red) 0%,
+      #9c1115 55%,
+      var(--brand-red-2) 100%) !important;
+  background-size: 220% 220% !important;
+  animation: enterRedShift 10s ease-in-out infinite;
+  border: 1px solid rgba(0,0,0,.45) !important;
+  box-shadow: 0 0 0 1px rgba(0,0,0,.25) inset,
+              0 6px 18px rgba(132,14,17,.25),
+              0 1px 0 rgba(255,255,255,.28) inset !important;
+  color: #ffffff !important;
+  border-radius: 8px !important;
+  overflow: hidden;
+}
+instant-apps-landing-page calcite-button::part(button){
+  background: transparent !important;
+  color: #ffffff !important;
+}
+/* Handle older builds that render an anchor with this class */
+instant-apps-landing-page .landing-page__entry-button{
+  background:
+    linear-gradient(135deg,
+      var(--brand-red) 0%,
+      #9c1115 55%,
+      var(--brand-red-2) 100%) !important;
+  background-size: 220% 220% !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(0,0,0,.45) !important;
+  box-shadow: 0 0 0 1px rgba(0,0,0,.25) inset,
+              0 6px 18px rgba(132,14,17,.25),
+              0 1px 0 rgba(255,255,255,.28) inset !important;
+  border-radius: 8px !important;
+}
+instant-apps-landing-page .landing-page__entry-button:hover{ background-position: 100% 50% !important; }
+instant-apps-landing-page calcite-button:hover{ background-position: 100% 50% !important; }
+instant-apps-landing-page calcite-button:focus-visible{ outline: 2px solid #e9c84a; outline-offset: 2px; }
+@keyframes enterRedShift{ 0%{background-position:0% 50%} 50%{background-position:100% 50%} 100%{background-position:0% 50%} }
+@media (prefers-reduced-motion: reduce){ instant-apps-landing-page calcite-button{ animation: none; } }
+
+/* ================= Tab strip background & inactive tabs =================
+Blend the strip and idle tabs toward brand grays/navy while keeping states
+distinct and readable. */
+#tabbedLayout .esri-portfolio-tabbed__tab-list{
+  background: linear-gradient(180deg, var(--brand-navy-1) 0%, var(--brand-gray-2) 100%);
+  box-shadow: inset 0 -1px 0 rgba(0,0,0,.35);
+  gap: 6px;
+  padding: 6px 12px;              /* reduce bar height to avoid overlap */
+  border-bottom: 1px solid rgba(0,0,0,.35);
+  overflow: visible;               /* prevent child pills from clipping */
+}
+#tabbedLayout .esri-portfolio-tabbed__tab-list .esri-portfolio-tabbed-item{
+  background: rgba(255,255,255,.06); /* idle pill on dark strip */
+  color: #ffffff;
+  border-radius: 6px;
+  transition: background .2s ease, color .2s ease, box-shadow .2s ease;
+  padding: 6px 12px;               /* slightly shorter pill */
+}
+#tabbedLayout .esri-portfolio-tabbed__tab-list .esri-portfolio-tabbed-item:hover{
+  background: rgba(255,255,255,.12);
+  box-shadow: 0 1px 6px rgba(0,0,0,.25);
+}
+
+/* Ensure any parent wrappers do not clip the tab strip */
+#tabbedLayout [class*="esri-portfolio-tabbed__tabs"]{ overflow: visible !important; }
+
+/* Ensure the content region sits below the tab strip (no collision with iframes) */
+#tabbedLayout [class*="esri-portfolio-tabbed__content"],
+#tabbedLayout [class*="esri-portfolio-tabbed__panel"],
+#tabbedLayout [class*="esri-portfolio-tabbed__section"]{
+  margin-top: 4px !important;
+}
+#tabbedLayout [class*="esri-portfolio" ] iframe{ display:block; margin-top: 2px; }
+
+/* Extra safeguard for mask clipping on some builds */
+#tabbedLayout .esri-portfolio-tabbed__tab-list::after{ content: none !important; }
+
+

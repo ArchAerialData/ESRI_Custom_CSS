@@ -1,0 +1,154 @@
+/* ======================================================================
+Single‑block Starter | ArcGIS Instant Apps — Portfolio (Tabbed)
+Paste this entire file into the app’s Custom CSS field.
+
+Scope & notes:
+- Styles the Portfolio shell (header, tabs, optional cover page) only.
+- Cannot style inside embedded apps (e.g., Scene Viewer). Use URL params
+  like ui=min when embedding to reduce their chrome.
+- Respects prefers-reduced-motion. Keep focus/contrast accessible.
+====================================================================== */
+
+/* ============================ 1) TOKENS ============================
+Purpose: brand colors, motion speeds, and optional centered overlay logo.
+How to use: edit values here; avoid hard-coding colors in modules below.
+*/
+:root{
+  /* Colors */
+  --brand-red:   #cf1a21;
+  --brand-red-2: #8f0f14;
+  --brand-gray-1:#181b1f;   /* darkest */
+  --brand-gray-2:#2a3036;   /* mid-dark */
+  --brand-gray-3:#565d66;   /* mid */
+
+  --text-on-dark:#ffffff;
+  --text-on-light:#0b0f0e;
+
+  /* Motion */
+  --app-header-gradient-speed: 14s;
+  --tab-gradient-speed: 22s;
+
+  /* Optional centered overlay logo (set to 'none' to disable) */
+  --overlay-logo-url: none; /* e.g., url("https://.../ClientLogo.png") */
+  --overlay-logo-width: clamp(260px, 36vw, 560px);
+  --overlay-logo-height: min(64px, calc(var(--instant-apps-header-height, 56px) - 6px));
+}
+
+/* ============================ 2) HEADER ============================
+instant-apps-header web component: gradient background, Calcite tokens,
+transparent wrappers, optional centered overlay logo.
+*/
+instant-apps-header{
+  background:
+    linear-gradient(110deg,
+      var(--brand-red-2) 0%,
+      var(--brand-red)   18%,
+      var(--brand-gray-2) 36%,
+      var(--brand-gray-1) 100%),
+    linear-gradient(180deg, rgba(0,0,0,.45) 0%, rgba(0,0,0,.20) 40%, rgba(0,0,0,.50) 100%);
+  background-size: 400% 400%, 100% 100%;
+  animation: appHeaderShift var(--app-header-gradient-speed) ease-in-out infinite;
+
+  /* Calcite color hooks inside header */
+  --calcite-color-text-1: var(--text-on-dark);
+  --calcite-color-text-2: #e9ecef;
+  --calcite-color-brand: var(--brand-red);
+  --calcite-color-brand-hover: #b3151b;
+
+  position: relative; box-shadow: inset 0 -1px 0 rgba(255,255,255,.10);
+}
+instant-apps-header::part(container),
+instant-apps-header::part(wrapper){ background: transparent !important; padding-inline: 16px !important; }
+
+/* Optional centered overlay logo (disable via --overlay-logo-url: none) */
+instant-apps-header::after{
+  content: ""; position: absolute; inset: 50% auto auto 50%;
+  width: var(--overlay-logo-width); height: var(--overlay-logo-height);
+  transform: translate(-50%, -50%);
+  background: var(--overlay-logo-url) no-repeat center center / contain;
+  pointer-events: none; z-index: 2; filter: drop-shadow(0 1px 0 rgba(0,0,0,.25));
+}
+@media (prefers-reduced-motion: reduce){ instant-apps-header{ animation: none; } }
+@keyframes appHeaderShift{ 0%{background-position:0% 50%,0 0} 50%{background-position:100% 50%,0 0} 100%{background-position:0% 50%,0 0} }
+
+/* ============================ 3) TABS ============================
+Portfolio (Tabbed) strip, idle/hover/selected, and focus states.
+Keep #tabbedLayout prefix to avoid collisions.
+*/
+#tabbedLayout .esri-portfolio-tabbed__tab-list{
+  background: #3a3f45;                 /* strip background */
+  box-shadow: inset 0 -1px 0 rgba(0,0,0,.35);
+  gap: 6px;                             /* space between tabs */
+  padding: 8px 12px;
+}
+#tabbedLayout .esri-portfolio-tabbed__tab-list .esri-portfolio-tabbed-item{
+  background: rgba(255,255,255,.06);
+  color: var(--text-on-dark);
+  border-radius: 6px;
+  transition: background .2s ease, color .2s ease, box-shadow .2s ease;
+}
+#tabbedLayout .esri-portfolio-tabbed__tab-list .esri-portfolio-tabbed-item:hover{
+  background: rgba(255,255,255,.12);
+  box-shadow: 0 1px 6px rgba(0,0,0,.25);
+}
+#tabbedLayout .esri-portfolio-tabbed__tab-list .esri-portfolio-tabbed-item--selected,
+#tabbedLayout .esri-portfolio-tabbed__tab-list .esri-portfolio-tabbed-item--selected:hover{
+  background:
+    linear-gradient(135deg,
+      var(--brand-red-2) 0%,
+      var(--brand-red)   42%,
+      var(--brand-gray-3) 70%,
+      var(--brand-gray-2) 100%),
+    linear-gradient(180deg, rgba(255,255,255,.05) 0%, rgba(0,0,0,.14) 100%) !important;
+  background-size: 220% 220%, 100% 100%;
+  animation: tabRedShift var(--tab-gradient-speed) ease-in-out infinite;
+  color: #ffffff !important;
+  text-shadow: 0 1px 0 rgba(0,0,0,.4);
+  box-shadow: 0 0 0 1px rgba(0,0,0,.25) inset, 0 2px 10px rgba(227,28,36,.22);
+}
+#tabbedLayout .esri-portfolio-tabbed__tab-list .esri-portfolio-tabbed-item:focus-visible{
+  outline: 2px solid var(--brand-red); outline-offset: 2px;
+}
+@keyframes tabRedShift{ 0%{background-position:0% 50%,0 0} 50%{background-position:100% 50%,0 0} 100%{background-position:0% 50%,0 0} }
+@media (prefers-reduced-motion: reduce){
+  #tabbedLayout .esri-portfolio-tabbed__tab-list .esri-portfolio-tabbed-item--selected,
+  #tabbedLayout .esri-portfolio-tabbed__tab-list .esri-portfolio-tabbed-item--selected:hover{
+    animation: none;
+  }
+}
+
+/* ============================ 4) COVER PAGE (optional) ====================
+instant-apps-landing-page: set safe tokens and enhance the Enter button by
+styling the host (not the internal part) and making ::part(button) transparent.
+*/
+instant-apps-landing-page{
+  --instant-apps-landing-page-text-color: #ffffff !important;
+  --instant-apps-landing-page-entry-button-color: var(--brand-red) !important; /* fallback */
+}
+instant-apps-landing-page::part(container){ backdrop-filter: saturate(1.05) contrast(1.05); }
+instant-apps-landing-page calcite-button{
+  background:
+    linear-gradient(135deg, var(--brand-red) 0%, #b3151b 50%, var(--brand-red-2) 100%) !important;
+  background-size: 220% 220% !important;
+  animation: enterShift 10s ease-in-out infinite;
+  border: 1px solid rgba(11,15,14,.65) !important;
+  box-shadow: 0 0 0 1px rgba(0,0,0,.25) inset,
+              0 6px 18px rgba(227,28,36,.25),
+              0 1px 0 rgba(255,255,255,.35) inset !important;
+  color: #0b0f0e !important;
+  border-radius: 8px !important;
+  overflow: hidden; /* clip gradient inside rounded corners */
+}
+instant-apps-landing-page calcite-button::part(button){ background: transparent !important; color: #0b0f0e !important; }
+instant-apps-landing-page calcite-button:hover{ background-position: 100% 50% !important; }
+instant-apps-landing-page calcite-button:focus-visible{ outline: 2px solid #3aa154; outline-offset: 2px; }
+@media (prefers-reduced-motion: reduce){ instant-apps-landing-page calcite-button{ animation: none; } }
+@keyframes enterShift{ 0%{background-position:0% 50%} 50%{background-position:100% 50%} 100%{background-position:0% 50%} }
+
+/* ============================ 5) UTILITIES =============================== */
+.text-on-dark{ color: var(--text-on-dark) !important; }
+.text-on-light{ color: var(--text-on-light) !important; }
+
+/* ============================ 6) CLIENT OVERRIDES ========================
+Place app-specific tweaks below. Keep template above intact for easier updates.
+*/
