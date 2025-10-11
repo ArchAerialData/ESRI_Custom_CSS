@@ -1,4 +1,6 @@
-/* ================= Tellepsen Portfolio – Clean CSS =================
+/* ================= Phillips 66 Portfolio – Clean CSS =================*/
+
+/* ================= Phillips 66 Portfolio – Clean CSS =================
    - Keeps: red→gray animated header + animated selected tab
    - Keeps: CENTERED header overlay logo (uses Dropbox URL below)
    - Uses NATIVE ESRI left logo (no CSS logos on the left)
@@ -21,7 +23,7 @@
   --tab-gradient-speed: 14s;
 
   /* ----- Centered overlay logo controls ----- */
-  --overlay-logo-url: url("https://www.dropbox.com/scl/fi/ry652y06ptq79qkev35pg/TellepsenLogo.png?rlkey=vbjdzlnb65jokug/7p8wmrh3jp&st=vmlc9z48&raw=1");
+  --overlay-logo-url: url("https://www.dropbox.com/scl/fi/cy2fkxwgik9oyy4xguyvg/p66-banner.png?rlkey=msaw267wntf7dcgyj9li7dvfy&st=t4zflqjc&raw=1");
   --overlay-logo-width: clamp(260px, 36vw, 560px);
   --overlay-logo-height: min(64px, calc(var(--instant-apps-header-height, 56px) - 6px));
 }
@@ -124,5 +126,3 @@ instant-apps-header::after{
   50%{background-position:100% 50%, 0 0}
   100%{background-position:0% 50%, 0 0}
 }
-
-
