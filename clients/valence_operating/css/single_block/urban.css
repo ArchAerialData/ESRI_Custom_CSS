@@ -1,0 +1,123 @@
+/* ================= Brand + tokens ================= */
+:root{
+  --brand-gold: #fbc10f;
+  --brand-gold-2: #e7ac0e;
+  --brand-amber: #bf910b;
+  --brand-green: #2f7d32;
+  --brand-green-bright: #3aa154;
+
+  --app-header-gradient-speed: 14s;
+  --tab-gradient-speed: 24s;
+  --button-gradient-speed: 10s;
+}
+
+/* ================= Header (Instant Apps) ================= */
+instant-apps-header{
+  background:
+    linear-gradient(110deg,#0b0f0e 0%,#0f1714 25%,#12221b 50%,#0e1814 75%,#0b0f0e 100%),
+    linear-gradient(110deg,rgba(58,161,84,.55) 0%,rgba(58,161,84,.36) 35%,rgba(58,161,84,.46) 70%,rgba(58,161,84,.28) 100%),
+    radial-gradient(900px 260px at 45% 55%,rgba(58,161,84,.22),rgba(58,161,84,0) 65%),
+    radial-gradient(1200px 200px at 18% 0%,rgba(251,193,15,.18),rgba(251,193,15,0) 60%),
+    radial-gradient(900px 160px at 78% 0%,rgba(251,193,15,.12),rgba(251,193,15,0) 65%);
+  background-size: 400% 400%;
+  animation: appHeaderGradient var(--app-header-gradient-speed) ease-in-out infinite;
+  --calcite-color-foreground-1: transparent;
+  --calcite-color-text-1: #e6ece9;
+  --calcite-color-text-2: #cbd5d0;
+  --calcite-color-brand: var(--brand-gold);
+  --calcite-color-brand-hover: var(--brand-amber);
+  box-shadow: inset 0 -1px 0 rgba(255,255,255,.08);
+}
+instant-apps-header::part(container),
+instant-apps-header::part(wrapper){ background: transparent !important; }
+@media (prefers-reduced-motion: reduce){ instant-apps-header{ animation:none; } }
+@keyframes appHeaderGradient{
+  0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}
+}
+
+/* ================= Tabs ================= */
+#tabbedLayout .esri-portfolio-tabbed__tab-list .esri-portfolio-tabbed-item{
+  background: rgba(255,255,255,.02);
+  color: #e6ece9;
+  transition: background .2s ease,color .2s ease;
+}
+#tabbedLayout .esri-portfolio-tabbed__tab-list .esri-portfolio-tabbed-item:hover{
+  background: rgba(251,193,15,.08);
+}
+#tabbedLayout .esri-portfolio-tabbed__tab-list .esri-portfolio-tabbed-item--selected,
+#tabbedLayout .esri-portfolio-tabbed__tab-list .esri-portfolio-tabbed-item--selected:hover{
+  background:
+    linear-gradient(135deg,var(--brand-gold) 0%,var(--brand-gold-2) 45%,var(--brand-amber) 100%),
+    linear-gradient(180deg,rgba(255,255,255,.06) 0%,rgba(255,255,255,0) 48%,rgba(0,0,0,.10) 100%) !important;
+  background-size: 220% 220%,100% 100%;
+  animation: tabGoldShift var(--tab-gradient-speed) ease-in-out infinite;
+  color: #0b0f0e !important;
+  text-shadow: none;
+  box-shadow: 0 0 0 1px rgba(0,0,0,.25) inset,0 2px 8px rgba(251,193,15,.15);
+}
+#tabbedLayout .esri-portfolio-tabbed__tab-list .esri-portfolio-tabbed-item:focus-visible{
+  outline:2px solid var(--brand-gold); outline-offset:2px;
+}
+@keyframes tabGoldShift{
+  0%{background-position:0% 50%,0 0}50%{background-position:100% 50%,0 0}100%{background-position:0% 50%,0 0}
+}
+
+/* ================= Landing page ================= */
+
+/* Softer title color + safe fallback for the button color */
+instant-apps-landing-page{
+  --instant-apps-landing-page-text-color: #e9c84a !important;
+  /* SAFE FALLBACK: if any of the rules below fail, button stays gold, not black */
+  --instant-apps-landing-page-entry-button-color: #e9c84a !important;
+}
+
+/* Title/subtitle readability on photos */
+instant-apps-landing-page h1,
+instant-apps-landing-page h2,
+instant-apps-landing-page .landing-page__title,
+instant-apps-landing-page .landing-page__subtitle{
+  text-shadow: 0 2px 8px rgba(0,0,0,.35), 0 1px 0 rgba(0,0,0,.25);
+  letter-spacing: .2px;
+}
+
+/* ---- Enter button: host gets the gradient (works everywhere) ---- */
+instant-apps-landing-page calcite-button,
+instant-apps-landing-page .landing-page__entry-button{
+  background:
+    linear-gradient(135deg,var(--brand-gold) 0%,var(--brand-gold-2) 50%,var(--brand-amber) 100%) !important;
+  background-size: 220% 220% !important;
+  animation: enterGoldShift var(--button-gradient-speed) ease-in-out infinite;
+  border: 1px solid rgba(11,15,14,.65) !important;
+  box-shadow: 0 0 0 1px rgba(0,0,0,.25) inset, 0 6px 18px rgba(251,193,15,.25), 0 1px 0 rgba(255,255,255,.35) inset !important;
+  color: #0b0f0e !important;
+  border-radius: 8px !important;
+  overflow: hidden; /* clip gradient inside rounded corners */
+}
+
+/* Make the internal part transparent so the host gradient shows */
+instant-apps-landing-page calcite-button::part(button){
+  background: transparent !important;
+  color: #0b0f0e !important;
+}
+
+/* Hover/focus/active */
+instant-apps-landing-page calcite-button:hover{
+  background-position: 100% 50% !important;
+  box-shadow: 0 0 0 1px rgba(0,0,0,.35) inset, 0 8px 22px rgba(251,193,15,.32) !important;
+}
+instant-apps-landing-page calcite-button:focus-visible{
+  outline: 2px solid var(--brand-green-bright); outline-offset: 2px;
+}
+instant-apps-landing-page calcite-button:active{ transform: translateY(1px); }
+
+/* Button keyframes */
+@keyframes enterGoldShift{
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+
+/* Optional: slight contrast lift for the landing overlay */
+instant-apps-landing-page::part(container){
+  backdrop-filter: saturate(1.05) contrast(1.05);
+}

@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(pip show:*)",
+      "Bash(pyinstaller:*)",
+      "Bash(python -m pip uninstall:*)",
+      "Bash(dir:*)",
+      "Bash(powershell -command \"(Get-Item ''Scene Viewer Generator.exe'').length / 1MB\")"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
