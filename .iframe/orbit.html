@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>WebScene Orbit Camera</title>
+  <link rel="stylesheet" href="https://js.arcgis.com/4.29/esri/themes/light/main.css" />
+  <style>
+    html, body, #viewDiv {
+      height: 100%;
+      width: 100%;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    }
+
+    /* Bottom-centered glassy HUD that avoids default ArcGIS UI */
+    .hud {
+      position: absolute;
+      left: 50%;
+      bottom: 16px;
+      transform: translateX(-50%);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      z-index: 10;
+      background: rgba(24,24,27,0.55);
+      color: #fff;
+      border: 1px solid rgba(255,255,255,0.25);
+      border-radius: 12px;
+      padding: 8px 12px;
+      box-shadow: 0 6px 20px rgba(0,0,0,.25);
+      backdrop-filter: saturate(130%) blur(8px);
+      transition: opacity .25s ease, transform .25s ease;
+    }
+    .hud[data-hidden="true"] { opacity: 0; transform: translate(-50%, 14px); pointer-events: none; }
+    .hud .group { display: flex; align-items: center; gap: 8px; }
+    .hud .spacer { width: 1px; height: 28px; background: rgba(255,255,255,0.25); }
+
+    .hud button {
+      background: rgba(255,255,255,0.12);
+      color: #fff;
+      border: 1px solid rgba(255,255,255,0.28);
+      border-radius: 8px;
+      padding: 6px 12px;
+      cursor: pointer;
+    }
+    .hud button:hover { background: rgba(255,255,255,0.18); }
+    .hud button.primary { background: #6366f1; border-color: #6366f1; }
+    .hud button.primary:hover { background: #5558ee; }
+    .hud button.ghost { background: transparent; border-color: rgba(255,255,255,0.22); }
+    .hud button:disabled { opacity: .5; cursor: not-allowed; }
+
+    .hud label { display: flex; align-items: center; gap: 8px; }
+    .hud label span { min-width: 56px; opacity: .85; }
+    .hud input[type="range"] { width: 150px; accent-color: #6d28d9; }
+
+    @media (max-width: 900px) {
+      .hud { flex-wrap: wrap; row-gap: 10px; }
+      .hud .spacer { display: none; }
+    }
+  </style>
+  <script src="https://js.arcgis.com/4.29/"></script>
+  <script>
+    // Read query params to match Scene Viewer links
+    const qp = new URLSearchParams(location.search);
+    const WEBSCENE_ID = qp.get('webscene') || "1765b8f2a311407981d9f7664744bb89";
+    const centerStr = qp.get('center');
+    const TARGET = centerStr ?
+      (() => { const [lon, lat] = centerStr.split(',').map(Number); return { longitude: lon, latitude: lat }; })() :
+      { longitude: -97.17793834, latitude: 32.68900376 };
+    const START_TILT = centerStr && qp.get('tilt') ? Number(qp.get('tilt')) : 55; // degrees
+    const START_RADIUS = centerStr && qp.get('distance') ? Number(qp.get('distance')) : 800; // meters (approx horizontal)
+    const START_ALTITUDE = qp.get('altitude') ? Number(qp.get('altitude')) : 1000; // meters above target (approx)
+    // Speed: separate magnitude and direction (reverse)
+    const startRot = qp.get('rotationSpeed') ? Number(qp.get('rotationSpeed')) : 0.5;
+    const START_SPEED_MAG = Math.max(0, Math.min(10, Math.abs(startRot) * 5)); // 0..10 deg/s
+    const START_DIR = startRot < 0 ? -1 : 1;
+
+    let view, targetWM, radius = START_RADIUS, altitude = START_ALTITUDE;
+    let theta = 0; // radians
+    let rafId = null;
+    let lastTs = 0;
+    let tiltDeg = START_TILT;
+    let playing = false;
+    let userPaused = false;
+    let PointCtor = null; // set after modules load
+    let dir = START_DIR; // 1 or -1
+    let speedMagDegPerSec = START_SPEED_MAG; // 0..10
+    let hudEl, speedInput, radiusInput, altInput, playBtn, pauseBtn;
+    let uiHideTimer = null;
+    let hasFocus = false;
+    let originViewpoint = null;
+
+    function startOrbit() {
+      if (rafId) return;
+      lastTs = 0;
+      rafId = requestAnimationFrame(tick);
+      playing = true;
+    }
+    function stopOrbit() {
+      if (rafId) cancelAnimationFrame(rafId);
+      rafId = null;
+      playing = false;
+    }
+
+    function tick(ts) {
+      if (!lastTs) lastTs = ts;
+      const dt = (ts - lastTs) / 1000; // seconds
+      lastTs = ts;
+
+      // Advance angle
+      const dTheta = (speedMagDegPerSec * dir * Math.PI/180) * dt;
+      theta = (theta + dTheta) % (Math.PI*2);
+
+      // Compute camera position on a horizontal circle around target (in WebMercator meters)
+      const x = targetWM.x + radius * Math.cos(theta);
+      const y = targetWM.y + radius * Math.sin(theta);
+      const z = targetWM.z + altitude;
+
+      // Compute heading so camera faces the target
+      const dx = targetWM.x - x;
+      const dy = targetWM.y - y;
+      const heading = (Math.atan2(dx, dy) * 180/Math.PI + 360) % 360;
+
+      // Update camera instantly this frame
+      const cam = view.camera.clone();
+      // Build a WebMercator point for camera position (correct spatial reference)
+      cam.position = new PointCtor({ x, y, z, spatialReference: { wkid: 3857 } });
+      cam.tilt = tiltDeg;
+      cam.heading = heading;
+      view.goTo(cam, { animate: false });
+
+      rafId = requestAnimationFrame(tick);
+    }
+
+    require([
+      "esri/WebScene",
+      "esri/views/SceneView",
+      "esri/geometry/Point",
+      "esri/geometry/support/webMercatorUtils",
+      "esri/core/reactiveUtils"
+    ], function(WebScene, SceneView, Point, webMercatorUtils, reactiveUtils) {
+      PointCtor = Point;
+      const scene = new WebScene({ portalItem: { id: WEBSCENE_ID } });
+      view = new SceneView({
+        container: "viewDiv",
+        map: scene,
+        qualityProfile: "high",
+        environment: { lighting: { directShadowsEnabled: true } }
+      });
+
+      async function initTargetFromCurrentView() {
+        // Use the current view camera and center to derive orbit params
+        const screenCenter = { x: Math.round(view.width/2), y: Math.round(view.height/2) };
+        const centerPoint = view.toMap(screenCenter) || view.center;
+        const elev = await view.map.ground.queryElevation(centerPoint);
+        const groundCenterGCS = new PointCtor({
+          longitude: elev.geometry.longitude,
+          latitude: elev.geometry.latitude,
+          z: elev.geometry.z || 0,
+          spatialReference: { wkid: 4326 }
+        });
+        targetWM = webMercatorUtils.geographicToWebMercator(groundCenterGCS);
+
+        const camWM = webMercatorUtils.geographicToWebMercator(view.camera.position);
+        const dx0 = camWM.x - targetWM.x;
+        const dy0 = camWM.y - targetWM.y;
+        radius = Math.max(50, Math.min(5000, Math.hypot(dx0, dy0)));
+        altitude = Math.max(50, Math.min(5000, camWM.z - (targetWM.z || 0)));
+        tiltDeg = view.camera.tilt;
+        theta = Math.atan2(camWM.y - targetWM.y, camWM.x - targetWM.x);
+
+        if (radiusInput) radiusInput.value = String(Math.round(radius));
+        if (altInput) altInput.value = String(Math.round(altitude));
+      }
+
+      view.when(async () => {
+        // Grab UI elements now that DOM exists
+        hudEl = document.getElementById('hud');
+        speedInput = document.getElementById('speed');
+        radiusInput = document.getElementById('radius');
+        altInput = document.getElementById('altitude');
+        playBtn = document.getElementById('playBtn');
+        pauseBtn = document.getElementById('pauseBtn');
+        // Sync UI with start values
+        if (speedInput) speedInput.value = String(speedMagDegPerSec);
+        if (radiusInput) radiusInput.value = String(Math.round(radius));
+        if (altInput) altInput.value = String(Math.round(altitude));
+        if (playBtn) playBtn.disabled = false;
+
+        // If URL center is provided, honor it; else use the scene's initial viewpoint
+        if (centerStr) {
+          const targetGCS = new PointCtor({ ...TARGET, spatialReference: { wkid: 4326 } });
+          const elev = await view.map.ground.queryElevation(targetGCS);
+          const groundZ = (elev && elev.geometry && typeof elev.geometry.z === 'number') ? elev.geometry.z : 0;
+          const targetGCSWithZ = new PointCtor({ longitude: TARGET.longitude, latitude: TARGET.latitude, z: groundZ, spatialReference: { wkid: 4326 } });
+          targetWM = webMercatorUtils.geographicToWebMercator(targetGCSWithZ);
+        } else {
+          // Let the webscene set its own viewpoint first, then derive orbit target from it
+          await scene.when();
+          if (scene.initialViewProperties && scene.initialViewProperties.viewpoint) {
+            await view.goTo(scene.initialViewProperties.viewpoint, { animate: false });
+          }
+          // Do not set focus automatically; wait for user to choose
+        }
+
+        // Record origin viewpoint for Reset
+        originViewpoint = view.viewpoint.clone();
+
+        // Pause orbit when the user interacts; resume when idle
+        reactiveUtils.watch(() => view.interacting, (interacting) => {
+          if (interacting) {
+            // User manually manipulated the scene: stop and require Play to resume
+            stopOrbit();
+            userPaused = true;
+            if (hudEl) hudEl.setAttribute('data-hidden', 'false');
+          } else if (!userPaused && hasFocus) {
+            startOrbit();
+          }
+        });
+
+        // Show HUD on pointer move while playing, then auto-hide
+        let lastShow = 0;
+        const showHUDTemp = () => {
+          if (!hudEl) return;
+          hudEl.setAttribute('data-hidden', 'false');
+          if (uiHideTimer) clearTimeout(uiHideTimer);
+          if (playing) uiHideTimer = setTimeout(() => hudEl.setAttribute('data-hidden', 'true'), 1800);
+        };
+        view.on('pointer-move', () => showHUDTemp());
+        view.on('pointer-down', () => { userPaused = true; stopOrbit(); showHUDTemp(); });
+        document.addEventListener('keydown', (e) => {
+          if (e.key === 'h') { // manual toggle
+            const hidden = hudEl.getAttribute('data-hidden') === 'true';
+            hudEl.setAttribute('data-hidden', hidden ? 'false' : 'true');
+          }
+        });
+      });
+
+      // Expose simple controls
+      window.__orbit = {
+        play: async () => {
+          // If no focus defined yet, capture from current viewpoint
+          if (!hasFocus) {
+            await window.__orbit.setFocusFromView();
+          }
+          startOrbit();
+          userPaused = false;
+          if (hudEl) {
+            hudEl.setAttribute('data-hidden', 'true');
+          }
+        },
+        pause: () => {
+          stopOrbit();
+          userPaused = true;
+          if (hudEl) hudEl.setAttribute('data-hidden', 'false');
+        },
+        setSpeed: (degPerSec) => { speedMagDegPerSec = Math.max(0, Math.min(10, +degPerSec || 0)); },
+        setRadius: (m) => { radius = Math.max(5, Math.min(1000, +m || 0)); },
+        setAltitude: (m) => { altitude = Math.max(0, Math.min(1500, +m || 0)); },
+        toggleDirection: () => { dir = dir === 1 ? -1 : 1; },
+        setFocusFromView: async () => {
+          if (!view) return;
+          // Determine map point at screen center via hitTest; fall back to ground
+          const screenCenter = { x: Math.round(view.width/2), y: Math.round(view.height/2) };
+          let hit = await view.hitTest(screenCenter);
+          let centerPoint = hit?.results?.[0]?.mapPoint || hit?.ground?.mapPoint || view.toMap(screenCenter) || view.center;
+          if (!centerPoint) return;
+          // Ensure we have an elevation value
+          if (typeof centerPoint.z !== 'number') {
+            const elevRes = await view.map.ground.queryElevation(centerPoint);
+            centerPoint = elevRes.geometry;
+          }
+          const groundCenter = new PointCtor({
+            longitude: centerPoint.longitude,
+            latitude: centerPoint.latitude,
+            z: typeof centerPoint.z === 'number' ? centerPoint.z : 0,
+            spatialReference: { wkid: 4326 }
+          });
+
+          // Convert positions to WebMercator for meter math
+          const targetWMNew = webMercatorUtils.geographicToWebMercator(groundCenter);
+          const camPosWM = webMercatorUtils.geographicToWebMercator(view.camera.position);
+
+          // Update globals
+          targetWM = targetWMNew; if (!targetWM.z) targetWM.z = 0;
+          tiltDeg = view.camera.tilt;
+          // Recompute theta using current camera but DO NOT change radius/altitude.
+          theta = Math.atan2(camPosWM.y - targetWM.y, camPosWM.x - targetWM.x);
+
+          // Reflect in UI controls
+          if (radiusInput) radiusInput.value = String(Math.round(radius));
+          if (altInput) altInput.value = String(Math.round(altitude));
+          hasFocus = true;
+          if (playBtn) playBtn.disabled = false;
+        },
+        resetView: async () => {
+          stopOrbit();
+          userPaused = true;
+          hasFocus = false;
+          if (playBtn) playBtn.disabled = false; // Play will capture focus on first click
+          if (originViewpoint) {
+            await view.goTo(originViewpoint, { animate: true, duration: 800, easing: "ease" });
+          }
+          if (hudEl) hudEl.setAttribute('data-hidden','false');
+        }
+      };
+    });
+  </script>
+</head>
+<body>
+  <div id="viewDiv"></div>
+  <div class="hud" id="hud" data-hidden="false">
+    <div class="group">
+      <button id="playBtn" class="primary" onclick="__orbit.play()">Play</button>
+      <button id="pauseBtn" class="ghost" onclick="__orbit.pause()">Pause</button>
+      <button class="ghost" onclick="__orbit.resetView()">Reset</button>
+      <button class="ghost" onclick="__orbit.toggleDirection()">Reverse</button>
+      <button class="ghost" onclick="document.getElementById('hud').setAttribute('data-hidden','true')">Hide</button>
+    </div>
+    <div class="spacer"></div>
+    <div class="group">
+      <label><span>Speed</span>
+        <input id="speed" type="range" min="0" max="10" step="0.1" value="1.5" oninput="__orbit.setSpeed(this.value)" />
+      </label>
+      <label><span>Radius</span>
+        <input id="radius" type="range" min="5" max="1000" step="5" value="200" oninput="__orbit.setRadius(this.value)" />
+      </label>
+      <label><span>Altitude</span>
+        <input id="altitude" type="range" min="0" max="1500" step="10" value="300" oninput="__orbit.setAltitude(this.value)" />
+      </label>
+    </div>
+  </div>
+</body>
+</html>

@@ -11,6 +11,18 @@
             width: 100vw;
             height: 100vh;
             border: none;
+            /* Simple cinematic rotation of the entire iframe */
+            animation: iframe-orbit 90s linear infinite;
+            transform-origin: 50% 50%;
+            will-change: transform;
+        }
+        /* Pause the motion on hover to allow interaction */
+        body:hover iframe {
+            animation-play-state: paused;
+        }
+        @keyframes iframe-orbit {
+            0%   { transform: rotateZ(0deg)   scale(1.02); }
+            100% { transform: rotateZ(360deg) scale(1.02); }
         }
     </style>
 </head>
