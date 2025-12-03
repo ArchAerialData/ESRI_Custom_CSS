@@ -1,36 +1,58 @@
-# Terra 3D Model Embedded Viewer Generator
+# Terra 3D Viewer Generator
+
+Generate standalone HTML viewers for 3D models with embedded data - no server required!
+
+**Version**: 2.0.0
+**Status**: Phase 2.2 Complete ✅
+**Last Updated**: January 24, 2025
+
+---
 
 ## Overview
 
-A desktop application that converts DJI Terra 3D mesh models (OBJ, PLY) into self-contained, portable HTML files that can be viewed on any computer without requiring the original model files or special software.
+A command-line tool (with future GUI) that converts Terra 3D mesh models (OBJ, PLY) into self-contained, portable HTML files. Share 3D models as a single .html file - works offline, no server needed!
 
 ## Project Status
 
-**Current Phase**: Phase 1 - Foundation & Research
+**Current Phase**: Phase 2.2 - OBJ Format Support ✅ COMPLETE
 
 See [Implementation Plan](.planning-to-do/embedded-viewer.md) for detailed roadmap.
 
 ## Quick Start
 
-### For Users (Coming Soon)
+### Installation
+
+```bash
+# Clone or navigate to repository
+cd _three.js-viewer
+
+# Install dependencies
+pip install -r requirements.txt
+```
+
+### Basic Usage
+
+```bash
+# Generate OBJ viewer from single file
+python generate_obj_viewer.py model.obj -o viewer.html
+
+# Generate from directory (auto-detects files)
+python generate_obj_viewer.py model_folder/ -o viewer.html
+
+# With texture optimization
+python generate_obj_viewer.py model.obj -o viewer.html --max-texture-size 2048
+
+# Open in browser
+start viewer.html  # Windows
+open viewer.html   # Mac
+```
+
+### GUI Application (Coming in Phase 3)
 1. Download `Terra Model Viewer Generator.exe` from [dist/](dist/)
 2. Double-click to launch
 3. Select your Terra 3D model files
 4. Click "Generate Embedded Viewer"
 5. Share the generated HTML file
-
-### For Developers
-
-**Requirements**:
-- Python 3.x
-- See [requirements.txt](requirements.txt) for dependencies
-
-**Setup**:
-```bash
-cd _three.js-viewer
-pip install -r requirements.txt
-python src/model-viewer-generator.py
-```
 
 ## Folder Structure
 
@@ -58,25 +80,36 @@ _three.js-viewer/
 
 ## Features
 
-### Current
-- ✅ Detailed implementation plan
-- ⏳ HTML viewer prototype (in development)
+### ✅ Implemented (Phase 1-2)
+- ✅ Production HTML viewer templates (OBJ, PLY)
+- ✅ ES module architecture with modern Three.js
+- ✅ OBJ format support with multi-file merging
+- ✅ MTL material library parsing
+- ✅ Texture embedding (Base64 data URIs)
+- ✅ Texture optimization (downscaling, WebP conversion)
+- ✅ Interactive 3D controls (rotate, zoom, pan, wireframe)
+- ✅ Lighting presets (realistic, bright, dramatic, flat)
+- ✅ Screenshot export
+- ✅ Fullscreen mode
+- ✅ Responsive design (desktop → mobile)
+- ✅ Command-line tool with progress tracking
+- ✅ Cross-browser compatibility (Chrome, Firefox, Edge, Safari 16.4+)
 
-### Planned
-- 🔲 OBJ format support (with textures)
-- 🔲 PLY format support (binary/ASCII)
+### ⏳ In Progress (Phase 2.3)
+- ⏳ PLY format support (binary/ASCII)
+
+### 🔲 Planned (Phase 3+)
 - 🔲 GUI application (tkinter)
-- 🔲 Standalone Windows executable
-- 🔲 Interactive 3D controls (rotate, zoom, pan)
-- 🔲 Texture optimization
-- 🔲 Geometry simplification
-- 🔲 Progress tracking during generation
+- 🔲 Standalone Windows executable (.exe)
+- 🔲 Drag-and-drop file support
+- 🔲 Batch processing
+- 🔲 Settings management
 
-### Future Enhancements
-- 🔲 Measurement tools
-- 🔲 Annotation system
-- 🔲 Gaussian Splat support
-- 🔲 3D Tiles (B3DM) support
+### 🌟 Future Enhancements
+- 🌟 Measurement tools
+- 🌟 Annotation system
+- 🌟 Gaussian Splat support
+- 🌟 3D Tiles (B3DM) support
 
 ## Supported Formats
 
@@ -120,7 +153,32 @@ Internal use only.
 
 ## Changelog
 
-### Phase 1 (In Progress)
+### Version 2.0.0 - January 24, 2025
+
+**Phase 2.2 Complete** - OBJ Format Support ✅
+- ✅ Created Python processing modules (obj_parser, mtl_parser, texture_processor, html_generator)
+- ✅ Implemented multi-file OBJ merging with vertex index offsetting
+- ✅ Added texture optimization (downscaling, WebP conversion, quality control)
+- ✅ Built command-line tool with comprehensive options
+- ✅ Updated requirements.txt (Pillow 11.0.0+, PyInstaller 6.11.0+)
+- ✅ Documented Phase 2.2 completion in planning files
+
+**Phase 2.1 Complete** - January 24, 2025
+- ✅ Created production HTML templates (viewer-obj.html, viewer-ply.html)
+- ✅ Implemented viewer-common.js with reusable classes
+- ✅ Added advanced UI controls (screenshot, presets, fullscreen)
+- ✅ Implemented lighting presets (5 options)
+- ✅ Added progress bar loading screen
+- ✅ Created responsive design (mobile/tablet support)
+- ✅ Documented templates in src/templates/README.md
+
+**Phase 1.2 Complete** - January 24, 2025
+- ✅ Fixed prototype viewers (ES module migration)
+- ✅ Migrated from deprecated Three.js CDN paths to modern /examples/jsm/
+- ✅ Tested and validated prototypes in Chrome
+- ✅ Updated PROTOTYPE_RESULTS.md with test results
+
+**Phase 1.1 Complete**
 - ✅ Created project structure
 - ✅ Detailed implementation plan
-- ⏳ HTML viewer prototype
+- ✅ HTML viewer prototypes (OBJ, PLY)

@@ -5,7 +5,9 @@
       "Bash(pyinstaller:*)",
       "Bash(python -m pip uninstall:*)",
       "Bash(dir:*)",
-      "Bash(powershell -command \"(Get-Item ''Scene Viewer Generator.exe'').length / 1MB\")"
+      "Bash(powershell -command \"(Get-Item ''Scene Viewer Generator.exe'').length / 1MB\")",
+      "Bash(start prototype-obj-viewer.html)",
+      "Bash(test:*)"
     ],
     "deny": [],
     "ask": []
