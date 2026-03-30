@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This repository maintains client-specific custom CSS and assets for ArcGIS Instant Apps experiences. It currently includes reusable template families for Portfolio (Tabbed) and Imagery Viewer.
+This repository maintains client-specific custom CSS and assets for ArcGIS Instant Apps experiences. It includes reusable `.master` template families for every Instant Apps template that officially supports Custom CSS, with validated guidance for Portfolio (Tabbed) and Imagery Viewer plus starter families for the rest.
 
 ## Repository Architecture
 
@@ -18,11 +18,19 @@ The repository follows a structured approach to CSS organization:
 
 ### Key Template Files
 
+- `.master/README.md`: Index of all supported Instant Apps template families and validation tiers
 - `.master/Portfolio/template.css`: Modular starter for Portfolio (Tabbed)
 - `.master/Portfolio/context.md`: Expert-level documentation for Portfolio selectors and constraints
 - `.master/Imagery Viewer/template.css`: Modular starter for Imagery Viewer
 - `.master/Imagery Viewer/context.md`: Expert-level documentation for Imagery Viewer selectors and constraints
-- `docs/README_template.md`: Selector map and guidance for Portfolio (Tabbed) styling
+- `docs/README_template.md`: Portfolio-only selector map and guidance
+
+### Supported Template Families
+
+- **Validated**: `Portfolio`, `Imagery Viewer`
+- **Starter / pending live DOM validation**: `3D Viewer`, `Atlas`, `Attachment Viewer`, `Basic (Media Map)`, `Category Gallery`, `Chart Viewer`, `Interactive Legend`, `Nearby`, `Public Notification`, `Reporter`, `Sidebar`, `Slider`, `Zone Lookup`
+
+If the target app type is not listed in `.master/README.md`, do not assume this repo has a supported custom-CSS starter for it.
 
 ## CSS Architecture
 
@@ -47,7 +55,7 @@ The CSS templates follow a specific modular structure:
 ### Adding a New Client
 
 1. Create folder structure: `clients/<client>/{.esri-url, css/{single_block,modular}, logos/}`
-2. Copy the appropriate starter from `.master/Portfolio/` or `.master/Imagery Viewer/`
+2. Copy the appropriate starter from the matching `.master/<Instant App Name>/` family
 3. Update `:root` brand tokens (colors, motion preferences)
 4. Configure optional logo handling for the app type
 5. Add app shortcuts in `.esri-url/` folder

@@ -1,0 +1,126 @@
+/* ======================================================================
+Single-block Starter | ArcGIS Instant Apps
+Validation tier: Starter / pending live DOM validation
+
+Paste this entire file into the app's Custom CSS field.
+Use this only as a conservative base until the app's live DOM is inspected.
+====================================================================== */
+
+/* ============================ 1) TOKENS ============================ */
+:root{
+  --brand-primary:   #012458;
+  --brand-primary-2: #0a3d91;
+  --surface-1:       #1a1a1a;
+  --surface-2:       #2a2a2a;
+  --brand-accent:    #314dec;
+
+  --text-on-dark: #ffffff;
+  --text-muted:   #b3b3b3;
+
+  --app-header-gradient-speed: 28s;
+  --header-logo-url: none; /* e.g. url("https://.../ClientLogo.png") */
+  --header-logo-width: clamp(150px, 15vw, 220px);
+  --header-logo-height: 40px;
+}
+
+/* ======================= 2) SHARED CALCITE TOKENS ======================= */
+:root,
+calcite-shell,
+calcite-panel,
+calcite-button,
+calcite-action,
+calcite-select,
+calcite-segmented-control,
+instant-apps-header,
+instant-apps-social-share{
+  --calcite-color-brand: var(--brand-accent);
+  --calcite-color-brand-hover: var(--brand-accent);
+  --calcite-color-brand-press: var(--brand-primary-2);
+  --calcite-color-background: var(--surface-1);
+  --calcite-color-background-alt: var(--surface-2);
+  --calcite-color-foreground-1: var(--surface-1);
+  --calcite-color-foreground-2: var(--surface-2);
+  --calcite-color-foreground-3: var(--surface-2);
+  --calcite-color-text-1: var(--text-on-dark);
+  --calcite-color-text-2: var(--text-muted);
+  --calcite-color-text-3: var(--text-muted);
+  --calcite-color-border-1: rgba(49,77,236,.35);
+  --calcite-color-border-2: rgba(49,77,236,.22);
+  --calcite-color-border-input: rgba(49,77,236,.30);
+  --calcite-color-border-input-hover: rgba(49,77,236,.45);
+  --calcite-color-border-input-press: var(--brand-accent);
+  --calcite-color-focus: var(--brand-accent);
+}
+
+/* ============================ 3) HEADER ============================ */
+instant-apps-header,
+instant-apps-social-share{
+  background:
+    linear-gradient(100deg,
+      var(--brand-primary) 0%,
+      var(--brand-primary-2) 40%,
+      var(--surface-1) 70%,
+      var(--surface-2) 100%) !important;
+  background-size: 180% 180% !important;
+  animation: appHeaderShift var(--app-header-gradient-speed) ease-in-out infinite;
+  color: var(--text-on-dark) !important;
+  box-shadow: inset 0 -1px 0 rgba(255,255,255,.10);
+}
+
+instant-apps-header::part(container),
+instant-apps-header::part(wrapper){
+  background: transparent !important;
+  padding-inline: 16px !important;
+}
+
+@media (prefers-reduced-motion: reduce){
+  instant-apps-header,
+  instant-apps-social-share{
+    animation: none;
+  }
+}
+
+@keyframes appHeaderShift{
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+
+/* ============================ 4) SAFE SURFACES =========================== */
+calcite-shell,
+calcite-panel,
+.esri-view-attribution{
+  background:
+    linear-gradient(180deg, rgba(42,42,42,.96) 0%, rgba(26,26,26,.98) 100%) !important;
+  color: var(--text-on-dark) !important;
+  border-color: rgba(49,77,236,.18);
+}
+
+.esri-ui{ color: var(--text-on-dark); }
+
+/* =========================== 5) SAFE CONTROLS =========================== */
+calcite-button[kind="brand"]{
+  --calcite-color-brand: var(--brand-accent);
+  --calcite-color-brand-hover: var(--brand-primary-2);
+  --calcite-color-brand-press: var(--brand-primary);
+}
+
+calcite-action,
+calcite-button,
+calcite-select,
+calcite-segmented-control{
+  --calcite-color-text-1: var(--text-on-dark);
+  --calcite-color-text-2: var(--text-muted);
+}
+
+calcite-button:focus-visible,
+calcite-action:focus-visible,
+calcite-select:focus-visible,
+calcite-segmented-control:focus-visible{
+  outline: 2px solid var(--brand-accent);
+  outline-offset: 2px;
+}
+
+/* ============================ 6) NEXT STEP ==============================
+Add template-specific selectors here only after live DOM inspection.
+*/

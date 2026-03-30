@@ -198,7 +198,7 @@ instant-apps-landing-page calcite-button:focus-visible{ outline: 2px solid #3aa1
 ## New Client Workflow (Checklist)
 
 - Create folders under `clients/<client>/` with `css/single_block`, `css/modular`, `.esri-url`, and `logos` as needed.
-- Copy `.master/template.css` as a starting point; either keep modular or merge into a single‑block CSS for the Portfolio app.
+- Copy `.master/Portfolio/template.css` as a starting point; either keep modular or merge into a single-block CSS for the Portfolio app.
 - Fill `:root` tokens with brand colors and motion preferences.
 - Decide on header logo approach: native left logo (recommended) vs. centered overlay (`instant-apps-header::after`). Host the overlay image externally if used.
 - Style tabs: base, hover, selected, focus. Maintain accessible outlines and contrast.
@@ -261,4 +261,3 @@ instant-apps-landing-page::part(container){}
 instant-apps-landing-page calcite-button{}
 instant-apps-landing-page calcite-button::part(button){}
 ```
-

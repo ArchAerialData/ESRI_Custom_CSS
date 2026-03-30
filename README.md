@@ -1,6 +1,6 @@
 # ESRI Custom CSS for ArcGIS Instant Apps
 
-This repository maintains client-specific custom CSS and assets for ArcGIS Instant Apps experiences. It now includes reusable template families for both Portfolio (Tabbed) and Imagery Viewer so new clients can start from the right selector structure instead of forcing one app's CSS onto another.
+This repository maintains client-specific custom CSS and assets for ArcGIS Instant Apps experiences. It includes reusable `.master` template families for every Instant Apps template that officially supports Custom CSS, with two validated families and additional starter-grade families for later DOM validation.
 
 Use this repo to:
 - Start a new client theme from the correct template family.
@@ -12,9 +12,11 @@ Use this repo to:
 
 Top-level folders and common files:
 
-- `.master/` - templates and docs used to bootstrap a new client
-  - `.master/Portfolio/` - Portfolio (Tabbed) docs and starter CSS
-  - `.master/Imagery Viewer/` - Imagery Viewer docs and starter CSS
+- `.master/` - template families and docs used to bootstrap a new client
+  - `.master/README.md` - index of supported Instant Apps families and validation tiers
+  - `.master/Portfolio/` - validated Portfolio (Tabbed) docs and starter CSS
+  - `.master/Imagery Viewer/` - validated Imagery Viewer docs and starter CSS
+  - `.master/<Instant App Name>/` - starter family for other Custom-CSS-capable app types
 - `clients/` - one folder per client with CSS, app links, and optional logos
   - `clients/<client>/.esri-url/*.url` - ArcGIS app shortcuts for the client
   - `clients/<client>/css/single_block/*.css` - one self-contained CSS file
@@ -55,14 +57,44 @@ Add or update custom CSS in an ArcGIS Instant Apps app:
 - Keep client-specific overrides at the bottom of the CSS to ease future template updates.
 
 
+## Supported App Families
+
+The official support source is the ArcGIS Instant Apps capabilities matrix:
+- https://doc.arcgis.com/en/instant-apps/latest/customize/pdf/arcgis-instant-apps-matrix.pdf
+
+Validated in this repo:
+- `Portfolio`
+- `Imagery Viewer`
+
+Starter / pending live DOM validation:
+- `3D Viewer`
+- `Atlas`
+- `Attachment Viewer`
+- `Basic (Media Map)`
+- `Category Gallery`
+- `Chart Viewer`
+- `Interactive Legend`
+- `Nearby`
+- `Public Notification`
+- `Reporter`
+- `Sidebar`
+- `Slider`
+- `Zone Lookup`
+
+Use `.master/README.md` for the current index and tiering.
+
+
 ## Adding a New Client
 
 1. Create the folder structure
 - `clients/<client>/{.esri-url,css/{single_block,modular},logos/{.all,cover,headers}}`
 
 2. Start from the correct template family
-- Use `.master/Portfolio/` for Portfolio (Tabbed) apps.
-- Use `.master/Imagery Viewer/` for Imagery Viewer apps.
+- Use the matching family under `.master/` for the target Instant Apps template.
+- Prefer the validated families first:
+  - `.master/Portfolio/`
+  - `.master/Imagery Viewer/`
+- For all other supported app types, start from that app's starter family and validate selectors in DevTools before relying on structural overrides.
 - Copy the matching `template.css` into the client's `css/modular/` folder or use the matching `single_block_starter.css` as reference for `css/single_block/`.
 
 3. Link the app
@@ -86,6 +118,7 @@ Add or update custom CSS in an ArcGIS Instant Apps app:
 - `.master/Portfolio/template.css:1` - Portfolio modular template with brand tokens, header, tabs, and cover support.
 - `.master/Imagery Viewer/context.md:1` - Imagery Viewer selector map and guidance.
 - `.master/Imagery Viewer/template.css:1` - Imagery Viewer modular template with header, panels, controls, and swipe styling.
+- `.master/README.md:1` - index of all supported Instant Apps template families and validation tiers.
 - `clients/tellepsen/css/single_block/tellepsen.css:1` - Example of a full Portfolio single-file theme.
 - `clients/arch_aerial/css/single_block/arch_aerial.css:1` - Example of a full Imagery Viewer single-file theme.
 - `clients/<client>/.esri-url/*.url:1` - App shortcuts for quick access.
