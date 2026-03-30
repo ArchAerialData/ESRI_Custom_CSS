@@ -1,21 +1,20 @@
-# Terra Model Viewer Generator - Processing Modules
 """
-This package contains all file processing modules for the Terra Model Viewer Generator.
+Terra 3D Viewer Modules
 
-Modules:
-    obj_parser: OBJ geometry file parser
-    mtl_parser: MTL material library parser
-    ply_parser: PLY format parser (binary and ASCII)
-    texture_processor: Image optimization and base64 encoding
-    geometry_optimizer: Polygon reduction and mesh optimization
-    html_embedder: HTML generation and model embedding
+Python modules for processing and embedding 3D models in standalone HTML viewers.
 """
 
+from .obj_parser import OBJParser
+from .mtl_parser import MTLParser, Material
+from .texture_processor import TextureProcessor, format_bytes
+from .html_generator import HTMLGenerator
+
+__version__ = "2.0.0"
 __all__ = [
-    'obj_parser',
-    'mtl_parser',
-    'ply_parser',
-    'texture_processor',
-    'geometry_optimizer',
-    'html_embedder'
+    "OBJParser",
+    "MTLParser",
+    "Material",
+    "TextureProcessor",
+    "HTMLGenerator",
+    "format_bytes"
 ]

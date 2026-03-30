@@ -152,13 +152,25 @@
 
     <div id="error" class="error-message"></div>
 
-    <!-- Three.js from CDN -->
-    <script src="https://cdn.jsdelivr.net/npm/three@0.167.0/build/three.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/three@0.167.0/examples/js/loaders/OBJLoader.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/three@0.167.0/examples/js/loaders/MTLLoader.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/three@0.167.0/examples/js/controls/OrbitControls.js"></script>
+    <!-- Three.js from CDN (ES Module) -->
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://cdn.jsdelivr.net/npm/three@0.167.0/build/three.module.js",
+                "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.167.0/examples/jsm/"
+            }
+        }
+    </script>
 
-    <script>
+    <script type="module">
+        // ============================================
+        // IMPORTS
+        // ============================================
+        import * as THREE from 'three';
+        import { OBJLoader } from 'three/addons/loaders/OBJLoader.js';
+        import { MTLLoader } from 'three/addons/loaders/MTLLoader.js';
+        import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+
         // ============================================
         // EMBEDDED MODEL DATA (Hardcoded for Prototype)
         // ============================================
@@ -238,7 +250,7 @@ Ns 100
             document.getElementById('canvas-container').appendChild(renderer.domElement);
 
             // Controls
-            controls = new THREE.OrbitControls(camera, renderer.domElement);
+            controls = new OrbitControls(camera, renderer.domElement);
             controls.enableDamping = true;
             controls.dampingFactor = 0.05;
             controls.screenSpacePanning = false;
@@ -292,12 +304,12 @@ Ns 100
         function loadEmbeddedModel() {
             try {
                 // Parse MTL
-                const mtlLoader = new THREE.MTLLoader();
+                const mtlLoader = new MTLLoader();
                 const materials = mtlLoader.parse(EMBEDDED_MTL);
                 materials.preload();
 
                 // Parse OBJ
-                const objLoader = new THREE.OBJLoader();
+                const objLoader = new OBJLoader();
                 objLoader.setMaterials(materials);
 
                 const object = objLoader.parse(EMBEDDED_OBJ);
@@ -366,16 +378,16 @@ Ns 100
         }
 
         // ============================================
-        // CONTROL FUNCTIONS
+        // CONTROL FUNCTIONS (Exposed to global scope)
         // ============================================
 
-        function resetCamera() {
+        window.resetCamera = function() {
             camera.position.set(3, 3, 3);
             controls.target.set(0, 0, 0);
             controls.update();
         }
 
-        function toggleWireframe() {
+        window.toggleWireframe = function() {
             wireframeMode = !wireframeMode;
             if (mesh) {
                 mesh.traverse((child) => {
@@ -386,7 +398,7 @@ Ns 100
             }
         }
 
-        function toggleRotation() {
+        window.toggleRotation = function() {
             autoRotate = !autoRotate;
         }
 

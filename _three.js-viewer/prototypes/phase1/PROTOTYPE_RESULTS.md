@@ -4,9 +4,10 @@
 
 This document tracks the development and testing results of the Phase 1.2 HTML viewer prototypes.
 
-**Status**: ✅ Prototypes Created - Ready for Testing
+**Status**: ✅ Prototypes WORKING - ES Module Migration Complete
 
 **Created**: 2025-10-24
+**Updated**: 2025-01-24 (ES Module Migration)
 
 ---
 
@@ -36,11 +37,13 @@ This document tracks the development and testing results of the Phase 1.2 HTML v
 
 **File Size**: ~12 KB (HTML + embedded JS)
 
-**CDN Dependencies**:
-- Three.js r167 core
-- OBJLoader
-- MTLLoader
-- OrbitControls
+**CDN Dependencies** (ES Modules):
+- Three.js r167 core (`three.module.js`)
+- OBJLoader (`three/addons/loaders/OBJLoader.js`)
+- MTLLoader (`three/addons/loaders/MTLLoader.js`)
+- OrbitControls (`three/addons/controls/OrbitControls.js`)
+
+**Module System**: ES6 modules with import maps
 
 ---
 
@@ -67,10 +70,12 @@ This document tracks the development and testing results of the Phase 1.2 HTML v
 
 **File Size**: ~10 KB (HTML + embedded JS)
 
-**CDN Dependencies**:
-- Three.js r167 core
-- PLYLoader
-- OrbitControls
+**CDN Dependencies** (ES Modules):
+- Three.js r167 core (`three.module.js`)
+- PLYLoader (`three/addons/loaders/PLYLoader.js`)
+- OrbitControls (`three/addons/controls/OrbitControls.js`)
+
+**Module System**: ES6 modules with import maps
 
 ---
 
@@ -158,17 +163,26 @@ This document tracks the development and testing results of the Phase 1.2 HTML v
 
 ### Challenges & Solutions
 
-**Challenge 1: Three.js Module Imports**
-- **Issue**: Three.js r167 uses ES6 modules, not global namespace
-- **Solution**: Use legacy build from CDN (`three.min.js`) for simpler integration
+**Challenge 1: Three.js Deprecated CDN Paths** ⚠️ **CRITICAL**
+- **Issue**: Original prototypes used deprecated `/examples/js/` CDN paths that no longer exist
+- **Problem**: Loading screen hung indefinitely, no 3D rendering
+- **Root Cause**: Three.js r150+ moved to ES modules, old UMD builds removed from CDN
+- **Solution**: Migrated to ES module architecture with import maps
+- **Status**: ✅ **RESOLVED** (January 2025)
+- **Impact**: Requires modern browsers (Chrome 89+, Firefox 87+, Safari 16.4+, Edge 89+)
+
+**Challenge 2: ES Module Scope Issues**
+- **Issue**: Control functions not accessible from inline onclick handlers
+- **Problem**: Functions defined in modules are scoped, not global
+- **Solution**: Explicitly expose functions to `window` object (e.g., `window.resetCamera = function() {}`)
 - **Status**: ✅ Resolved
 
-**Challenge 2: Model Scaling**
+**Challenge 3: Model Scaling**
 - **Issue**: Hardcoded models may be too small/large
 - **Solution**: Calculate bounding box and auto-scale to fit viewport
 - **Status**: ✅ Implemented in both prototypes
 
-**Challenge 3: Material Application**
+**Challenge 4: Material Application**
 - **Issue**: OBJ files need separate MTL files for materials
 - **Solution**: Embed MTL as string, parse first, then apply to OBJ
 - **Status**: ✅ Working
@@ -211,40 +225,48 @@ This document tracks the development and testing results of the Phase 1.2 HTML v
 
 ## Test Results
 
-### Browser: _____________
-**Date**: __________
-**Tester**: __________
+### Browser: Chrome (Latest)
+**Date**: 2025-01-24
+**Tester**: User Validation
 
 **OBJ Viewer**:
-- Loads: ☐ Yes ☐ No
-- Renders: ☐ Yes ☐ No
-- Controls work: ☐ Yes ☐ No
-- Performance: ☐ Excellent ☐ Good ☐ Poor
-- Errors: ☐ None ☐ (describe): ___________
+- Loads: ☑ Yes ☐ No
+- Renders: ☑ Yes ☐ No (Blue cube visible with proper shading)
+- Controls work: ☑ Yes ☐ No (Rotate, zoom, pan, wireframe, auto-rotate all functional)
+- Performance: ☑ Excellent ☐ Good ☐ Poor
+- Errors: ☑ None ☐ (describe): ___________
 
 **PLY Viewer**:
-- Loads: ☐ Yes ☐ No
-- Renders: ☐ Yes ☐ No
-- Controls work: ☐ Yes ☐ No
-- Performance: ☐ Excellent ☐ Good ☐ Poor
-- Errors: ☐ None ☐ (describe): ___________
+- Loads: ☑ Yes ☐ No
+- Renders: ☑ Yes ☐ No (8 colored points visible)
+- Controls work: ☑ Yes ☐ No (Rotate, zoom, pan, point size slider functional)
+- Performance: ☑ Excellent ☐ Good ☐ Poor
+- Errors: ☑ None ☐ (describe): ___________
 
 **Notes**:
-_______________________________________________
-_______________________________________________
+- Both viewers now working after ES module migration
+- No console errors
+- Loading screens function correctly
+- All interactive controls responsive
 
 ---
 
 ## Conclusion
 
-**Phase 1.2 Status**: ✅ **COMPLETE - Ready for Testing**
+**Phase 1.2 Status**: ✅ **COMPLETE - TESTED AND WORKING**
 
-Both prototype viewers have been successfully created and are ready for browser testing. The prototypes demonstrate that:
+Both prototype viewers have been successfully created, migrated to modern ES modules, and validated working in Chrome. The prototypes demonstrate that:
 
 1. ✅ Embedding 3D models directly in HTML is viable
-2. ✅ Three.js works well with embedded data
+2. ✅ Three.js works well with embedded data (using ES modules)
 3. ✅ User controls are straightforward to implement
 4. ✅ File sizes remain manageable for small models
 5. ✅ The approach scales to larger Terra models
+6. ✅ ES module migration successful (modern browsers required)
 
-**Ready to proceed to Phase 2 after testing validation.**
+**Critical Lessons Learned**:
+- Always use ES module paths (`/examples/jsm/`) not deprecated UMD paths (`/examples/js/`)
+- Import maps require Safari 16.4+ (March 2023)
+- Module scope requires explicit global exposure for onclick handlers
+
+**✅ Ready to proceed to Phase 2: Core Viewer Development**

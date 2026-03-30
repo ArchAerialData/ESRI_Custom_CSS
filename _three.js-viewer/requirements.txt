@@ -1,24 +1,36 @@
 # Terra 3D Model Embedded Viewer Generator
 # Python Dependencies
 
-# GUI Framework (built-in with Python)
-# tkinter - No pip install needed (comes with Python on Windows)
+# ============================================
+# CORE DEPENDENCIES (Required)
+# ============================================
 
-# Image Processing
-Pillow>=10.0.0
+# Image Processing (for texture encoding and optimization)
+Pillow>=11.0.0  # Updated for Python 3.12+ compatibility
 
-# WebP Support (optional, for texture optimization)
+# ============================================
+# OPTIONAL DEPENDENCIES
+# ============================================
+
+# WebP Support (for smaller texture file sizes)
 pillow-webp>=0.1.0
 
-# EXE Building
-pyinstaller>=6.0.0
+# EXE Building (for Phase 3 GUI application)
+pyinstaller>=6.11.0  # Latest stable (as of January 2025)
 
-# File Encoding (built-in)
-# base64 - No pip install needed
-# json - No pip install needed
-# os - No pip install needed
-# pathlib - No pip install needed
+# ============================================
+# BUILT-IN MODULES (No installation required)
+# ============================================
+# tkinter - GUI framework (built-in with Python on Windows/Mac)
+# base64 - Binary encoding
+# json - JSON parsing
+# pathlib - Path handling
+# argparse - Command-line argument parsing
+# re - Regular expressions
 
-# Development Dependencies (optional)
-# pytest>=7.0.0  # For running tests
-# black>=23.0.0  # Code formatting
+# ============================================
+# DEVELOPMENT DEPENDENCIES (Optional)
+# ============================================
+# pytest>=8.0.0  # Unit testing
+# black>=24.0.0  # Code formatting
+# mypy>=1.8.0    # Type checking
