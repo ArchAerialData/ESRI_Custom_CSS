@@ -1,0 +1,245 @@
+/* ======================================================================
+Single-block Starter | ArcGIS Instant Apps - Imagery Viewer
+Paste this entire file into the app's Custom CSS field.
+
+Scope & notes:
+- Styles the Imagery Viewer shell (header, panels, controls, compare swipe).
+- Uses the live Imagery Viewer DOM, not Portfolio selectors.
+- Respects prefers-reduced-motion and keeps focus visible.
+====================================================================== */
+
+/* ============================ 1) TOKENS ============================ */
+:root{
+  --brand-primary:   #012458;
+  --brand-primary-2: #0a3d91;
+  --surface-1:       #1a1a1a;
+  --surface-2:       #2a2a2a;
+  --brand-accent:    #314dec;
+
+  --text-on-dark: #ffffff;
+  --text-muted:   #b3b3b3;
+
+  --app-header-gradient-speed: 28s;
+
+  /* Optional logo fallback (set to none to disable) */
+  --left-logo-url: none; /* e.g. url("https://.../ClientLogo.png") */
+  --left-logo-width: clamp(150px, 15vw, 220px);
+  --left-logo-height: 40px;
+  --header-inline-pad: 16px;
+  --header-logo-gap: 20px;
+}
+
+/* ======================= 2) SHARED CALCITE TOKENS ======================= */
+#appContainer.calcite-shell-container.header,
+#appContainer.calcite-shell-container.header calcite-shell,
+#appContainer.calcite-shell-container.header calcite-panel,
+#appContainer.calcite-shell-container.header calcite-accordion,
+#appContainer.calcite-shell-container.header calcite-select,
+#appContainer.calcite-shell-container.header calcite-button,
+#appContainer.calcite-shell-container.header calcite-action,
+#appContainer.calcite-shell-container.header calcite-segmented-control{
+  --calcite-color-brand: var(--brand-accent);
+  --calcite-color-brand-hover: var(--brand-accent);
+  --calcite-color-brand-press: var(--brand-primary-2);
+  --calcite-color-background: var(--surface-1);
+  --calcite-color-background-alt: var(--surface-2);
+  --calcite-color-foreground-1: var(--surface-1);
+  --calcite-color-foreground-2: var(--surface-2);
+  --calcite-color-foreground-3: var(--surface-2);
+  --calcite-color-text-1: var(--text-on-dark);
+  --calcite-color-text-2: var(--text-muted);
+  --calcite-color-text-3: var(--text-muted);
+  --calcite-color-border-1: rgba(49,77,236,.35);
+  --calcite-color-border-2: rgba(49,77,236,.22);
+  --calcite-color-border-input: rgba(49,77,236,.30);
+  --calcite-color-border-input-hover: rgba(49,77,236,.45);
+  --calcite-color-border-input-press: var(--brand-accent);
+  --calcite-color-focus: var(--brand-accent);
+}
+
+/* ============================ 3) HEADER ============================ */
+#appContainer.calcite-shell-container.header .embed-app__header{
+  background:
+    linear-gradient(100deg,
+      var(--brand-primary) 0%,
+      var(--brand-primary-2) 40%,
+      var(--surface-1) 70%,
+      var(--surface-2) 100%) !important;
+  background-size: 180% 180% !important;
+  animation: appHeaderShift var(--app-header-gradient-speed) ease-in-out infinite;
+  color: var(--text-on-dark) !important;
+  position: relative;
+  box-shadow: inset 0 -1px 0 rgba(255,255,255,.10);
+  overflow: hidden;
+}
+
+#appContainer.calcite-shell-container.header .embed-app__header .embed-app__header__title-area{
+  align-items: center;
+  display: flex;
+  min-height: 70px;
+  min-width: 0;
+  padding-left: calc(var(--header-inline-pad) + var(--left-logo-width) + var(--header-logo-gap)) !important;
+  padding-right: var(--header-inline-pad);
+  position: relative;
+}
+
+#appContainer.calcite-shell-container.header .embed-app__header .embed-app__header__title-area::before{
+  content: "";
+  position: absolute;
+  left: var(--header-inline-pad);
+  top: 50%;
+  width: var(--left-logo-width);
+  height: var(--left-logo-height);
+  transform: translateY(-50%);
+  background: var(--left-logo-url) no-repeat left center / contain;
+  pointer-events: none;
+  z-index: 1;
+  filter: drop-shadow(0 1px 0 rgba(0,0,0,.25));
+}
+
+#appContainer.calcite-shell-container.header .embed-app__header .embed-app__header__title-area h1{
+  color: var(--text-on-dark) !important;
+  margin-left: 0 !important;
+  overflow-wrap: anywhere;
+  text-shadow: 0 1px 0 rgba(0,0,0,.35);
+}
+
+#appContainer.calcite-shell-container.header .embed-app__header .embed-image-date{
+  color: var(--text-on-dark);
+  padding-right: var(--header-inline-pad);
+}
+
+#appContainer.calcite-shell-container.header .embed-app__header .embed-app__header__title-area img.embed-app__header__logo{
+  width: var(--left-logo-width) !important;
+  height: var(--left-logo-height) !important;
+  margin-left: var(--header-inline-pad) !important;
+  margin-right: var(--header-logo-gap) !important;
+  object-fit: contain;
+}
+
+#appContainer.calcite-shell-container.header .embed-app__header .embed-app__header__title-area:has(img.embed-app__header__logo){
+  padding-left: var(--header-inline-pad) !important;
+}
+
+#appContainer.calcite-shell-container.header .embed-app__header .embed-app__header__title-area:has(img.embed-app__header__logo)::before{
+  display: none;
+}
+
+@media (prefers-reduced-motion: reduce){
+  #appContainer.calcite-shell-container.header .embed-app__header{ animation: none; }
+}
+
+@keyframes appHeaderShift{
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+
+/* ===================== 4) PANELS, CONTROLS, SWIPE ====================== */
+calcite-panel.imagery-doubleviewer,
+calcite-panel.imagery-singleviewer,
+calcite-panel.imagery-export,
+.imagery-imagemeasurement{
+  background:
+    linear-gradient(180deg, rgba(42,42,42,.96) 0%, rgba(26,26,26,.98) 100%) !important;
+  color: var(--text-on-dark) !important;
+  border: 1px solid rgba(49,77,236,.35);
+  box-shadow: 0 8px 24px rgba(0,0,0,.35);
+}
+
+.imagery-measureclear{ color: var(--text-muted) !important; }
+
+.esri-view-attribution{
+  background: rgba(26,26,26,.84) !important;
+  color: var(--text-on-dark) !important;
+  border: 1px solid rgba(49,77,236,.18);
+}
+
+calcite-panel.imagery-doubleviewer calcite-accordion-item,
+calcite-panel.imagery-singleviewer calcite-accordion-item,
+calcite-panel.imagery-export calcite-accordion-item{
+  --calcite-accordion-item-header-background-color: transparent !important;
+  --calcite-accordion-item-header-background-color-hover: transparent !important;
+  --calcite-accordion-item-header-background-color-press: transparent !important;
+  --calcite-accordion-item-text-color: var(--text-on-dark) !important;
+  --calcite-accordion-item-heading-text-color: var(--text-on-dark) !important;
+  --calcite-accordion-item-expand-icon-color: var(--text-on-dark) !important;
+}
+
+calcite-panel.imagery-doubleviewer calcite-accordion-item::part(header),
+calcite-panel.imagery-singleviewer calcite-accordion-item::part(header),
+calcite-panel.imagery-export calcite-accordion-item::part(header){
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.05) 0%, rgba(255,255,255,.03) 50%, rgba(0,0,0,.12) 100%) !important;
+  border-radius: 8px;
+  box-shadow: 0 0 0 1px rgba(255,255,255,.06) inset;
+  color: var(--text-on-dark) !important;
+}
+
+calcite-panel.imagery-doubleviewer calcite-accordion-item:hover::part(header),
+calcite-panel.imagery-singleviewer calcite-accordion-item:hover::part(header),
+calcite-panel.imagery-export calcite-accordion-item:hover::part(header){
+  background:
+    linear-gradient(135deg, rgba(1,36,88,.90) 0%, rgba(10,61,145,.78) 100%) !important;
+}
+
+calcite-panel.imagery-doubleviewer calcite-accordion-item[expanded]::part(header),
+calcite-panel.imagery-singleviewer calcite-accordion-item[expanded]::part(header),
+calcite-panel.imagery-export calcite-accordion-item[expanded]::part(header){
+  background:
+    linear-gradient(135deg, var(--brand-primary) 0%, var(--brand-primary-2) 100%),
+    linear-gradient(180deg, rgba(255,255,255,.08) 0%, rgba(255,255,255,0) 55%, rgba(0,0,0,.12) 100%) !important;
+  box-shadow: 0 0 0 1px rgba(255,255,255,.10) inset, 0 2px 10px rgba(49,77,236,.20);
+}
+
+calcite-button[kind="brand"]{
+  --calcite-color-brand: var(--brand-accent);
+  --calcite-color-brand-hover: var(--brand-primary-2);
+  --calcite-color-brand-press: var(--brand-primary);
+}
+
+calcite-action.esri-widget--button,
+calcite-button.esri-widget--button,
+calcite-button[appearance="transparent"],
+calcite-action[appearance="transparent"]{
+  --calcite-color-text-1: var(--text-on-dark);
+  --calcite-color-foreground-1: rgba(26,26,26,.80);
+  --calcite-color-foreground-2: rgba(42,42,42,.90);
+  --calcite-color-foreground-3: rgba(49,77,236,.18);
+}
+
+calcite-select,
+calcite-segmented-control{
+  --calcite-color-background: var(--surface-1);
+  --calcite-color-foreground-1: var(--surface-2);
+  --calcite-color-foreground-2: var(--surface-2);
+  --calcite-color-text-1: var(--text-on-dark);
+  --calcite-color-text-2: var(--text-muted);
+}
+
+calcite-segmented-control{ border-radius: 8px; }
+
+calcite-segmented-control-item[checked]{
+  --calcite-color-foreground-1: var(--brand-primary);
+  --calcite-color-text-1: var(--text-on-dark);
+}
+
+.esri-swipe__container{ color: var(--text-on-dark); }
+
+.esri-swipe__handle{
+  background: var(--brand-primary) !important;
+  border: 1px solid rgba(255,255,255,.24) !important;
+  box-shadow: 0 4px 18px rgba(0,0,0,.25);
+  color: var(--text-on-dark) !important;
+}
+
+.esri-swipe__divider{
+  background: linear-gradient(180deg, var(--brand-primary) 0%, var(--brand-primary-2) 100%) !important;
+}
+
+.esri-swipe__container:focus-visible .esri-swipe__handle{
+  outline: 2px solid var(--brand-accent);
+  outline-offset: 2px;
+}
+
+/* ============================ 5) CLIENT OVERRIDES ======================= */
