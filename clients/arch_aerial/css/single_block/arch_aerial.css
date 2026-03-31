@@ -19,10 +19,13 @@
   --header-logo-gap: 16px;
   --header-title-size: 17px;
   --header-title-line-height: 1.2;
+  --header-title-optical-offset: 2px;
   --left-logo-url: url("https://raw.githubusercontent.com/ArchAerialData/ESRI_Custom_CSS/main/clients/arch_aerial/logos/headers/ArchAerial_Logo_White_NoWebsite_HeaderCrop.png");
   --left-logo-title-offset: 134px;
   --left-logo-width: 134px;
   --left-logo-height: 24px;
+  /* Static compare labels are fixed CSS overlays.
+     They do not follow the swipe handle and must be updated manually when the imagery pair changes. */
   --swipe-left-title: "MWG_PaintedTree_2025_09_29";
   --swipe-right-title: "MWG_PaintedTree_2025_12_29";
   --swipe-title-top: 12px;
@@ -105,6 +108,7 @@
   filter: drop-shadow(0 1px 0 rgba(0,0,0,.25));
 }
 
+/* Optical offset aligns the title with the logo's visual weight, not just the row midpoint. */
 #appContainer.calcite-shell-container.header .embed-app__header .embed-app__header__title-area h1{
   color: #ffffff !important;
   font-size: var(--header-title-size);
@@ -112,6 +116,7 @@
   margin-left: 0 !important;
   overflow-wrap: anywhere;
   text-shadow: 0 1px 0 rgba(0,0,0,.35);
+  transform: translateY(var(--header-title-optical-offset));
 }
 
 #appContainer.calcite-shell-container.header .embed-app__header .embed-image-date{
