@@ -16,11 +16,20 @@
   --app-header-gradient-speed: 28s;
   --header-inline-pad: 16px;
   --header-row-height: 70px;
-  --header-logo-gap: 10px;
+  --header-logo-gap: 16px;
+  --header-title-size: 17px;
+  --header-title-line-height: 1.2;
   --left-logo-url: url("https://raw.githubusercontent.com/ArchAerialData/ESRI_Custom_CSS/main/clients/arch_aerial/logos/headers/ArchAerial_Logo_White_NoWebsite_HeaderCrop.png");
   --left-logo-title-offset: 134px;
   --left-logo-width: 134px;
   --left-logo-height: 24px;
+  --swipe-left-title: "MWG_PaintedTree_2025_09_29";
+  --swipe-right-title: "MWG_PaintedTree_2025_12_29";
+  --swipe-title-top: 12px;
+  --swipe-left-offset: 64px;
+  --swipe-right-offset: 88px;
+  --swipe-title-font-size: 12px;
+  --swipe-title-max-width: 220px;
 }
 
 /* ================= Shared Calcite tokens ================= */
@@ -98,6 +107,8 @@
 
 #appContainer.calcite-shell-container.header .embed-app__header .embed-app__header__title-area h1{
   color: #ffffff !important;
+  font-size: var(--header-title-size);
+  line-height: var(--header-title-line-height);
   margin-left: 0 !important;
   overflow-wrap: anywhere;
   text-shadow: 0 1px 0 rgba(0,0,0,.35);
@@ -142,6 +153,52 @@
   0%{background-position:0% 50%}
   50%{background-position:100% 50%}
   100%{background-position:0% 50%}
+}
+
+/* ================= Static swipe titles ================= */
+#appContainer.calcite-shell-container.header .esri-view-root::before,
+#appContainer.calcite-shell-container.header .esri-view-root::after{
+  background: rgba(26,26,26,.78);
+  border: 1px solid rgba(49,77,236,.24);
+  border-radius: 6px;
+  box-sizing: border-box;
+  color: #ffffff;
+  font-size: var(--swipe-title-font-size);
+  font-weight: 600;
+  line-height: 1;
+  max-width: var(--swipe-title-max-width);
+  overflow: hidden;
+  padding: 8px 10px;
+  pointer-events: none;
+  position: absolute;
+  text-overflow: ellipsis;
+  top: var(--swipe-title-top);
+  white-space: nowrap;
+  z-index: 2;
+}
+
+#appContainer.calcite-shell-container.header .esri-view-root::before{
+  content: var(--swipe-left-title);
+  left: var(--swipe-left-offset);
+}
+
+#appContainer.calcite-shell-container.header .esri-view-root::after{
+  content: var(--swipe-right-title);
+  right: var(--swipe-right-offset);
+}
+
+@media (max-width: 1200px){
+  :root{
+    --swipe-title-font-size: 11px;
+    --swipe-title-max-width: 180px;
+  }
+}
+
+@media (max-width: 960px){
+  #appContainer.calcite-shell-container.header .esri-view-root::before,
+  #appContainer.calcite-shell-container.header .esri-view-root::after{
+    display: none;
+  }
 }
 
 /* ================= Panels and tools ================= */
