@@ -1,1 +1,54 @@
-/* ================= Imperial Construction Portfolio – Clean CSS =================*/
+/* ================= Imperial Construction Portfolio - Header Refresh ================= */
+
+/* ================= Brand tokens ================= */
+:root{
+  --brand-orange: #e34f2a;
+  --brand-orange-2: #c9411f;
+  --brand-charcoal-1: #080808;
+  --brand-charcoal-2: #171717;
+  --brand-white: #ffffff;
+
+  --app-header-gradient-speed: 16s;
+}
+
+/* ================= Header (Instant Apps) ================= */
+instant-apps-header{
+  background:
+    linear-gradient(
+      110deg,
+      var(--brand-charcoal-1) 0%,
+      #141414 24%,
+      var(--brand-orange) 42%,
+      var(--brand-orange-2) 58%,
+      var(--brand-charcoal-2) 82%,
+      #090909 100%
+    ),
+    linear-gradient(180deg, rgba(255,255,255,.06) 0%, rgba(0,0,0,.18) 42%, rgba(0,0,0,.45) 100%);
+  background-size: 280% 280%, 100% 100%;
+  animation: appHeaderShift var(--app-header-gradient-speed) ease-in-out infinite;
+
+  --calcite-color-foreground-1: transparent;
+  --calcite-color-text-1: var(--brand-white);
+  --calcite-color-text-2: #f2f2f2;
+  --calcite-color-brand: var(--brand-orange);
+  --calcite-color-brand-hover: #f06a3c;
+
+  box-shadow: inset 0 -1px 0 rgba(255,255,255,.10);
+}
+
+instant-apps-header::part(container),
+instant-apps-header::part(wrapper){
+  background: transparent !important;
+}
+
+@media (prefers-reduced-motion: reduce){
+  instant-apps-header{
+    animation: none;
+  }
+}
+
+@keyframes appHeaderShift{
+  0%{background-position:0% 50%, 0 0}
+  50%{background-position:100% 50%, 0 0}
+  100%{background-position:0% 50%, 0 0}
+}
