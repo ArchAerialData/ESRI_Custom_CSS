@@ -25,7 +25,7 @@
   --button-gradient-speed: 11s;
 
   /* Centered overlay logo controls */
-  --overlay-logo-url: url("https://www.dropbox.com/scl/fi/e6jtpdfs4b4hbsw4utfo3/EOG_Resources-Banner-Transparent-v2.png?rlkey=kg8647t1jjfbgr7k43bzziuxm&st=kkf4ze6d&raw=1");
+  --overlay-logo-url: url("https://www.dropbox.com/scl/fi/uhl2xtujj3woa9esw18pw/EOG_Resources-Banner-Transparent-v5.png?rlkey=xt5cnaxqv8sf1e7ic5tvfrbwj&st=tze4rwty&raw=1");
   --overlay-logo-width: clamp(248px, 22vw, 320px);
   --overlay-logo-height: min(60px, calc(var(--instant-apps-header-height, 56px) - 4px));
   --overlay-logo-bg-size: auto 350%;
@@ -188,6 +188,9 @@ instant-apps-header::after{
 
 /* ================= Landing page ================= */
 instant-apps-landing-page{
+  --instant-apps-landing-page-background-color:
+    radial-gradient(760px 420px at 48% 36%, rgba(228,53,57,.28), rgba(228,53,57,0) 62%),
+    linear-gradient(135deg, #171616 0%, #221e1f 38%, #4d1518 72%, #171616 100%) !important;
   --instant-apps-landing-page-text-color: var(--eog-white) !important;
   --instant-apps-landing-page-entry-button-color: var(--eog-red) !important;
 }
