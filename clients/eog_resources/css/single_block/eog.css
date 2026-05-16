@@ -25,10 +25,10 @@
   --button-gradient-speed: 11s;
 
   /* Centered overlay logo controls */
-  --overlay-logo-url: url("https://www.dropbox.com/scl/fi/uhl2xtujj3woa9esw18pw/EOG_Resources-Banner-Transparent-v5.png?rlkey=xt5cnaxqv8sf1e7ic5tvfrbwj&st=tze4rwty&raw=1");
-  --overlay-logo-width: clamp(248px, 22vw, 320px);
-  --overlay-logo-height: min(60px, calc(var(--instant-apps-header-height, 56px) - 4px));
-  --overlay-logo-bg-size: auto 350%;
+  --overlay-logo-url: none;
+  --overlay-logo-width: clamp(72px, 5vw, 96px);
+  --overlay-logo-height: min(56px, calc(var(--instant-apps-header-height, 56px) - 4px));
+  --overlay-logo-bg-size: contain;
   --overlay-logo-bg-position: center center;
 }
 
@@ -82,29 +82,6 @@ instant-apps-header::part(wrapper){
   background: transparent !important;
   padding-left: 16px !important;
   padding-right: 16px !important;
-}
-
-/* Tinted glass plate keeps the transparent EOG wordmark readable without a harsh white box. */
-instant-apps-header::before{
-  content: "";
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  width: calc(var(--overlay-logo-width) + 14px);
-  height: calc(var(--overlay-logo-height) + 2px);
-  transform: translate(-50%, -50%);
-  background:
-    radial-gradient(180px 58px at 25% 50%, rgba(255,255,255,.68), rgba(255,247,247,.28) 72%),
-    linear-gradient(105deg, rgba(255,247,247,.62) 0%, rgba(255,247,247,.48) 58%, rgba(228,53,57,.20) 100%);
-  -webkit-backdrop-filter: blur(7px) saturate(1.12);
-  backdrop-filter: blur(7px) saturate(1.12);
-  border-radius: 5px;
-  box-shadow:
-    0 0 0 1px rgba(255,255,255,.16) inset,
-    0 0 0 1px rgba(228,53,57,.20),
-    0 6px 18px rgba(23,22,22,.20);
-  pointer-events: none;
-  z-index: 1;
 }
 
 /* Centered overlay PNG logo */
