@@ -1,54 +1,218 @@
-/* ================= Imperial Construction Portfolio - Header Refresh ================= */
+/* ================= Imperial Construction Portfolio - Clean CSS =================
+   Palette verified from local logo assets:
+   - Imperial-Square-1x1-transparent.png: #D44126 orange, #FFFFFF white
+   - Imperial-Square-1x1.png: #282829 charcoal, #C9C9CA light grey,
+     #F2F2F2 near-white
+   Darker charcoal and orange values below are contrast-preserving extensions.
+====================================================================== */
 
 /* ================= Brand tokens ================= */
 :root{
-  --brand-orange: #e34f2a;
-  --brand-orange-2: #c9411f;
-  --brand-charcoal-1: #080808;
-  --brand-charcoal-2: #171717;
-  --brand-white: #ffffff;
+  --scm-blue: #282829;
+  --scm-blue-dark: #5e5e5f;
+  --scm-blue-deep: #282829;
+  --scm-orange: #d44126;
+  --scm-sand: #c9c9ca;
+  --scm-earth: #a93b27;
+  --scm-peach: #f2f2f2;
+  --scm-sun: #ffffff;
+  --scm-white: #ffffff;
+  --scm-soft-white: #f2f2f2;
+
+  --cover-button-bg: var(--scm-orange);
+  --cover-button-bg-hover: var(--scm-earth);
+  --cover-button-bg-press: #7e3528;
+  --cover-button-text: var(--scm-white);
+  --cover-button-border: var(--scm-peach);
+
+  --text-on-dark: var(--scm-white);
+  --text-on-light: var(--scm-blue-deep);
 
   --app-header-gradient-speed: 16s;
+  --tab-gradient-speed: 14s;
+
+  /* Centered overlay logo controls */
+  --overlay-logo-url: none;
+  --overlay-logo-width: clamp(72px, 5vw, 96px);
+  --overlay-logo-height: min(56px, calc(var(--instant-apps-header-height, 56px) - 4px));
+  --overlay-logo-bg-size: contain;
+  --overlay-logo-bg-position: center center;
+}
+
+/* ================= Shared Calcite tokens ================= */
+.calcite-mode-dark{
+  --calcite-color-brand: var(--scm-orange) !important;
+  --calcite-color-brand-hover: var(--scm-earth) !important;
+  --calcite-color-brand-press: var(--scm-blue-dark) !important;
+  --calcite-color-focus: var(--scm-peach) !important;
+}
+
+.calcite-mode-light{
+  --calcite-color-brand: var(--scm-orange) !important;
+  --calcite-color-brand-hover: var(--scm-earth) !important;
+  --calcite-color-brand-press: var(--scm-blue-deep) !important;
+  --calcite-color-focus: var(--scm-orange) !important;
 }
 
 /* ================= Header (Instant Apps) ================= */
 instant-apps-header{
   background:
+    radial-gradient(680px 130px at 50% 50%, rgba(212,65,38,.16), rgba(212,65,38,0) 70%),
     linear-gradient(
       110deg,
-      var(--brand-charcoal-1) 0%,
-      #141414 24%,
-      var(--brand-orange) 42%,
-      var(--brand-orange-2) 58%,
-      var(--brand-charcoal-2) 82%,
-      #090909 100%
+      var(--scm-orange) 0%,
+      var(--scm-sand) 24%,
+      var(--scm-blue-dark) 44%,
+      var(--scm-orange) 62%,
+      var(--scm-blue) 82%,
+      var(--scm-sand) 100%
     ),
-    linear-gradient(180deg, rgba(255,255,255,.06) 0%, rgba(0,0,0,.18) 42%, rgba(0,0,0,.45) 100%);
-  background-size: 280% 280%, 100% 100%;
+    linear-gradient(180deg, rgba(201,201,202,.20) 0%, rgba(201,201,202,.12) 44%, rgba(40,40,41,.28) 100%);
+  background-size: 100% 100%, 360% 360%, 100% 100%;
   animation: appHeaderShift var(--app-header-gradient-speed) ease-in-out infinite;
 
   --calcite-color-foreground-1: transparent;
-  --calcite-color-text-1: var(--brand-white);
-  --calcite-color-text-2: #f2f2f2;
-  --calcite-color-brand: var(--brand-orange);
-  --calcite-color-brand-hover: #f06a3c;
+  --calcite-color-text-1: var(--text-on-dark);
+  --calcite-color-text-2: var(--scm-soft-white);
+  --calcite-color-brand: var(--scm-orange);
+  --calcite-color-brand-hover: var(--scm-earth);
+  --calcite-color-brand-press: var(--scm-blue-dark);
+  --calcite-color-focus: var(--scm-peach);
 
-  box-shadow: inset 0 -1px 0 rgba(255,255,255,.10);
+  position: relative;
+  z-index: 0;
+  box-shadow: inset 0 -1px 0 rgba(255,255,255,.12);
 }
 
 instant-apps-header::part(container),
 instant-apps-header::part(wrapper){
   background: transparent !important;
+  padding-left: 16px !important;
+  padding-right: 16px !important;
+}
+
+/* Centered overlay PNG logo */
+instant-apps-header::after{
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: var(--overlay-logo-width);
+  height: var(--overlay-logo-height);
+  transform: translate(-50%, -50%);
+  background: var(--overlay-logo-url) no-repeat var(--overlay-logo-bg-position) / var(--overlay-logo-bg-size);
+  pointer-events: none;
+  z-index: 2;
+  opacity: .96;
+  filter:
+    drop-shadow(0 1px 0 rgba(255,255,255,.12))
+    drop-shadow(0 2px 5px rgba(8,8,8,.18));
 }
 
 @media (prefers-reduced-motion: reduce){
-  instant-apps-header{
+  instant-apps-header{ animation: none; }
+}
+
+@keyframes appHeaderShift{
+  0%{background-position: 50% 50%, 0% 50%, 0 0}
+  50%{background-position: 50% 50%, 100% 50%, 0 0}
+  100%{background-position: 50% 50%, 0% 50%, 0 0}
+}
+
+/* ================= Tabs ================= */
+#tabbedLayout .esri-portfolio-tabbed__tab-list .esri-portfolio-tabbed-item{
+  background: rgba(255,255,255,.07);
+  color: var(--text-on-dark);
+  transition: background .2s ease, color .2s ease, box-shadow .2s ease;
+  border-radius: 6px;
+}
+
+#tabbedLayout .esri-portfolio-tabbed__tab-list .esri-portfolio-tabbed-item:hover{
+  background: rgba(255,255,255,.13);
+  box-shadow: 0 1px 6px rgba(8,8,8,.26);
+}
+
+#tabbedLayout .esri-portfolio-tabbed__tab-list .esri-portfolio-tabbed-item--selected,
+#tabbedLayout .esri-portfolio-tabbed__tab-list .esri-portfolio-tabbed-item--selected:hover{
+  background:
+    linear-gradient(
+      135deg,
+      var(--scm-orange) 0%,
+      var(--scm-sand) 28%,
+      var(--scm-blue-dark) 52%,
+      var(--scm-orange) 76%,
+      var(--scm-blue) 100%
+    ),
+    linear-gradient(180deg, rgba(201,201,202,.22) 0%, rgba(40,40,41,.20) 100%) !important;
+  background-size: 230% 230%, 100% 100%;
+  animation: tabScmShift var(--tab-gradient-speed) ease-in-out infinite;
+  color: var(--text-on-dark) !important;
+  text-shadow: 0 1px 0 rgba(8,8,8,.48);
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,.88) inset,
+    0 0 0 1px rgba(8,8,8,.82),
+    0 2px 10px rgba(40,40,41,.36);
+}
+
+#tabbedLayout .esri-portfolio-tabbed__tab-list .esri-portfolio-tabbed-item:focus-visible{
+  outline: 2px solid var(--scm-peach);
+  outline-offset: 2px;
+}
+
+@keyframes tabScmShift{
+  0%{background-position: 0% 50%, 0 0}
+  50%{background-position: 100% 50%, 0 0}
+  100%{background-position: 0% 50%, 0 0}
+}
+
+@media (prefers-reduced-motion: reduce){
+  #tabbedLayout .esri-portfolio-tabbed__tab-list .esri-portfolio-tabbed-item--selected,
+  #tabbedLayout .esri-portfolio-tabbed__tab-list .esri-portfolio-tabbed-item--selected:hover{
     animation: none;
   }
 }
 
-@keyframes appHeaderShift{
-  0%{background-position:0% 50%, 0 0}
-  50%{background-position:100% 50%, 0 0}
-  100%{background-position:0% 50%, 0 0}
+/* ================= Landing page - disabled so UI options prevail =================
+   Uncomment the block below to enable cover page overrides.
+====================================================================== */
+/*
+instant-apps-landing-page{
+  --instant-apps-landing-page-background-color:
+    radial-gradient(760px 420px at 48% 36%, rgba(212,65,38,.18), rgba(212,65,38,0) 62%),
+    radial-gradient(620px 360px at 18% 22%, rgba(201,201,202,.14), rgba(201,201,202,0) 64%),
+    linear-gradient(135deg, var(--scm-blue-deep) 0%, var(--scm-blue-dark) 36%, var(--scm-blue) 66%, var(--scm-orange) 100%) !important;
+  --instant-apps-landing-page-text-color: var(--scm-white) !important;
+  --instant-apps-landing-page-entry-button-color: var(--cover-button-bg) !important;
+  --calcite-color-brand: var(--cover-button-bg) !important;
+  --calcite-color-brand-hover: var(--cover-button-bg-hover) !important;
+  --calcite-color-brand-press: var(--cover-button-bg-press) !important;
+  --calcite-color-text-inverse: var(--cover-button-text) !important;
+  --calcite-color-focus: var(--scm-orange) !important;
+
+  --calcite-button-background-color: var(--cover-button-bg) !important;
+  --calcite-button-border-color: var(--cover-button-border) !important;
+  --calcite-button-border-size: 2px !important;
+  --calcite-button-text-color: var(--cover-button-text) !important;
+  --calcite-button-icon-color: var(--cover-button-text) !important;
+  --calcite-button-corner-radius: 8px !important;
+  --calcite-button-shadow:
+    0 0 0 1px rgba(255,255,255,.18) inset,
+    0 8px 20px rgba(8,8,8,.34) !important;
 }
+
+instant-apps-landing-page h1,
+instant-apps-landing-page h2,
+instant-apps-landing-page .landing-page__title,
+instant-apps-landing-page .landing-page__subtitle{
+  text-shadow: 0 2px 8px rgba(8,8,8,.46), 0 1px 0 rgba(40,40,41,.34);
+}
+
+instant-apps-landing-page::part(container){
+  -webkit-backdrop-filter: saturate(1.05) contrast(1.05);
+  backdrop-filter: saturate(1.05) contrast(1.05);
+}
+*/
+
+/* ================= Utilities ================= */
+.text-on-dark{ color: var(--text-on-dark) !important; }
+.text-on-light{ color: var(--text-on-light) !important; }
