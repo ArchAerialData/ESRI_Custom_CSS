@@ -1,0 +1,76 @@
+/* MineralTech local prototype overrides.
+   These rules keep the Webflow layout intact while replacing the YouTube
+   embed with a clipped ArcGIS iframe. Tweak the custom properties on
+   .prototype-esri-frame if the ArcGIS chrome/crop needs adjustment. */
+
+:root {
+  --prototype-esri-extra-height: 150px;
+  --prototype-esri-y-offset: 0px;
+  --prototype-esri-scale: 1;
+}
+
+.prototype-esri-section {
+  margin: 0 auto;
+}
+
+.prototype-esri-frame {
+  position: relative;
+  width: 100%;
+  max-width: 940px;
+  aspect-ratio: 940 / 528;
+  margin: 0 auto;
+  overflow: hidden;
+  background: #2f2f2f;
+}
+
+.prototype-esri-section .w-container {
+  overflow: hidden;
+}
+
+.prototype-esri-iframe {
+  position: absolute;
+  top: var(--prototype-esri-y-offset);
+  left: 50%;
+  width: calc(100% / var(--prototype-esri-scale));
+  height: calc(100% + var(--prototype-esri-extra-height));
+  border: 0;
+  transform: translateX(-50%) scale(var(--prototype-esri-scale));
+  transform-origin: top center;
+}
+
+.prototype-form-note {
+  display: none;
+  margin-top: 10px;
+  color: #1b264c;
+  font-family: Lato, Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.prototype-form-note.is-visible {
+  display: block;
+}
+
+@media (max-width: 767px) {
+  :root {
+    --prototype-esri-extra-height: 120px;
+  }
+
+  .prototype-esri-frame {
+    max-width: 100%;
+    aspect-ratio: 16 / 10;
+  }
+
+  .prototype-esri-section .w-container {
+    max-width: 100%;
+    padding-right: 0;
+    padding-left: 0;
+  }
+
+  .prototype-esri-iframe {
+    left: 0;
+    width: 100%;
+    transform: scale(var(--prototype-esri-scale));
+    transform-origin: top left;
+  }
+}

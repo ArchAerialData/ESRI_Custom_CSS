@@ -1,0 +1,271 @@
+[     966ms] [INFO] Using Calcite Components 5.0.2 [Date: 2026-02-18, Revision: 960214b84] @ https://aallc.maps.arcgis.com/apps/instant/_astro/signal.BeLDHq9G.js:35
+[    2500ms] [INFO] Telemetry Disabled @ https://aallc.maps.arcgis.com/apps/instant/_astro/telemetry.U3skjQHQ.js:2
+[    2500ms] [INFO] Page view was not logged because telemetry is disabled. @ https://aallc.maps.arcgis.com/apps/instant/_astro/telemetry.U3skjQHQ.js:2
+[    3469ms] [WARNING] [@arcgis/core/widgets/Home] 🛑 DEPRECATED - This widget is deprecated. Use the Home component instead.
+	🛠️ Replacement: <arcgis-home></arcgis-home>
+	⚙️ Version: 4.32
+	🔗 See for more details:
+		Home component reference: https://www.esriurl.com/arcgis-home/
+		Esri's move to web components: https://www.esriurl.com/components-transition-plan/ @ https://aallc.maps.arcgis.com/apps/instant/_astro/signal.BeLDHq9G.js:5
+[   23355ms] [LOG] Error calling AWS TypeError: Failed to fetch
+    at jo.fetch (https://aallc.maps.arcgis.com/apps/instant/_astro/telemetry.U3skjQHQ.js:7:1437) @ https://aallc.maps.arcgis.com/apps/instant/_astro/telemetry.U3skjQHQ.js:10
+[   23579ms] [INFO] Using Calcite Components 5.0.2 [Date: 2026-02-18, Revision: 960214b84] @ https://aallc.maps.arcgis.com/apps/instant/_astro/signal.BeLDHq9G.js:35
+[   24534ms] [INFO] Telemetry Disabled @ https://aallc.maps.arcgis.com/apps/instant/_astro/telemetry.U3skjQHQ.js:2
+[   24534ms] [INFO] Page view was not logged because telemetry is disabled. @ https://aallc.maps.arcgis.com/apps/instant/_astro/telemetry.U3skjQHQ.js:2
+[   24892ms] [WARNING] [@arcgis/core/widgets/Home] 🛑 DEPRECATED - This widget is deprecated. Use the Home component instead.
+	🛠️ Replacement: <arcgis-home></arcgis-home>
+	⚙️ Version: 4.32
+	🔗 See for more details:
+		Home component reference: https://www.esriurl.com/arcgis-home/
+		Esri's move to web components: https://www.esriurl.com/components-transition-plan/ @ https://aallc.maps.arcgis.com/apps/instant/_astro/signal.BeLDHq9G.js:5
+[   25196ms] TypeError: Cannot read properties of null (reading 'getComponents')
+    at https://aallc.maps.arcgis.com/apps/instant/_astro/positionManager.072SmxL5.js:1:466
+[   25196ms] TypeError: Cannot read properties of null (reading 'getComponents')
+    at https://aallc.maps.arcgis.com/apps/instant/_astro/positionManager.072SmxL5.js:1:466
+[   25197ms] TypeError: Cannot read properties of null (reading 'getComponents')
+    at https://aallc.maps.arcgis.com/apps/instant/_astro/positionManager.072SmxL5.js:1:466
+[   25197ms] TypeError: Cannot read properties of null (reading 'getComponents')
+    at https://aallc.maps.arcgis.com/apps/instant/_astro/positionManager.072SmxL5.js:1:466
+[   25297ms] TypeError: Cannot read properties of null (reading 'getComponents')
+    at https://aallc.maps.arcgis.com/apps/instant/_astro/positionManager.072SmxL5.js:1:466
+[   25299ms] TypeError: Cannot read properties of null (reading 'getComponents')
+    at https://aallc.maps.arcgis.com/apps/instant/_astro/positionManager.072SmxL5.js:1:466
+[   25299ms] TypeError: Cannot read properties of null (reading 'getComponents')
+    at https://aallc.maps.arcgis.com/apps/instant/_astro/positionManager.072SmxL5.js:1:466
+[   25300ms] TypeError: Cannot read properties of null (reading 'getComponents')
+    at https://aallc.maps.arcgis.com/apps/instant/_astro/positionManager.072SmxL5.js:1:466
+[   67343ms] [LOG] Error calling AWS TypeError: Failed to fetch
+    at jo.fetch (https://aallc.maps.arcgis.com/apps/instant/_astro/telemetry.U3skjQHQ.js:7:1437) @ https://aallc.maps.arcgis.com/apps/instant/_astro/telemetry.U3skjQHQ.js:10
+[   67550ms] [INFO] Using Calcite Components 5.0.2 [Date: 2026-02-18, Revision: 960214b84] @ https://aallc.maps.arcgis.com/apps/instant/_astro/signal.BeLDHq9G.js:35
+[   68699ms] [INFO] Telemetry Disabled @ https://aallc.maps.arcgis.com/apps/instant/_astro/telemetry.U3skjQHQ.js:2
+[   68699ms] [INFO] Page view was not logged because telemetry is disabled. @ https://aallc.maps.arcgis.com/apps/instant/_astro/telemetry.U3skjQHQ.js:2
+[   69002ms] [WARNING] [@arcgis/core/widgets/Home] 🛑 DEPRECATED - This widget is deprecated. Use the Home component instead.
+	🛠️ Replacement: <arcgis-home></arcgis-home>
+	⚙️ Version: 4.32
+	🔗 See for more details:
+		Home component reference: https://www.esriurl.com/arcgis-home/
+		Esri's move to web components: https://www.esriurl.com/components-transition-plan/ @ https://aallc.maps.arcgis.com/apps/instant/_astro/signal.BeLDHq9G.js:5
+[   69300ms] TypeError: Cannot read properties of null (reading 'getComponents')
+    at https://aallc.maps.arcgis.com/apps/instant/_astro/positionManager.072SmxL5.js:1:466
+[   69300ms] TypeError: Cannot read properties of null (reading 'getComponents')
+    at https://aallc.maps.arcgis.com/apps/instant/_astro/positionManager.072SmxL5.js:1:466
+[   69300ms] TypeError: Cannot read properties of null (reading 'getComponents')
+    at https://aallc.maps.arcgis.com/apps/instant/_astro/positionManager.072SmxL5.js:1:466
+[   69300ms] TypeError: Cannot read properties of null (reading 'getComponents')
+    at https://aallc.maps.arcgis.com/apps/instant/_astro/positionManager.072SmxL5.js:1:466
+[   69476ms] TypeError: Cannot read properties of null (reading 'getComponents')
+    at https://aallc.maps.arcgis.com/apps/instant/_astro/positionManager.072SmxL5.js:1:466
+[   69476ms] TypeError: Cannot read properties of null (reading 'getComponents')
+    at https://aallc.maps.arcgis.com/apps/instant/_astro/positionManager.072SmxL5.js:1:466
+[   69476ms] TypeError: Cannot read properties of null (reading 'getComponents')
+    at https://aallc.maps.arcgis.com/apps/instant/_astro/positionManager.072SmxL5.js:1:466
+[   69476ms] TypeError: Cannot read properties of null (reading 'getComponents')
+    at https://aallc.maps.arcgis.com/apps/instant/_astro/positionManager.072SmxL5.js:1:466
+[   74694ms] [WARNING] Allow attribute will take precedence over 'allowfullscreen'. @ https://www.mineraltechllc.com/:35
+[   82167ms] [INFO] Using Calcite Components 5.0.2 [Date: 2026-02-18, Revision: 960214b84] @ https://aallc.maps.arcgis.com/apps/instant/_astro/signal.BeLDHq9G.js:35
+[   83330ms] [INFO] Telemetry Disabled @ https://aallc.maps.arcgis.com/apps/instant/_astro/telemetry.U3skjQHQ.js:2
+[   83331ms] [INFO] Page view was not logged because telemetry is disabled. @ https://aallc.maps.arcgis.com/apps/instant/_astro/telemetry.U3skjQHQ.js:2
+[   83652ms] [WARNING] [@arcgis/core/widgets/Home] 🛑 DEPRECATED - This widget is deprecated. Use the Home component instead.
+	🛠️ Replacement: <arcgis-home></arcgis-home>
+	⚙️ Version: 4.32
+	🔗 See for more details:
+		Home component reference: https://www.esriurl.com/arcgis-home/
+		Esri's move to web components: https://www.esriurl.com/components-transition-plan/ @ https://aallc.maps.arcgis.com/apps/instant/_astro/signal.BeLDHq9G.js:5
+[   83990ms] TypeError: Cannot read properties of null (reading 'getComponents')
+    at https://aallc.maps.arcgis.com/apps/instant/_astro/positionManager.072SmxL5.js:1:466
+[   83990ms] TypeError: Cannot read properties of null (reading 'getComponents')
+    at https://aallc.maps.arcgis.com/apps/instant/_astro/positionManager.072SmxL5.js:1:466
+[   83991ms] TypeError: Cannot read properties of null (reading 'getComponents')
+    at https://aallc.maps.arcgis.com/apps/instant/_astro/positionManager.072SmxL5.js:1:466
+[   83991ms] TypeError: Cannot read properties of null (reading 'getComponents')
+    at https://aallc.maps.arcgis.com/apps/instant/_astro/positionManager.072SmxL5.js:1:466
+[   84106ms] TypeError: Cannot read properties of null (reading 'getComponents')
+    at https://aallc.maps.arcgis.com/apps/instant/_astro/positionManager.072SmxL5.js:1:466
+[   84106ms] TypeError: Cannot read properties of null (reading 'getComponents')
+    at https://aallc.maps.arcgis.com/apps/instant/_astro/positionManager.072SmxL5.js:1:466
+[   84106ms] TypeError: Cannot read properties of null (reading 'getComponents')
+    at https://aallc.maps.arcgis.com/apps/instant/_astro/positionManager.072SmxL5.js:1:466
+[   84107ms] TypeError: Cannot read properties of null (reading 'getComponents')
+    at https://aallc.maps.arcgis.com/apps/instant/_astro/positionManager.072SmxL5.js:1:466
+[  160403ms] [LOG] Error calling AWS TypeError: Failed to fetch
+    at jo.fetch (https://aallc.maps.arcgis.com/apps/instant/_astro/telemetry.U3skjQHQ.js:7:1437) @ https://aallc.maps.arcgis.com/apps/instant/_astro/telemetry.U3skjQHQ.js:10
+[  160556ms] [INFO] Using Calcite Components 5.0.2 [Date: 2026-02-18, Revision: 960214b84] @ https://aallc.maps.arcgis.com/apps/instant/_astro/signal.BeLDHq9G.js:35
+[  161620ms] [INFO] Telemetry Disabled @ https://aallc.maps.arcgis.com/apps/instant/_astro/telemetry.U3skjQHQ.js:2
+[  161621ms] [INFO] Page view was not logged because telemetry is disabled. @ https://aallc.maps.arcgis.com/apps/instant/_astro/telemetry.U3skjQHQ.js:2
+[  162060ms] [WARNING] [@arcgis/core/widgets/Home] 🛑 DEPRECATED - This widget is deprecated. Use the Home component instead.
+	🛠️ Replacement: <arcgis-home></arcgis-home>
+	⚙️ Version: 4.32
+	🔗 See for more details:
+		Home component reference: https://www.esriurl.com/arcgis-home/
+		Esri's move to web components: https://www.esriurl.com/components-transition-plan/ @ https://aallc.maps.arcgis.com/apps/instant/_astro/signal.BeLDHq9G.js:5
+[  162404ms] TypeError: Cannot read properties of null (reading 'getComponents')
+    at https://aallc.maps.arcgis.com/apps/instant/_astro/positionManager.072SmxL5.js:1:466
+[  162404ms] TypeError: Cannot read properties of null (reading 'getComponents')
+    at https://aallc.maps.arcgis.com/apps/instant/_astro/positionManager.072SmxL5.js:1:466
+[  162404ms] TypeError: Cannot read properties of null (reading 'getComponents')
+    at https://aallc.maps.arcgis.com/apps/instant/_astro/positionManager.072SmxL5.js:1:466
+[  162404ms] TypeError: Cannot read properties of null (reading 'getComponents')
+    at https://aallc.maps.arcgis.com/apps/instant/_astro/positionManager.072SmxL5.js:1:466
+[  162554ms] TypeError: Cannot read properties of null (reading 'getComponents')
+    at https://aallc.maps.arcgis.com/apps/instant/_astro/positionManager.072SmxL5.js:1:466
+[  162554ms] TypeError: Cannot read properties of null (reading 'getComponents')
+    at https://aallc.maps.arcgis.com/apps/instant/_astro/positionManager.072SmxL5.js:1:466
+[  162554ms] TypeError: Cannot read properties of null (reading 'getComponents')
+    at https://aallc.maps.arcgis.com/apps/instant/_astro/positionManager.072SmxL5.js:1:466
+[  162554ms] TypeError: Cannot read properties of null (reading 'getComponents')
+    at https://aallc.maps.arcgis.com/apps/instant/_astro/positionManager.072SmxL5.js:1:466
+[  183174ms] [ERROR] Failed to load resource: the server responded with a status of 422 () @ https://webflow.com/api/v1/form/629e5cf59427c22791301f37:0
+[  183501ms] [LOG] Error calling AWS TypeError: Failed to fetch
+    at jo.fetch (https://aallc.maps.arcgis.com/apps/instant/_astro/telemetry.U3skjQHQ.js:7:1437) @ https://aallc.maps.arcgis.com/apps/instant/_astro/telemetry.U3skjQHQ.js:10
+[  183682ms] [INFO] Using Calcite Components 5.0.2 [Date: 2026-02-18, Revision: 960214b84] @ https://aallc.maps.arcgis.com/apps/instant/_astro/signal.BeLDHq9G.js:35
+[  184683ms] [INFO] Telemetry Disabled @ https://aallc.maps.arcgis.com/apps/instant/_astro/telemetry.U3skjQHQ.js:2
+[  184683ms] [INFO] Page view was not logged because telemetry is disabled. @ https://aallc.maps.arcgis.com/apps/instant/_astro/telemetry.U3skjQHQ.js:2
+[  185040ms] [WARNING] [@arcgis/core/widgets/Home] 🛑 DEPRECATED - This widget is deprecated. Use the Home component instead.
+	🛠️ Replacement: <arcgis-home></arcgis-home>
+	⚙️ Version: 4.32
+	🔗 See for more details:
+		Home component reference: https://www.esriurl.com/arcgis-home/
+		Esri's move to web components: https://www.esriurl.com/components-transition-plan/ @ https://aallc.maps.arcgis.com/apps/instant/_astro/signal.BeLDHq9G.js:5
+[  185402ms] TypeError: Cannot read properties of null (reading 'getComponents')
+    at https://aallc.maps.arcgis.com/apps/instant/_astro/positionManager.072SmxL5.js:1:466
+[  185402ms] TypeError: Cannot read properties of null (reading 'getComponents')
+    at https://aallc.maps.arcgis.com/apps/instant/_astro/positionManager.072SmxL5.js:1:466
+[  185402ms] TypeError: Cannot read properties of null (reading 'getComponents')
+    at https://aallc.maps.arcgis.com/apps/instant/_astro/positionManager.072SmxL5.js:1:466
+[  185402ms] TypeError: Cannot read properties of null (reading 'getComponents')
+    at https://aallc.maps.arcgis.com/apps/instant/_astro/positionManager.072SmxL5.js:1:466
+[  185475ms] TypeError: Cannot read properties of null (reading 'getComponents')
+    at https://aallc.maps.arcgis.com/apps/instant/_astro/positionManager.072SmxL5.js:1:466
+[  185475ms] TypeError: Cannot read properties of null (reading 'getComponents')
+    at https://aallc.maps.arcgis.com/apps/instant/_astro/positionManager.072SmxL5.js:1:466
+[  185475ms] TypeError: Cannot read properties of null (reading 'getComponents')
+    at https://aallc.maps.arcgis.com/apps/instant/_astro/positionManager.072SmxL5.js:1:466
+[  185475ms] TypeError: Cannot read properties of null (reading 'getComponents')
+    at https://aallc.maps.arcgis.com/apps/instant/_astro/positionManager.072SmxL5.js:1:466
+[  367923ms] [LOG] Error calling AWS TypeError: Failed to fetch
+    at jo.fetch (https://aallc.maps.arcgis.com/apps/instant/_astro/telemetry.U3skjQHQ.js:7:1437) @ https://aallc.maps.arcgis.com/apps/instant/_astro/telemetry.U3skjQHQ.js:10
+[  368225ms] [INFO] Using Calcite Components 5.0.2 [Date: 2026-02-18, Revision: 960214b84] @ https://aallc.maps.arcgis.com/apps/instant/_astro/signal.BeLDHq9G.js:35
+[  369365ms] [INFO] Telemetry Disabled @ https://aallc.maps.arcgis.com/apps/instant/_astro/telemetry.U3skjQHQ.js:2
+[  369366ms] [INFO] Page view was not logged because telemetry is disabled. @ https://aallc.maps.arcgis.com/apps/instant/_astro/telemetry.U3skjQHQ.js:2
+[  369996ms] [WARNING] [@arcgis/core/widgets/Home] 🛑 DEPRECATED - This widget is deprecated. Use the Home component instead.
+	🛠️ Replacement: <arcgis-home></arcgis-home>
+	⚙️ Version: 4.32
+	🔗 See for more details:
+		Home component reference: https://www.esriurl.com/arcgis-home/
+		Esri's move to web components: https://www.esriurl.com/components-transition-plan/ @ https://aallc.maps.arcgis.com/apps/instant/_astro/signal.BeLDHq9G.js:5
+[  370461ms] TypeError: Cannot read properties of null (reading 'getComponents')
+    at https://aallc.maps.arcgis.com/apps/instant/_astro/positionManager.072SmxL5.js:1:466
+[  370461ms] TypeError: Cannot read properties of null (reading 'getComponents')
+    at https://aallc.maps.arcgis.com/apps/instant/_astro/positionManager.072SmxL5.js:1:466
+[  370461ms] TypeError: Cannot read properties of null (reading 'getComponents')
+    at https://aallc.maps.arcgis.com/apps/instant/_astro/positionManager.072SmxL5.js:1:466
+[  370461ms] TypeError: Cannot read properties of null (reading 'getComponents')
+    at https://aallc.maps.arcgis.com/apps/instant/_astro/positionManager.072SmxL5.js:1:466
+[  386175ms] [LOG] Error calling AWS TypeError: Failed to fetch
+    at jo.fetch (https://aallc.maps.arcgis.com/apps/instant/_astro/telemetry.U3skjQHQ.js:7:1437) @ https://aallc.maps.arcgis.com/apps/instant/_astro/telemetry.U3skjQHQ.js:10
+[  386453ms] [INFO] Using Calcite Components 5.0.2 [Date: 2026-02-18, Revision: 960214b84] @ https://aallc.maps.arcgis.com/apps/instant/_astro/signal.BeLDHq9G.js:35
+[  387683ms] [INFO] Telemetry Disabled @ https://aallc.maps.arcgis.com/apps/instant/_astro/telemetry.U3skjQHQ.js:2
+[  387683ms] [INFO] Page view was not logged because telemetry is disabled. @ https://aallc.maps.arcgis.com/apps/instant/_astro/telemetry.U3skjQHQ.js:2
+[  388182ms] [WARNING] [@arcgis/core/widgets/Home] 🛑 DEPRECATED - This widget is deprecated. Use the Home component instead.
+	🛠️ Replacement: <arcgis-home></arcgis-home>
+	⚙️ Version: 4.32
+	🔗 See for more details:
+		Home component reference: https://www.esriurl.com/arcgis-home/
+		Esri's move to web components: https://www.esriurl.com/components-transition-plan/ @ https://aallc.maps.arcgis.com/apps/instant/_astro/signal.BeLDHq9G.js:5
+[  388611ms] TypeError: Cannot read properties of null (reading 'getComponents')
+    at https://aallc.maps.arcgis.com/apps/instant/_astro/positionManager.072SmxL5.js:1:466
+[  388611ms] TypeError: Cannot read properties of null (reading 'getComponents')
+    at https://aallc.maps.arcgis.com/apps/instant/_astro/positionManager.072SmxL5.js:1:466
+[  388611ms] TypeError: Cannot read properties of null (reading 'getComponents')
+    at https://aallc.maps.arcgis.com/apps/instant/_astro/positionManager.072SmxL5.js:1:466
+[  388612ms] TypeError: Cannot read properties of null (reading 'getComponents')
+    at https://aallc.maps.arcgis.com/apps/instant/_astro/positionManager.072SmxL5.js:1:466
+[  388777ms] TypeError: Cannot read properties of null (reading 'getComponents')
+    at https://aallc.maps.arcgis.com/apps/instant/_astro/positionManager.072SmxL5.js:1:466
+[  388777ms] TypeError: Cannot read properties of null (reading 'getComponents')
+    at https://aallc.maps.arcgis.com/apps/instant/_astro/positionManager.072SmxL5.js:1:466
+[  388777ms] TypeError: Cannot read properties of null (reading 'getComponents')
+    at https://aallc.maps.arcgis.com/apps/instant/_astro/positionManager.072SmxL5.js:1:466
+[  388777ms] TypeError: Cannot read properties of null (reading 'getComponents')
+    at https://aallc.maps.arcgis.com/apps/instant/_astro/positionManager.072SmxL5.js:1:466
+[  404549ms] [LOG] Error calling AWS TypeError: Failed to fetch
+    at jo.fetch (https://aallc.maps.arcgis.com/apps/instant/_astro/telemetry.U3skjQHQ.js:7:1437) @ https://aallc.maps.arcgis.com/apps/instant/_astro/telemetry.U3skjQHQ.js:10
+[  404790ms] [INFO] Using Calcite Components 5.0.2 [Date: 2026-02-18, Revision: 960214b84] @ https://aallc.maps.arcgis.com/apps/instant/_astro/signal.BeLDHq9G.js:35
+[  405975ms] [INFO] Telemetry Disabled @ https://aallc.maps.arcgis.com/apps/instant/_astro/telemetry.U3skjQHQ.js:2
+[  405975ms] [INFO] Page view was not logged because telemetry is disabled. @ https://aallc.maps.arcgis.com/apps/instant/_astro/telemetry.U3skjQHQ.js:2
+[  406421ms] [WARNING] [@arcgis/core/widgets/Home] 🛑 DEPRECATED - This widget is deprecated. Use the Home component instead.
+	🛠️ Replacement: <arcgis-home></arcgis-home>
+	⚙️ Version: 4.32
+	🔗 See for more details:
+		Home component reference: https://www.esriurl.com/arcgis-home/
+		Esri's move to web components: https://www.esriurl.com/components-transition-plan/ @ https://aallc.maps.arcgis.com/apps/instant/_astro/signal.BeLDHq9G.js:5
+[  406820ms] TypeError: Cannot read properties of null (reading 'getComponents')
+    at https://aallc.maps.arcgis.com/apps/instant/_astro/positionManager.072SmxL5.js:1:466
+[  406820ms] TypeError: Cannot read properties of null (reading 'getComponents')
+    at https://aallc.maps.arcgis.com/apps/instant/_astro/positionManager.072SmxL5.js:1:466
+[  406820ms] TypeError: Cannot read properties of null (reading 'getComponents')
+    at https://aallc.maps.arcgis.com/apps/instant/_astro/positionManager.072SmxL5.js:1:466
+[  406820ms] TypeError: Cannot read properties of null (reading 'getComponents')
+    at https://aallc.maps.arcgis.com/apps/instant/_astro/positionManager.072SmxL5.js:1:466
+[  406991ms] TypeError: Cannot read properties of null (reading 'getComponents')
+    at https://aallc.maps.arcgis.com/apps/instant/_astro/positionManager.072SmxL5.js:1:466
+[  406991ms] TypeError: Cannot read properties of null (reading 'getComponents')
+    at https://aallc.maps.arcgis.com/apps/instant/_astro/positionManager.072SmxL5.js:1:466
+[  406991ms] TypeError: Cannot read properties of null (reading 'getComponents')
+    at https://aallc.maps.arcgis.com/apps/instant/_astro/positionManager.072SmxL5.js:1:466
+[  406992ms] TypeError: Cannot read properties of null (reading 'getComponents')
+    at https://aallc.maps.arcgis.com/apps/instant/_astro/positionManager.072SmxL5.js:1:466
+[  481195ms] [LOG] Error calling AWS TypeError: Failed to fetch
+    at jo.fetch (https://aallc.maps.arcgis.com/apps/instant/_astro/telemetry.U3skjQHQ.js:7:1437) @ https://aallc.maps.arcgis.com/apps/instant/_astro/telemetry.U3skjQHQ.js:10
+[  481392ms] [INFO] Using Calcite Components 5.0.2 [Date: 2026-02-18, Revision: 960214b84] @ https://aallc.maps.arcgis.com/apps/instant/_astro/signal.BeLDHq9G.js:35
+[  482778ms] [INFO] Telemetry Disabled @ https://aallc.maps.arcgis.com/apps/instant/_astro/telemetry.U3skjQHQ.js:2
+[  482778ms] [INFO] Page view was not logged because telemetry is disabled. @ https://aallc.maps.arcgis.com/apps/instant/_astro/telemetry.U3skjQHQ.js:2
+[  483396ms] [WARNING] [@arcgis/core/widgets/Home] 🛑 DEPRECATED - This widget is deprecated. Use the Home component instead.
+	🛠️ Replacement: <arcgis-home></arcgis-home>
+	⚙️ Version: 4.32
+	🔗 See for more details:
+		Home component reference: https://www.esriurl.com/arcgis-home/
+		Esri's move to web components: https://www.esriurl.com/components-transition-plan/ @ https://aallc.maps.arcgis.com/apps/instant/_astro/signal.BeLDHq9G.js:5
+[  483789ms] TypeError: Cannot read properties of null (reading 'getComponents')
+    at https://aallc.maps.arcgis.com/apps/instant/_astro/positionManager.072SmxL5.js:1:466
+[  483789ms] TypeError: Cannot read properties of null (reading 'getComponents')
+    at https://aallc.maps.arcgis.com/apps/instant/_astro/positionManager.072SmxL5.js:1:466
+[  483789ms] TypeError: Cannot read properties of null (reading 'getComponents')
+    at https://aallc.maps.arcgis.com/apps/instant/_astro/positionManager.072SmxL5.js:1:466
+[  483789ms] TypeError: Cannot read properties of null (reading 'getComponents')
+    at https://aallc.maps.arcgis.com/apps/instant/_astro/positionManager.072SmxL5.js:1:466
+[  483920ms] TypeError: Cannot read properties of null (reading 'getComponents')
+    at https://aallc.maps.arcgis.com/apps/instant/_astro/positionManager.072SmxL5.js:1:466
+[  483921ms] TypeError: Cannot read properties of null (reading 'getComponents')
+    at https://aallc.maps.arcgis.com/apps/instant/_astro/positionManager.072SmxL5.js:1:466
+[  483921ms] TypeError: Cannot read properties of null (reading 'getComponents')
+    at https://aallc.maps.arcgis.com/apps/instant/_astro/positionManager.072SmxL5.js:1:466
+[  483921ms] TypeError: Cannot read properties of null (reading 'getComponents')
+    at https://aallc.maps.arcgis.com/apps/instant/_astro/positionManager.072SmxL5.js:1:466
+[  500644ms] [LOG] Error calling AWS TypeError: Failed to fetch
+    at jo.fetch (https://aallc.maps.arcgis.com/apps/instant/_astro/telemetry.U3skjQHQ.js:7:1437) @ https://aallc.maps.arcgis.com/apps/instant/_astro/telemetry.U3skjQHQ.js:10
+[  500884ms] [INFO] Using Calcite Components 5.0.2 [Date: 2026-02-18, Revision: 960214b84] @ https://aallc.maps.arcgis.com/apps/instant/_astro/signal.BeLDHq9G.js:35
+[  502140ms] [INFO] Telemetry Disabled @ https://aallc.maps.arcgis.com/apps/instant/_astro/telemetry.U3skjQHQ.js:2
+[  502141ms] [INFO] Page view was not logged because telemetry is disabled. @ https://aallc.maps.arcgis.com/apps/instant/_astro/telemetry.U3skjQHQ.js:2
+[  502678ms] [WARNING] [@arcgis/core/widgets/Home] 🛑 DEPRECATED - This widget is deprecated. Use the Home component instead.
+	🛠️ Replacement: <arcgis-home></arcgis-home>
+	⚙️ Version: 4.32
+	🔗 See for more details:
+		Home component reference: https://www.esriurl.com/arcgis-home/
+		Esri's move to web components: https://www.esriurl.com/components-transition-plan/ @ https://aallc.maps.arcgis.com/apps/instant/_astro/signal.BeLDHq9G.js:5
+[  503069ms] TypeError: Cannot read properties of null (reading 'getComponents')
+    at https://aallc.maps.arcgis.com/apps/instant/_astro/positionManager.072SmxL5.js:1:466
+[  503069ms] TypeError: Cannot read properties of null (reading 'getComponents')
+    at https://aallc.maps.arcgis.com/apps/instant/_astro/positionManager.072SmxL5.js:1:466
+[  503069ms] TypeError: Cannot read properties of null (reading 'getComponents')
+    at https://aallc.maps.arcgis.com/apps/instant/_astro/positionManager.072SmxL5.js:1:466
+[  503070ms] TypeError: Cannot read properties of null (reading 'getComponents')
+    at https://aallc.maps.arcgis.com/apps/instant/_astro/positionManager.072SmxL5.js:1:466
+[  503211ms] TypeError: Cannot read properties of null (reading 'getComponents')
+    at https://aallc.maps.arcgis.com/apps/instant/_astro/positionManager.072SmxL5.js:1:466
+[  503211ms] TypeError: Cannot read properties of null (reading 'getComponents')
+    at https://aallc.maps.arcgis.com/apps/instant/_astro/positionManager.072SmxL5.js:1:466
+[  503211ms] TypeError: Cannot read properties of null (reading 'getComponents')
+    at https://aallc.maps.arcgis.com/apps/instant/_astro/positionManager.072SmxL5.js:1:466
+[  503211ms] TypeError: Cannot read properties of null (reading 'getComponents')
+    at https://aallc.maps.arcgis.com/apps/instant/_astro/positionManager.072SmxL5.js:1:466
