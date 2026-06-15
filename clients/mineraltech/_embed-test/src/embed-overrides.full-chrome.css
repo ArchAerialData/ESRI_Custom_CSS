@@ -9,9 +9,125 @@
   --prototype-esri-scale: 1;
 }
 
-.prototype-esri-section {
-  margin: 0 auto;
+
+.prototype-tour-section {
+  margin: 0 auto 56px;
 }
+
+.prototype-tour-intro {
+  text-align: center;
+}
+
+.prototype-tour-title {
+  margin-bottom: 12px;
+}
+
+.prototype-tour-subtext {
+  max-width: 760px;
+  margin: 0 auto 24px;
+  color: #555;
+  font-family: Lato, Arial, sans-serif;
+  font-size: 18px;
+  line-height: 1.55;
+}
+
+.prototype-tour-layout {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  gap: 28px;
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.prototype-tour-model {
+  flex: 0 1 940px;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.prototype-tour-guide {
+  flex: 0 0 250px;
+  align-self: stretch;
+  padding: 22px 22px 20px;
+  border-left: 4px solid #1b264c;
+  background: #f7f7f7;
+  color: #333;
+  font-family: Lato, Arial, sans-serif;
+}
+
+.prototype-tour-guide h2 {
+  margin: 0 0 16px;
+  color: #1b264c;
+  font-size: 22px;
+  line-height: 1.2;
+}
+
+.prototype-tour-guide dl {
+  margin: 0;
+}
+
+.prototype-tour-guide-row {
+  padding: 12px 0;
+  border-top: 1px solid rgba(27, 38, 76, 0.14);
+}
+
+.prototype-tour-guide-row:first-child {
+  padding-top: 0;
+  border-top: 0;
+}
+
+.prototype-tour-guide dt {
+  margin: 0 0 4px;
+  color: #1b264c;
+  font-weight: 700;
+}
+
+.prototype-tour-guide dd {
+  margin: 0;
+  color: #333;
+}
+
+@media (max-width: 1180px) {
+  .prototype-tour-layout {
+    max-width: 940px;
+    flex-direction: column;
+  }
+
+  .prototype-tour-model {
+    flex: 0 1 auto;
+    width: 100%;
+  }
+
+  .prototype-tour-guide {
+    flex: auto;
+    border-top: 4px solid #1b264c;
+    border-left: 0;
+  }
+}
+
+@media (max-width: 767px) {
+  .prototype-tour-section {
+    margin-bottom: 42px;
+  }
+
+  .prototype-tour-layout {
+    gap: 18px;
+    max-width: 100%;
+    padding: 0;
+  }
+
+  .prototype-tour-subtext {
+    padding: 0 18px;
+    font-size: 16px;
+  }
+
+  .prototype-tour-guide {
+    margin: 0 16px;
+  }
+}
+
 
 .prototype-esri-frame {
   position: relative;
@@ -21,10 +137,6 @@
   margin: 0 auto;
   overflow: hidden;
   background: #2f2f2f;
-}
-
-.prototype-esri-section .w-container {
-  overflow: hidden;
 }
 
 .prototype-esri-iframe {
@@ -59,12 +171,6 @@
   .prototype-esri-frame {
     max-width: 100%;
     aspect-ratio: 16 / 10;
-  }
-
-  .prototype-esri-section .w-container {
-    max-width: 100%;
-    padding-right: 0;
-    padding-left: 0;
   }
 
   .prototype-esri-iframe {

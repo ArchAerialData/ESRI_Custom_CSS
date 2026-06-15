@@ -15,15 +15,20 @@
   gtag('js', new Date());
 
   gtag('config', 'G-JWF1PFZEJ5');
-</script><style>/* MineralTech local prototype viewer-only overrides.
-   This variant hides the ArcGIS app header, tab row, and subheader by
-   cropping the iframe from the parent page. It cannot alter the remote
-   ArcGIS DOM, so tune these crop values if the app chrome changes. */
+</script><style>/* MineralTech local prototype viewer-only bordered overrides.
+   This variant uses the MineralTech palette from css/single_block/mineraltech.css:
+   #1b264c navy, #000000 black, #bababa silver, #dad9d8 light silver,
+   and #ffffff white. */
 
 :root {
   --prototype-esri-crop-top: 122px;
   --prototype-esri-extra-height: 280px;
   --prototype-esri-scale: 1;
+  --prototype-mineraltech-navy: #1b264c;
+  --prototype-mineraltech-black: #000000;
+  --prototype-mineraltech-silver: #bababa;
+  --prototype-mineraltech-light-silver: #dad9d8;
+  --prototype-mineraltech-white: #ffffff;
 }
 
 
@@ -146,14 +151,35 @@
 }
 
 
-.prototype-esri-frame {
+.prototype-tour-section--bordered .prototype-tour-layout {
+  max-width: 1280px;
+  gap: 24px;
+  padding: 22px;
+  border: 4px solid var(--prototype-mineraltech-navy);
+  background: var(--prototype-mineraltech-white);
+  box-shadow:
+    0 0 0 1px var(--prototype-mineraltech-silver),
+    0 14px 34px rgba(0, 0, 0, 0.16);
+}
+
+.prototype-tour-section--bordered .prototype-esri-frame {
   position: relative;
   width: 100%;
   max-width: 940px;
   aspect-ratio: 940 / 528;
   margin: 0 auto;
   overflow: hidden;
+  border: 1px solid var(--prototype-mineraltech-black);
   background: #2f2f2f;
+  box-shadow:
+    0 0 0 4px var(--prototype-mineraltech-light-silver),
+    0 0 0 5px rgba(27, 38, 76, 0.42);
+}
+
+.prototype-tour-section--bordered .prototype-tour-guide {
+  border-left: 1px solid var(--prototype-mineraltech-light-silver);
+  background:
+    linear-gradient(180deg, rgba(218, 217, 216, 0.26), rgba(255, 255, 255, 0.96));
 }
 
 .prototype-esri-iframe {
@@ -170,7 +196,7 @@
 .prototype-form-note {
   display: none;
   margin-top: 10px;
-  color: #1b264c;
+  color: var(--prototype-mineraltech-navy);
   font-family: Lato, Arial, sans-serif;
   font-size: 14px;
   font-weight: 700;
@@ -180,15 +206,35 @@
   display: block;
 }
 
+@media (max-width: 1180px) {
+  .prototype-tour-section--bordered .prototype-tour-layout {
+    max-width: 940px;
+  }
+}
+
 @media (max-width: 767px) {
   :root {
     --prototype-esri-crop-top: 122px;
     --prototype-esri-extra-height: 245px;
   }
 
-  .prototype-esri-frame {
+  .prototype-tour-section--bordered .prototype-tour-layout {
+    margin: 0 14px;
+    padding: 14px;
+  }
+
+  .prototype-tour-section--bordered .prototype-esri-frame {
     max-width: 100%;
     aspect-ratio: 16 / 10;
+    box-shadow:
+      0 0 0 3px var(--prototype-mineraltech-light-silver),
+      0 0 0 4px rgba(27, 38, 76, 0.42);
+  }
+
+  .prototype-tour-section--bordered .prototype-tour-guide {
+    margin: 0;
+    border-top: 1px solid var(--prototype-mineraltech-light-silver);
+    border-left: 0;
   }
 
   .prototype-esri-iframe {
@@ -211,7 +257,7 @@
       width: 100%;
       object-fit: cover;
     }
-  }</style><img data-wf-bgvideo-fallback-img="true" src="https://cdn.prod.website-files.com/629e5cf59427c22791301f37%2F69402482f4debbb06b33f29f_MineralTech%20Emerald%20Blast%20Drone%20Clip_YT_poster.0000000.jpg" alt=""/></noscript><div aria-live="polite"><button type="button" data-w-bg-video-control="true" aria-controls="2da07985-d249-fb2d-b34d-f7144892e053-video" class="w-backgroundvideo-backgroundvideoplaypausebutton w-background-video--control"><span><img src="https://cdn.prod.website-files.com/6022af993a6b2191db3ed10c/628299f8aa233b83918e24fd_Pause.svg" loading="lazy" alt="Pause video"/></span><span hidden=""><img loading="lazy" alt="Play video" src="https://cdn.prod.website-files.com/6022af993a6b2191db3ed10c/628298b20ae0236682d4b87f_Play-24.svg"/></span></button></div><div class="w-container"><p class="paragraph-3"><span class="navicon"> </span><strong>We offer 24/7 Delivery!</strong> <a href="tel:2814624220" class="link">281-462-4220</a><br/>‍<span class="navicon text-span-2"></span> <a href="https://www.mineraltechllc.com/contact-us" target="_blank" class="navicon"><strong class="bold-text-7">View Locations</strong></a></p></div><div class="columns-2 w-row"><div class="column-8 w-col w-col-3"></div><div class="column-6 w-col w-col-6"><img src="https://cdn.prod.website-files.com/629e5cf59427c22791301f37/6940262f544623c2dfd169f6_Emerald%20Blast-WEB.svg" loading="lazy" alt="" class="image-3"/><p class="paragraph-2">Our Latest High-Performance Blast Abrasive</p><a href="https://www.mineraltechllc.com/products/emerald-blast" class="button w-button"><span class="text-span">Learn More</span></a></div><div class="column-7 w-col w-col-3"></div></div></div><div class="div-block"></div><div><div class="container-4 w-container"><h1>Featured Abrasive Products</h1></div></div><div class="w-container"><div class="w-row"><div class="column w-col w-col-4"><img src="https://cdn.prod.website-files.com/629e5cf59427c22791301f37/62d9ab846d5cfee7b9cd2014_MineralTech-Blast-Abrasives-2.png" loading="lazy" alt=""/><p>MineralTech™ is a leading manufacturer and supplier of blast abrasive media. We feature cost-effective and aggressive abrasives such as Emerald Blast<sup>®️</sup> and BLACKMAX IRON<sup>®️</sup>, with excellent production rates that are environmentally safe and worker-friendly.</p><a href="https://www.mineraltechllc.com/products" class="button-2 w-button">Learn More</a></div><div class="column-2 w-col w-col-4"><img src="https://cdn.prod.website-files.com/629e5cf59427c22791301f37/62d9a8decc1779302cc56e01_MineralTech-Roofing-Granules.png" loading="lazy" alt=""/><p>MineralTech™ is proud to supply premium roofing granules that provide protection and enhance building aesthetics. Our products provide weather-resistant, fire-resistant, and create a decorative surface. Our higher-quality materials will result in a higher-quality shingle.</p><a href="https://www.mineraltechllc.com/roofing-granules" target="_blank" class="button-2 w-button">Learn More</a></div><div class="column-3 w-col w-col-4"><img src="https://cdn.prod.website-files.com/629e5cf59427c22791301f37/62d9a7c24a3eed31dad520a7_MineralTech-Industrial-Sand.png" loading="lazy" alt=""/><p>MineralTech™ Industrial Sand is a high quality silica product that is 99.3% pure silica. Sand is typically used for abrasive blast cleaning, tank bottom foundation fill, water filtration, foundry sand, hydraulic fracking, ladle lining, glass manufacturing, and masonry applications.</p><a href="https://www.mineraltechllc.com/products/industrial-sands" class="button-2 w-button">Learn More</a></div></div></div><div class="div-block-6"></div><section class="prototype-tour-section prototype-esri-section">
+  }</style><img data-wf-bgvideo-fallback-img="true" src="https://cdn.prod.website-files.com/629e5cf59427c22791301f37%2F69402482f4debbb06b33f29f_MineralTech%20Emerald%20Blast%20Drone%20Clip_YT_poster.0000000.jpg" alt=""/></noscript><div aria-live="polite"><button type="button" data-w-bg-video-control="true" aria-controls="2da07985-d249-fb2d-b34d-f7144892e053-video" class="w-backgroundvideo-backgroundvideoplaypausebutton w-background-video--control"><span><img src="https://cdn.prod.website-files.com/6022af993a6b2191db3ed10c/628299f8aa233b83918e24fd_Pause.svg" loading="lazy" alt="Pause video"/></span><span hidden=""><img loading="lazy" alt="Play video" src="https://cdn.prod.website-files.com/6022af993a6b2191db3ed10c/628298b20ae0236682d4b87f_Play-24.svg"/></span></button></div><div class="w-container"><p class="paragraph-3"><span class="navicon"> </span><strong>We offer 24/7 Delivery!</strong> <a href="tel:2814624220" class="link">281-462-4220</a><br/>‍<span class="navicon text-span-2"></span> <a href="https://www.mineraltechllc.com/contact-us" target="_blank" class="navicon"><strong class="bold-text-7">View Locations</strong></a></p></div><div class="columns-2 w-row"><div class="column-8 w-col w-col-3"></div><div class="column-6 w-col w-col-6"><img src="https://cdn.prod.website-files.com/629e5cf59427c22791301f37/6940262f544623c2dfd169f6_Emerald%20Blast-WEB.svg" loading="lazy" alt="" class="image-3"/><p class="paragraph-2">Our Latest High-Performance Blast Abrasive</p><a href="https://www.mineraltechllc.com/products/emerald-blast" class="button w-button"><span class="text-span">Learn More</span></a></div><div class="column-7 w-col w-col-3"></div></div></div><div class="div-block"></div><div><div class="container-4 w-container"><h1>Featured Abrasive Products</h1></div></div><div class="w-container"><div class="w-row"><div class="column w-col w-col-4"><img src="https://cdn.prod.website-files.com/629e5cf59427c22791301f37/62d9ab846d5cfee7b9cd2014_MineralTech-Blast-Abrasives-2.png" loading="lazy" alt=""/><p>MineralTech™ is a leading manufacturer and supplier of blast abrasive media. We feature cost-effective and aggressive abrasives such as Emerald Blast<sup>®️</sup> and BLACKMAX IRON<sup>®️</sup>, with excellent production rates that are environmentally safe and worker-friendly.</p><a href="https://www.mineraltechllc.com/products" class="button-2 w-button">Learn More</a></div><div class="column-2 w-col w-col-4"><img src="https://cdn.prod.website-files.com/629e5cf59427c22791301f37/62d9a8decc1779302cc56e01_MineralTech-Roofing-Granules.png" loading="lazy" alt=""/><p>MineralTech™ is proud to supply premium roofing granules that provide protection and enhance building aesthetics. Our products provide weather-resistant, fire-resistant, and create a decorative surface. Our higher-quality materials will result in a higher-quality shingle.</p><a href="https://www.mineraltechllc.com/roofing-granules" target="_blank" class="button-2 w-button">Learn More</a></div><div class="column-3 w-col w-col-4"><img src="https://cdn.prod.website-files.com/629e5cf59427c22791301f37/62d9a7c24a3eed31dad520a7_MineralTech-Industrial-Sand.png" loading="lazy" alt=""/><p>MineralTech™ Industrial Sand is a high quality silica product that is 99.3% pure silica. Sand is typically used for abrasive blast cleaning, tank bottom foundation fill, water filtration, foundry sand, hydraulic fracking, ladle lining, glass manufacturing, and masonry applications.</p><a href="https://www.mineraltechllc.com/products/industrial-sands" class="button-2 w-button">Learn More</a></div></div></div><div class="div-block-6"></div><section class="prototype-tour-section prototype-esri-section prototype-tour-section--bordered">
   <div class="prototype-tour-intro w-layout-blockcontainer w-container">
     <h1 class="heading-3 prototype-tour-title">Take a virtual tour of our facilities</h1>
     <p class="prototype-tour-subtext">Explore an interactive 3D model of the MineralTech site. Drag, rotate, and zoom to inspect the facility from different angles.</p>
@@ -221,7 +267,7 @@
       <div class="prototype-esri-frame">
         <iframe
           class="prototype-esri-iframe"
-          src="https://aallc.maps.arcgis.com/apps/instant/portfolio/index.html?appid=21d908a6c0004686882a68a3a58c9c8c&sectionId=1c7a910ceb8b400db9e179669d39720c&viewpoint=cam:-95.06822505,29.85782435,52.565;14.636,73.014&hiddenLayers=globalElevation"
+          src="https://aallc.maps.arcgis.com/apps/instant/portfolio/index.html?appid=21d908a6c0004686882a68a3a58c9c8c&locale=en&sectionId=bcb4dbbbcc964926854427919c75544b&viewpoint=cam:-95.07017749,29.85956605,109.288;86.58,63.98&hiddenLayers=worldElevation"
           title="MineralTech Highlands 3D mesh ArcGIS viewer"
           loading="lazy"
           allowfullscreen
