@@ -1,0 +1,12 @@
+[     817ms] [INFO] Using Calcite Components 5.0.2 [Date: 2026-02-18, Revision: 960214b84] @ https://aallc.maps.arcgis.com/apps/instant/_astro/signal.BeLDHq9G.js:35
+[    2017ms] [VERBOSE] [DOM] Input elements should have autocomplete attributes (suggested: "current-password"): (More info: https://goo.gl/9p2vKq) %o @ https://aallc.maps.arcgis.com/sharing/oauth2/authorize?client_id=arcgisonline&response_type=code&state=%7B%22portalUrl%22%3A%22https%3A%2F%2Faallc.maps.arcgis.com%22%2C%22uid%22%3A%22sSgDrOJk1AsdMlpsXWOag0J8cwe3rojZwbhusQq6B6E%22%7D&expiration=20160&redirect_uri=https%3A%2F%2Faallc.maps.arcgis.com%2Fapps%2Finstant%2Fportfolio%2Findex.html%3Fappid%3Dc20882c0229c40dd8c91dfe5089d6e63&redirectToUserOrgUrl=true&code_challenge=9gIKnvM1bxnxes86hwLh1Y7_IFNxBNyxhE-AEijI9kI&code_challenge_method=S256:0
+[   44191ms] [INFO] Using Calcite Components 5.0.2 [Date: 2026-02-18, Revision: 960214b84] @ https://aallc.maps.arcgis.com/apps/instant/_astro/signal.BeLDHq9G.js:35
+[   45401ms] [INFO] Telemetry Disabled @ https://aallc.maps.arcgis.com/apps/instant/_astro/telemetry.U3skjQHQ.js:2
+[   45401ms] [INFO] Page view was not logged because telemetry is disabled. @ https://aallc.maps.arcgis.com/apps/instant/_astro/telemetry.U3skjQHQ.js:2
+[   46236ms] [WARNING] [@arcgis/core/widgets/Home] 🛑 DEPRECATED - This widget is deprecated. Use the Home component instead.
+	🛠️ Replacement: <arcgis-home></arcgis-home>
+	⚙️ Version: 4.32
+	🔗 See for more details:
+		Home component reference: https://www.esriurl.com/arcgis-home/
+		Esri's move to web components: https://www.esriurl.com/components-transition-plan/ @ https://aallc.maps.arcgis.com/apps/instant/_astro/signal.BeLDHq9G.js:5
+[   47197ms] [ERROR] [@arcgis/core/views/3d/state/ViewStateManager] #camera= Invalid camera Camera @ https://aallc.maps.arcgis.com/apps/instant/_astro/signal.BeLDHq9G.js:5
