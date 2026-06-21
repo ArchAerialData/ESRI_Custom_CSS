@@ -46,6 +46,38 @@ Tabbed layout:
 #tabbedLayout .esri-portfolio-tabbed__tab-list .esri-portfolio-tabbed-item:focus-visible
 ```
 
+Optional inactive-tab contrast pattern (Option A):
+
+```css
+body.calcite-mode-dark #tabbedLayout .esri-portfolio-tabbed__tab-list{
+  background:
+    linear-gradient(180deg, rgba(2,9,16,.72), rgba(3,10,17,.68)),
+    #2f343a !important;
+  box-shadow:
+    inset 0 1px 0 rgba(253,252,252,.08),
+    inset 0 -1px 0 rgba(2,9,16,.75) !important;
+}
+
+body.calcite-mode-dark #tabbedLayout .esri-portfolio-tabbed__tab-list
+  .esri-portfolio-tabbed-item:not(.esri-portfolio-tabbed-item--selected){
+  background:
+    linear-gradient(180deg, rgba(253,252,252,.16), rgba(253,252,252,.09)) !important;
+  box-shadow:
+    inset 0 0 0 1px rgba(253,252,252,.18),
+    0 1px 4px rgba(2,9,16,.16) !important;
+  text-shadow: 0 1px 0 rgba(2,9,16,.34) !important;
+}
+
+body.calcite-mode-dark #tabbedLayout .esri-portfolio-tabbed__tab-list
+  .esri-portfolio-tabbed-item:not(.esri-portfolio-tabbed-item--selected):hover{
+  background:
+    linear-gradient(180deg, rgba(253,252,252,.22), rgba(253,252,252,.13)) !important;
+  box-shadow:
+    inset 0 0 0 1px rgba(253,252,252,.30),
+    0 1px 6px rgba(2,9,16,.22) !important;
+}
+```
+
 Cover page:
 
 ```css
@@ -70,6 +102,7 @@ https://www.arcgis.com/home/webscene/viewer.html?webscene=ITEMID&ui=min
 ## Practical Guidance
 
 - Start new Portfolio clients from `.master/Portfolio/`, not from another app family.
+- Source brand colors from logo assets in `clients/<client>/logos/` first, then document the sampled logo file and key colors in the client CSS header.
 - Keep `:root` brand tokens at the top of the stylesheet.
 - Scope tab rules to `#tabbedLayout` to avoid accidental collisions.
 - Preserve `:focus-visible` outlines and `prefers-reduced-motion` handling.

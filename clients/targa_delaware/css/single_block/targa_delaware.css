@@ -120,6 +120,15 @@ instant-apps-header::after{
 }
 
 /* ================= Tabs ================= */
+body.calcite-mode-dark #tabbedLayout .esri-portfolio-tabbed__tab-list{
+  background:
+    linear-gradient(180deg, rgba(2,9,16,.78), rgba(3,10,17,.72)),
+    #252b32 !important;
+  box-shadow:
+    inset 0 1px 0 rgba(253,252,252,.06),
+    inset 0 -1px 0 rgba(2,9,16,.78) !important;
+}
+
 #tabbedLayout .esri-portfolio-tabbed__tab-list .esri-portfolio-tabbed-item{
   background: rgba(253,252,252,.07);
   color: var(--text-on-dark);
@@ -127,9 +136,28 @@ instant-apps-header::after{
   border-radius: 6px;
 }
 
+body.calcite-mode-dark #tabbedLayout .esri-portfolio-tabbed__tab-list
+  .esri-portfolio-tabbed-item:not(.esri-portfolio-tabbed-item--selected){
+  background:
+    linear-gradient(180deg, rgba(28,67,121,.34), rgba(28,67,121,.18)) !important;
+  box-shadow:
+    inset 0 0 0 1px rgba(246,248,253,.14),
+    inset 0 -1px 0 rgba(2,9,16,.40) !important;
+  text-shadow: 0 1px 0 rgba(2,9,16,.36) !important;
+}
+
 #tabbedLayout .esri-portfolio-tabbed__tab-list .esri-portfolio-tabbed-item:hover{
   background: rgba(253,252,252,.13);
   box-shadow: 0 1px 6px rgba(2,9,16,.26);
+}
+
+body.calcite-mode-dark #tabbedLayout .esri-portfolio-tabbed__tab-list
+  .esri-portfolio-tabbed-item:not(.esri-portfolio-tabbed-item--selected):hover{
+  background:
+    linear-gradient(180deg, rgba(28,67,121,.46), rgba(28,67,121,.24)) !important;
+  box-shadow:
+    inset 0 0 0 1px rgba(246,248,253,.24),
+    0 1px 6px rgba(2,9,16,.20) !important;
 }
 
 #tabbedLayout .esri-portfolio-tabbed__tab-list .esri-portfolio-tabbed-item--selected,

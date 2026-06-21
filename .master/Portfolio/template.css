@@ -16,7 +16,9 @@ Calcite variables at component boundaries to influence internal colors.
 
 /* ============================ 1) BRAND TOKENS ============================
 Purpose: per-client colors, motion preferences, and optional overlay logo.
-How to use: edit these values only; try not to hard-code colors elsewhere.
+How to use: source colors from client logo files under clients/<client>/logos/
+first, document the sampled file/colors in the client CSS header, then edit
+these values only; try not to hard-code colors elsewhere.
 */
 :root{
   /* Colors */
@@ -133,6 +135,40 @@ A) Tab strip container ("blank space" behind tabs) */
   background: rgba(255,255,255,.12);
   box-shadow: 0 1px 6px rgba(0,0,0,.25);
 }
+
+/* Optional inactive-tab contrast pattern (Option A)
+   Use when non-active tabs blend into the strip. This adds a darker strip,
+   a soft white-glass inactive tab fill, and a subtle inset edge while leaving
+   the active tab rule below untouched.
+
+body.calcite-mode-dark #tabbedLayout .esri-portfolio-tabbed__tab-list{
+  background:
+    linear-gradient(180deg, rgba(2,9,16,.72), rgba(3,10,17,.68)),
+    #2f343a !important;
+  box-shadow:
+    inset 0 1px 0 rgba(253,252,252,.08),
+    inset 0 -1px 0 rgba(2,9,16,.75) !important;
+}
+
+body.calcite-mode-dark #tabbedLayout .esri-portfolio-tabbed__tab-list
+  .esri-portfolio-tabbed-item:not(.esri-portfolio-tabbed-item--selected){
+  background:
+    linear-gradient(180deg, rgba(253,252,252,.16), rgba(253,252,252,.09)) !important;
+  box-shadow:
+    inset 0 0 0 1px rgba(253,252,252,.18),
+    0 1px 4px rgba(2,9,16,.16) !important;
+  text-shadow: 0 1px 0 rgba(2,9,16,.34) !important;
+}
+
+body.calcite-mode-dark #tabbedLayout .esri-portfolio-tabbed__tab-list
+  .esri-portfolio-tabbed-item:not(.esri-portfolio-tabbed-item--selected):hover{
+  background:
+    linear-gradient(180deg, rgba(253,252,252,.22), rgba(253,252,252,.13)) !important;
+  box-shadow:
+    inset 0 0 0 1px rgba(253,252,252,.30),
+    0 1px 6px rgba(2,9,16,.22) !important;
+}
+*/
 
 /* D) Active tab (selected) */
 #tabbedLayout .esri-portfolio-tabbed__tab-list .esri-portfolio-tabbed-item--selected,

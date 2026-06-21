@@ -77,6 +77,11 @@ Use a consistent structure to keep single‑file CSS readable and maintainable:
 5) Utilities (small helpers)
 6) Client overrides (local tweaks at bottom)
 
+Default color sourcing: sample brand colors from logo files under
+`clients/<client>/logos/` before inventing a palette. Record the sampled
+filename and key hex values in the client CSS header so future edits can be
+verified against the same source.
+
 Example skeleton:
 
 ```css
@@ -144,6 +149,40 @@ instant-apps-header::after{ /* centered overlay logo (optional) */
 }
 #tabbedLayout .esri-portfolio-tabbed__tab-list .esri-portfolio-tabbed-item:focus-visible{ outline:2px solid var(--brand-primary); outline-offset:2px; }
 @keyframes tabRedShift{ 0%{background-position:0% 50%,0 0} 50%{background-position:100% 50%,0 0} 100%{background-position:0% 50%,0 0} }
+
+/* Optional inactive-tab contrast pattern (Option A)
+   Use when non-active tabs blend into the strip. This adds a darker strip,
+   a soft white-glass inactive tab fill, and a subtle inset edge while leaving
+   the active tab rule above untouched.
+
+body.calcite-mode-dark #tabbedLayout .esri-portfolio-tabbed__tab-list{
+  background:
+    linear-gradient(180deg, rgba(2,9,16,.72), rgba(3,10,17,.68)),
+    #2f343a !important;
+  box-shadow:
+    inset 0 1px 0 rgba(253,252,252,.08),
+    inset 0 -1px 0 rgba(2,9,16,.75) !important;
+}
+
+body.calcite-mode-dark #tabbedLayout .esri-portfolio-tabbed__tab-list
+  .esri-portfolio-tabbed-item:not(.esri-portfolio-tabbed-item--selected){
+  background:
+    linear-gradient(180deg, rgba(253,252,252,.16), rgba(253,252,252,.09)) !important;
+  box-shadow:
+    inset 0 0 0 1px rgba(253,252,252,.18),
+    0 1px 4px rgba(2,9,16,.16) !important;
+  text-shadow: 0 1px 0 rgba(2,9,16,.34) !important;
+}
+
+body.calcite-mode-dark #tabbedLayout .esri-portfolio-tabbed__tab-list
+  .esri-portfolio-tabbed-item:not(.esri-portfolio-tabbed-item--selected):hover{
+  background:
+    linear-gradient(180deg, rgba(253,252,252,.22), rgba(253,252,252,.13)) !important;
+  box-shadow:
+    inset 0 0 0 1px rgba(253,252,252,.30),
+    0 1px 6px rgba(2,9,16,.22) !important;
+}
+*/
 
 /* ================= 4) LANDING PAGE ================= */
 instant-apps-landing-page{
