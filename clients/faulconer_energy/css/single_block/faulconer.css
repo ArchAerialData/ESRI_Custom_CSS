@@ -1,0 +1,257 @@
+/* ================= Faulconer Energy Portfolio - Clean CSS =================
+   Palette sampled from local logo asset:
+   - faulconer.jpg: #024ab8 primary blue, #043779 dark blue,
+     #eb2518/#b72017 red accent, #4c4d51/#343539 charcoal,
+     #a1a6b1 gray, #ebeef0 soft gray, #ffffff white
+====================================================================== */
+
+/* ================= Brand tokens ================= */
+:root{
+  --fec-blue: #024ab8;
+  --fec-blue-dark: #043779;
+  --fec-blue-muted: #20539d;
+  --fec-red: #eb2518;
+  --fec-red-dark: #b72017;
+  --fec-charcoal: #4c4d51;
+  --fec-charcoal-dark: #343539;
+  --fec-gray: #a1a6b1;
+  --fec-soft-gray: #ebeef0;
+  --fec-white: #ffffff;
+
+  --fec-blue-rgb: 2, 74, 184;
+  --fec-blue-dark-rgb: 4, 55, 121;
+  --fec-blue-muted-rgb: 32, 83, 157;
+  --fec-red-rgb: 235, 37, 24;
+  --fec-red-dark-rgb: 183, 32, 23;
+  --fec-charcoal-rgb: 76, 77, 81;
+  --fec-charcoal-dark-rgb: 52, 53, 57;
+  --fec-gray-rgb: 161, 166, 177;
+  --fec-soft-gray-rgb: 235, 238, 240;
+  --fec-white-rgb: 255, 255, 255;
+
+  --cover-button-bg: var(--fec-blue);
+  --cover-button-bg-hover: var(--fec-blue-dark);
+  --cover-button-bg-press: var(--fec-charcoal-dark);
+  --cover-button-text: var(--fec-white);
+  --cover-button-border: var(--fec-red);
+
+  --text-on-dark: var(--fec-white);
+  --text-on-light: var(--fec-charcoal-dark);
+
+  --app-header-gradient-speed: 16s;
+  --tab-gradient-speed: 14s;
+
+  /* Centered overlay logo controls */
+  --overlay-logo-url: none;
+  --overlay-logo-width: clamp(72px, 5vw, 96px);
+  --overlay-logo-height: min(56px, calc(var(--instant-apps-header-height, 56px) - 4px));
+  --overlay-logo-bg-size: contain;
+  --overlay-logo-bg-position: center center;
+}
+
+/* ================= Shared Calcite tokens ================= */
+.calcite-mode-dark{
+  --calcite-color-brand: var(--fec-blue) !important;
+  --calcite-color-brand-hover: var(--fec-blue-dark) !important;
+  --calcite-color-brand-press: var(--fec-charcoal-dark) !important;
+  --calcite-color-focus: var(--fec-red) !important;
+}
+
+.calcite-mode-light{
+  --calcite-color-brand: var(--fec-blue) !important;
+  --calcite-color-brand-hover: var(--fec-blue-dark) !important;
+  --calcite-color-brand-press: var(--fec-charcoal-dark) !important;
+  --calcite-color-focus: var(--fec-red) !important;
+}
+
+/* ================= Header (Instant Apps) ================= */
+instant-apps-header{
+  background:
+    radial-gradient(680px 130px at 50% 50%, rgba(var(--fec-soft-gray-rgb), .18), rgba(var(--fec-soft-gray-rgb), 0) 70%),
+    radial-gradient(460px 90px at 78% 54%, rgba(var(--fec-red-rgb), .12), rgba(var(--fec-red-rgb), 0) 72%),
+    linear-gradient(
+      110deg,
+      var(--fec-charcoal-dark) 0%,
+      var(--fec-blue-dark) 20%,
+      var(--fec-blue) 46%,
+      var(--fec-blue-muted) 64%,
+      var(--fec-charcoal) 84%,
+      var(--fec-charcoal-dark) 100%
+    ),
+    linear-gradient(180deg, rgba(var(--fec-white-rgb), .10) 0%, rgba(var(--fec-charcoal-dark-rgb), .18) 44%, rgba(var(--fec-charcoal-dark-rgb), .46) 100%);
+  background-size: 100% 100%, 100% 100%, 360% 360%, 100% 100%;
+  animation: appHeaderShift var(--app-header-gradient-speed) ease-in-out infinite;
+
+  --calcite-color-foreground-1: transparent;
+  --calcite-color-text-1: var(--text-on-dark);
+  --calcite-color-text-2: var(--fec-soft-gray);
+  --calcite-color-brand: var(--fec-blue);
+  --calcite-color-brand-hover: var(--fec-blue-dark);
+  --calcite-color-brand-press: var(--fec-charcoal-dark);
+  --calcite-color-focus: var(--fec-red);
+
+  position: relative;
+  z-index: 0;
+  box-shadow: inset 0 -1px 0 rgba(var(--fec-white-rgb), .12);
+}
+
+instant-apps-header::part(container),
+instant-apps-header::part(wrapper){
+  background: transparent !important;
+  padding-left: 16px !important;
+  padding-right: 16px !important;
+}
+
+/* Centered overlay PNG logo */
+instant-apps-header::after{
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: var(--overlay-logo-width);
+  height: var(--overlay-logo-height);
+  transform: translate(-50%, -50%);
+  background: var(--overlay-logo-url) no-repeat var(--overlay-logo-bg-position) / var(--overlay-logo-bg-size);
+  pointer-events: none;
+  z-index: 2;
+  opacity: .96;
+  filter:
+    drop-shadow(0 1px 0 rgba(var(--fec-white-rgb), .12))
+    drop-shadow(0 2px 5px rgba(var(--fec-charcoal-dark-rgb), .18));
+}
+
+@media (prefers-reduced-motion: reduce){
+  instant-apps-header{ animation: none; }
+}
+
+@keyframes appHeaderShift{
+  0%{background-position: 50% 50%, 50% 50%, 0% 50%, 0 0}
+  50%{background-position: 50% 50%, 50% 50%, 100% 50%, 0 0}
+  100%{background-position: 50% 50%, 50% 50%, 0% 50%, 0 0}
+}
+
+/* ================= Tabs ================= */
+body.calcite-mode-dark #tabbedLayout .esri-portfolio-tabbed__tab-list{
+  background:
+    linear-gradient(180deg, rgba(var(--fec-charcoal-rgb), .96), rgba(var(--fec-charcoal-dark-rgb), .88)),
+    var(--fec-charcoal) !important;
+  border-top: 1px solid rgba(var(--fec-soft-gray-rgb), .42);
+  border-bottom: 1px solid rgba(var(--fec-charcoal-dark-rgb), .76);
+  box-shadow:
+    inset 0 1px 0 rgba(var(--fec-white-rgb), .14),
+    inset 0 -1px 0 rgba(var(--fec-charcoal-dark-rgb), .62) !important;
+}
+
+#tabbedLayout .esri-portfolio-tabbed__tab-list .esri-portfolio-tabbed-item{
+  background: rgba(var(--fec-white-rgb), .36);
+  color: var(--text-on-light);
+  transition: background .2s ease, color .2s ease, box-shadow .2s ease;
+  border-radius: 6px;
+}
+
+body.calcite-mode-dark #tabbedLayout .esri-portfolio-tabbed__tab-list
+  .esri-portfolio-tabbed-item:not(.esri-portfolio-tabbed-item--selected){
+  background:
+    linear-gradient(180deg, rgba(var(--fec-white-rgb), .58), rgba(var(--fec-gray-rgb), .90)) !important;
+  color: var(--text-on-light) !important;
+  box-shadow:
+    inset 0 0 0 1px rgba(var(--fec-white-rgb), .42),
+    inset 0 -1px 0 rgba(var(--fec-charcoal-dark-rgb), .30) !important;
+  text-shadow: none !important;
+}
+
+#tabbedLayout .esri-portfolio-tabbed__tab-list .esri-portfolio-tabbed-item:hover{
+  background: rgba(var(--fec-white-rgb), .58);
+  box-shadow: 0 1px 6px rgba(var(--fec-blue-rgb), .18);
+}
+
+body.calcite-mode-dark #tabbedLayout .esri-portfolio-tabbed__tab-list
+  .esri-portfolio-tabbed-item:not(.esri-portfolio-tabbed-item--selected):hover{
+  background:
+    linear-gradient(180deg, rgba(var(--fec-white-rgb), .70), rgba(var(--fec-gray-rgb), .96)) !important;
+  box-shadow:
+    inset 0 0 0 1px rgba(var(--fec-white-rgb), .62),
+    0 1px 6px rgba(var(--fec-blue-rgb), .16) !important;
+}
+
+#tabbedLayout .esri-portfolio-tabbed__tab-list .esri-portfolio-tabbed-item--selected,
+#tabbedLayout .esri-portfolio-tabbed__tab-list .esri-portfolio-tabbed-item--selected:hover{
+  background:
+    linear-gradient(
+      135deg,
+      var(--fec-blue-dark) 0%,
+      var(--fec-blue) 46%,
+      rgba(var(--fec-red-rgb), .28) 72%,
+      var(--fec-charcoal) 100%
+    ),
+    linear-gradient(180deg, rgba(var(--fec-white-rgb), .12) 0%, rgba(var(--fec-charcoal-dark-rgb), .12) 100%) !important;
+  background-size: 230% 230%, 100% 100%;
+  animation: tabFecShift var(--tab-gradient-speed) ease-in-out infinite;
+  color: var(--text-on-dark) !important;
+  text-shadow: 0 1px 0 rgba(var(--fec-charcoal-dark-rgb), .48);
+  box-shadow:
+    0 0 0 1px rgba(var(--fec-white-rgb), .88) inset,
+    0 0 0 1px rgba(var(--fec-red-rgb), .46),
+    0 2px 8px rgba(var(--fec-blue-rgb), .30);
+}
+
+#tabbedLayout .esri-portfolio-tabbed__tab-list .esri-portfolio-tabbed-item:focus-visible{
+  outline: 2px solid var(--fec-red);
+  outline-offset: 2px;
+}
+
+@keyframes tabFecShift{
+  0%{background-position: 0% 50%, 0 0}
+  50%{background-position: 100% 50%, 0 0}
+  100%{background-position: 0% 50%, 0 0}
+}
+
+@media (prefers-reduced-motion: reduce){
+  #tabbedLayout .esri-portfolio-tabbed__tab-list .esri-portfolio-tabbed-item--selected,
+  #tabbedLayout .esri-portfolio-tabbed__tab-list .esri-portfolio-tabbed-item--selected:hover{
+    animation: none;
+  }
+}
+
+/* ================= Landing page ================= */
+instant-apps-landing-page{
+  --instant-apps-landing-page-background-color:
+    radial-gradient(760px 420px at 48% 36%, rgba(var(--fec-soft-gray-rgb), .18), rgba(var(--fec-soft-gray-rgb), 0) 62%),
+    radial-gradient(620px 360px at 18% 22%, rgba(var(--fec-red-rgb), .16), rgba(var(--fec-red-rgb), 0) 64%),
+    linear-gradient(135deg, var(--fec-charcoal-dark) 0%, var(--fec-blue-dark) 34%, var(--fec-blue) 66%, var(--fec-charcoal) 100%) !important;
+  --instant-apps-landing-page-text-color: var(--fec-white) !important;
+  --instant-apps-landing-page-entry-button-color: var(--cover-button-bg) !important;
+  --calcite-color-brand: var(--cover-button-bg) !important;
+  --calcite-color-brand-hover: var(--cover-button-bg-hover) !important;
+  --calcite-color-brand-press: var(--cover-button-bg-press) !important;
+  --calcite-color-text-inverse: var(--cover-button-text) !important;
+  --calcite-color-focus: var(--fec-red) !important;
+
+  /* The entry button is inside this component's shadow DOM; inherited
+     Calcite button tokens are the reliable override point. */
+  --calcite-button-background-color: var(--cover-button-bg) !important;
+  --calcite-button-border-color: var(--cover-button-border) !important;
+  --calcite-button-border-size: 2px !important;
+  --calcite-button-text-color: var(--cover-button-text) !important;
+  --calcite-button-icon-color: var(--cover-button-text) !important;
+  --calcite-button-corner-radius: 8px !important;
+  --calcite-button-shadow:
+    0 0 0 1px rgba(var(--fec-white-rgb), .18) inset,
+    0 8px 20px rgba(var(--fec-charcoal-dark-rgb), .34) !important;
+}
+
+instant-apps-landing-page h1,
+instant-apps-landing-page h2,
+instant-apps-landing-page .landing-page__title,
+instant-apps-landing-page .landing-page__subtitle{
+  text-shadow: 0 2px 8px rgba(var(--fec-charcoal-dark-rgb), .46), 0 1px 0 rgba(var(--fec-blue-rgb), .34);
+}
+
+instant-apps-landing-page::part(container){
+  -webkit-backdrop-filter: saturate(1.05) contrast(1.05);
+  backdrop-filter: saturate(1.05) contrast(1.05);
+}
+
+/* ================= Utilities ================= */
+.text-on-dark{ color: var(--text-on-dark) !important; }
+.text-on-light{ color: var(--text-on-light) !important; }

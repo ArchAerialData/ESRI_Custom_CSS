@@ -1,0 +1,16 @@
+{
+  "name": "esri-custom-css",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Optional asset tooling for ESRI Custom CSS client logos.",
+  "type": "module",
+  "scripts": {
+    "trace-logo": "node tools/vector-trace-logo.mjs",
+    "trace:logo": "node tools/vector-trace-logo.mjs"
+  },
+  "devDependencies": {
+    "@resvg/resvg-js": "^2.6.2",
+    "imagetracerjs": "^1.2.6",
+    "sharp": "^0.35.2"
+  }
+}
