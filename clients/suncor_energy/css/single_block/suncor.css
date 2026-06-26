@@ -1,0 +1,243 @@
+/* ================= Suncor Energy Portfolio - Clean CSS =================
+   Palette verified from local logo asset:
+   - suncor.png: #185F97 primary blue,
+     #EC9C1E / #E88723 gold-orange arc,
+     #E0522D red-orange arc
+   Darker blue and neutral values below are contrast-preserving extensions.
+====================================================================== */
+
+/* ================= Brand tokens ================= */
+:root{
+  --scm-blue: #185f97;
+  --scm-blue-dark: #124873;
+  --scm-blue-deep: #08273f;
+  --scm-orange: #ec9c1e;
+  --scm-sand: #fff3da;
+  --scm-earth: #e0522d;
+  --scm-peach: #f6c478;
+  --scm-sun: #e88723;
+  --scm-white: #ffffff;
+  --scm-soft-white: #f6f8fb;
+
+  --cover-button-bg: var(--scm-blue);
+  --cover-button-bg-hover: var(--scm-earth);
+  --cover-button-bg-press: var(--scm-blue-dark);
+  --cover-button-text: var(--scm-white);
+  --cover-button-border: var(--scm-orange);
+
+  --text-on-dark: var(--scm-white);
+  --text-on-light: var(--scm-blue-deep);
+
+  --app-header-gradient-speed: 16s;
+  --tab-gradient-speed: 14s;
+
+  /* Centered overlay logo controls */
+  --overlay-logo-url: none;
+  --overlay-logo-width: clamp(72px, 5vw, 96px);
+  --overlay-logo-height: min(56px, calc(var(--instant-apps-header-height, 56px) - 4px));
+  --overlay-logo-bg-size: contain;
+  --overlay-logo-bg-position: center center;
+}
+
+/* ================= Shared Calcite tokens ================= */
+.calcite-mode-dark{
+  --calcite-color-brand: var(--scm-blue) !important;
+  --calcite-color-brand-hover: var(--scm-earth) !important;
+  --calcite-color-brand-press: var(--scm-blue-dark) !important;
+  --calcite-color-focus: var(--scm-peach) !important;
+}
+
+.calcite-mode-light{
+  --calcite-color-brand: var(--scm-blue) !important;
+  --calcite-color-brand-hover: var(--scm-blue-dark) !important;
+  --calcite-color-brand-press: var(--scm-blue-deep) !important;
+  --calcite-color-focus: var(--scm-orange) !important;
+}
+
+/* ================= Header (Instant Apps) ================= */
+instant-apps-header{
+  background:
+    radial-gradient(680px 130px at 50% 50%, rgba(246,248,253,.16), rgba(246,248,253,0) 70%),
+    linear-gradient(
+      110deg,
+      var(--scm-blue-deep) 0%,
+      var(--scm-blue-dark) 20%,
+      var(--scm-blue) 42%,
+      var(--scm-earth) 66%,
+      var(--scm-blue-dark) 82%,
+      var(--scm-blue-deep) 100%
+    ),
+    linear-gradient(180deg, rgba(253,252,252,.09) 0%, rgba(2,9,16,.20) 44%, rgba(2,9,16,.48) 100%);
+  background-size: 100% 100%, 360% 360%, 100% 100%;
+  animation: appHeaderShift var(--app-header-gradient-speed) ease-in-out infinite;
+
+  --calcite-color-foreground-1: transparent;
+  --calcite-color-text-1: var(--text-on-dark);
+  --calcite-color-text-2: var(--scm-sun);
+  --calcite-color-brand: var(--scm-blue);
+  --calcite-color-brand-hover: var(--scm-earth);
+  --calcite-color-brand-press: var(--scm-blue-dark);
+  --calcite-color-focus: var(--scm-peach);
+
+  position: relative;
+  z-index: 0;
+  box-shadow: inset 0 -1px 0 rgba(253,252,252,.12);
+}
+
+instant-apps-header::part(container),
+instant-apps-header::part(wrapper){
+  background: transparent !important;
+  padding-left: 16px !important;
+  padding-right: 16px !important;
+}
+
+/* Centered overlay PNG logo */
+instant-apps-header::after{
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: var(--overlay-logo-width);
+  height: var(--overlay-logo-height);
+  transform: translate(-50%, -50%);
+  background: var(--overlay-logo-url) no-repeat var(--overlay-logo-bg-position) / var(--overlay-logo-bg-size);
+  pointer-events: none;
+  z-index: 2;
+  opacity: .96;
+  filter:
+    drop-shadow(0 1px 0 rgba(253,252,252,.12))
+    drop-shadow(0 2px 5px rgba(2,9,16,.18));
+}
+
+@media (prefers-reduced-motion: reduce){
+  instant-apps-header{ animation: none; }
+}
+
+@keyframes appHeaderShift{
+  0%{background-position: 50% 50%, 0% 50%, 0 0}
+  50%{background-position: 50% 50%, 100% 50%, 0 0}
+  100%{background-position: 50% 50%, 0% 50%, 0 0}
+}
+
+/* ================= Tabs ================= */
+body.calcite-mode-dark #tabbedLayout .esri-portfolio-tabbed__tab-list{
+  background:
+    linear-gradient(180deg, rgba(2,9,16,.78), rgba(3,10,17,.72)),
+    #252b32 !important;
+  box-shadow:
+    inset 0 1px 0 rgba(253,252,252,.06),
+    inset 0 -1px 0 rgba(2,9,16,.78) !important;
+}
+
+#tabbedLayout .esri-portfolio-tabbed__tab-list .esri-portfolio-tabbed-item{
+  background: rgba(253,252,252,.07);
+  color: var(--text-on-dark);
+  transition: background .2s ease, color .2s ease, box-shadow .2s ease;
+  border-radius: 6px;
+}
+
+body.calcite-mode-dark #tabbedLayout .esri-portfolio-tabbed__tab-list
+  .esri-portfolio-tabbed-item:not(.esri-portfolio-tabbed-item--selected){
+  background:
+    linear-gradient(180deg, rgba(28,67,121,.34), rgba(28,67,121,.18)) !important;
+  box-shadow:
+    inset 0 0 0 1px rgba(246,248,253,.14),
+    inset 0 -1px 0 rgba(2,9,16,.40) !important;
+  text-shadow: 0 1px 0 rgba(2,9,16,.36) !important;
+}
+
+#tabbedLayout .esri-portfolio-tabbed__tab-list .esri-portfolio-tabbed-item:hover{
+  background: rgba(253,252,252,.13);
+  box-shadow: 0 1px 6px rgba(2,9,16,.26);
+}
+
+body.calcite-mode-dark #tabbedLayout .esri-portfolio-tabbed__tab-list
+  .esri-portfolio-tabbed-item:not(.esri-portfolio-tabbed-item--selected):hover{
+  background:
+    linear-gradient(180deg, rgba(28,67,121,.46), rgba(28,67,121,.24)) !important;
+  box-shadow:
+    inset 0 0 0 1px rgba(246,248,253,.24),
+    0 1px 6px rgba(2,9,16,.20) !important;
+}
+
+#tabbedLayout .esri-portfolio-tabbed__tab-list .esri-portfolio-tabbed-item--selected,
+#tabbedLayout .esri-portfolio-tabbed__tab-list .esri-portfolio-tabbed-item--selected:hover{
+  background:
+    linear-gradient(
+      135deg,
+      var(--scm-blue-deep) 0%,
+      var(--scm-blue-dark) 34%,
+      var(--scm-blue) 62%,
+      var(--scm-earth) 100%
+    ),
+    linear-gradient(180deg, rgba(253,252,252,.09) 0%, rgba(2,9,16,.16) 100%) !important;
+  background-size: 230% 230%, 100% 100%;
+  animation: tabScmShift var(--tab-gradient-speed) ease-in-out infinite;
+  color: var(--text-on-dark) !important;
+  text-shadow: 0 1px 0 rgba(2,9,16,.48);
+  box-shadow:
+    0 0 0 1px rgba(253,252,252,.88) inset,
+    0 0 0 1px rgba(2,9,16,.82),
+    0 2px 10px rgba(28,67,121,.36);
+}
+
+#tabbedLayout .esri-portfolio-tabbed__tab-list .esri-portfolio-tabbed-item:focus-visible{
+  outline: 2px solid var(--scm-peach);
+  outline-offset: 2px;
+}
+
+@keyframes tabScmShift{
+  0%{background-position: 0% 50%, 0 0}
+  50%{background-position: 100% 50%, 0 0}
+  100%{background-position: 0% 50%, 0 0}
+}
+
+@media (prefers-reduced-motion: reduce){
+  #tabbedLayout .esri-portfolio-tabbed__tab-list .esri-portfolio-tabbed-item--selected,
+  #tabbedLayout .esri-portfolio-tabbed__tab-list .esri-portfolio-tabbed-item--selected:hover{
+    animation: none;
+  }
+}
+
+/* ================= Landing page ================= */
+instant-apps-landing-page{
+  --instant-apps-landing-page-background-color:
+    radial-gradient(760px 420px at 48% 36%, rgba(246,248,253,.18), rgba(246,248,253,0) 62%),
+    radial-gradient(620px 360px at 18% 22%, rgba(201,38,49,.14), rgba(201,38,49,0) 64%),
+    linear-gradient(135deg, var(--scm-blue-deep) 0%, var(--scm-blue-dark) 36%, var(--scm-blue) 66%, var(--scm-earth) 100%) !important;
+  --instant-apps-landing-page-text-color: var(--scm-white) !important;
+  --instant-apps-landing-page-entry-button-color: var(--cover-button-bg) !important;
+  --calcite-color-brand: var(--cover-button-bg) !important;
+  --calcite-color-brand-hover: var(--cover-button-bg-hover) !important;
+  --calcite-color-brand-press: var(--cover-button-bg-press) !important;
+  --calcite-color-text-inverse: var(--cover-button-text) !important;
+  --calcite-color-focus: var(--scm-orange) !important;
+
+  /* The entry button is inside this component's shadow DOM; inherited
+     Calcite button tokens are the reliable override point. */
+  --calcite-button-background-color: var(--cover-button-bg) !important;
+  --calcite-button-border-color: var(--cover-button-border) !important;
+  --calcite-button-border-size: 2px !important;
+  --calcite-button-text-color: var(--cover-button-text) !important;
+  --calcite-button-icon-color: var(--cover-button-text) !important;
+  --calcite-button-corner-radius: 8px !important;
+  --calcite-button-shadow:
+    0 0 0 1px rgba(253,252,252,.18) inset,
+    0 8px 20px rgba(2,9,16,.34) !important;
+}
+
+instant-apps-landing-page h1,
+instant-apps-landing-page h2,
+instant-apps-landing-page .landing-page__title,
+instant-apps-landing-page .landing-page__subtitle{
+  text-shadow: 0 2px 8px rgba(2,9,16,.46), 0 1px 0 rgba(28,67,121,.34);
+}
+
+instant-apps-landing-page::part(container){
+  -webkit-backdrop-filter: saturate(1.05) contrast(1.05);
+  backdrop-filter: saturate(1.05) contrast(1.05);
+}
+
+/* ================= Utilities ================= */
+.text-on-dark{ color: var(--text-on-dark) !important; }
+.text-on-light{ color: var(--text-on-light) !important; }
