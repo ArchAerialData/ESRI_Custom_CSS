@@ -1,0 +1,6 @@
+﻿Tool: built-in image_gen
+Source: image-transparent-hires.png
+Output: image-transparent-hires-white-text.png (1254 x 1254 RGBA)
+
+Final prompt:
+Edit the supplied transparent ADAMAS logo. Change ONLY the dark charcoal ADAMAS wordmark below the red emblem to pure solid white (#FFFFFF). Preserve the exact wordmark letter shapes, size, position, spacing, red emblem geometry and color, overall proportions and layout. Preserve genuine alpha transparency throughout the background and all negative spaces. Sharp clean antialiased edges, no shadows, glow, border, texture, or extra elements. Text verbatim: ADAMAS. Return a high-resolution transparent PNG at the same resolution or greater.

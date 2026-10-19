@@ -1,0 +1,7 @@
+﻿Tool: built-in image_gen
+Source: image.png (200 x 200)
+Output: image-transparent-hires.png (1254 x 1254, RGBA)
+
+Final prompt:
+Use case: background-extraction. Image 1 is the original ADAMAS logo, the authoritative design. Image 2 is a draft transparent enlargement that has unwanted stray red speckles and edge noise. Produce a clean final high-resolution transparent PNG, 2048 x 2048 pixels or greater if supported. Preserve the original exact geometric emblem, flat solid red fill, dark charcoal ADAMAS wordmark, text shapes, spacing, proportions, alignment and square layout. Fix the draft: completely remove ALL stray pixels, speckles, fuzz, texture, color fringes and remnants outside the precise emblem and lettering. All negative spaces including the central opening must be completely alpha transparent. Use clean sharply defined antialiased straight edges and smooth letter contours with uniform solid fills. No glow, shadows, gradients, outlines, checkerboard or added elements. Text verbatim: ADAMAS. This is faithful logo cleanup and enlargement, not a redesign.
+
